@@ -8,7 +8,7 @@
         "descrizione": "testcase 1 - busta paga ordinaria",
         "pdf": "https://drive.google.com/open?id=1xQzTh63grz81_ODb7xLf4Rm7XzbtpbpA",
         "posizione": {
-          "idposizione": "191",
+          "idposizione": false,
           "idtipofoglio": "1"
         },
         "cedolino": {
