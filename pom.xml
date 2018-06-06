@@ -3,4 +3,19 @@
   <groupId>it.iubar</groupId>
   <artifactId>po-test-json-validator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+    <dependencies>
+		<dependency>
+			<groupId>com.github.everit-org.json-schema</groupId>
+			<artifactId>org.everit.json.schema</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 </project>

@@ -1,0 +1,44 @@
+{
+  "databases": {
+    "local-path": "src/test/resources/db/db_laura_test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 1 - busta paga ordinaria",
+        "pdf": "https://drive.google.com/open?id=1xQzTh63grz81_ODb7xLf4Rm7XzbtpbpA",
+        "posizione": {
+          "idposizione": "191",
+          "idtipofoglio": "1"
+        },
+        "cedolino": {
+          "totaleretribnetta": "1086.00",
+          "detrazredditolavoro": "152.01",
+          "detrazconiuge": "60.56",
+          "elementi": [
+            {
+              "codice": "1101",
+              "qnt": "22",
+              "base": "57.5164"
+            },
+            {
+              "codice": "2504",
+              "qnt": "1",
+              "base": "57.5164"
+            },
+            {
+              "codice": "2504",
+              "qnt": "1",
+              "base": "57.5164"
+            },
+            {
+              "codice": "2201",
+              "qnt": "10",
+              "base": "57.5164"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
