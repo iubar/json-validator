@@ -2,6 +2,7 @@ package it.iubar.json_validator;
 
  
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +41,10 @@ public class Validator {
 	    }
 	    int error = result.size()-passed;
 	    
-	    System.out.print("\nTOTAL [PASSED: " + passed +"] [ERROR: " + error + "]");
-	    names();
+	    System.out.print("\nTOTAL [PASSED: " + passed +"][ERROR: " + error + "]\n");
+	    
+	    Names();
+	    
 	}
 	
 	public boolean validate(String data_name)  {
@@ -75,15 +78,11 @@ public class Validator {
 	
 	
 	
-	public void names(){
+	public void Names(){
 	        List<String> results = new ArrayList<String>();
-	        
-	        String start_path = new File("src/resources/schema.json").getAbsolutePath();
-	        
-	        String final_path = start_path.replace("\\schema.json", "");
-	        
-	        File[] files = new File(final_path).listFiles();
-	        
+	                  
+	        File[] files = new File("src/resources/").listFiles(); 
+
 	        for (File file : files) {
 	            if (file.isFile()) {
 	                if (!file.getName().equals("schema.json")) {
@@ -96,6 +95,7 @@ public class Validator {
 	            System.out.println(results.get(i));
 	        }
 	    }
+
 	
 
 }
