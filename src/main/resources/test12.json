@@ -1,0 +1,29 @@
+{
+  "databases": {
+    "local-path": "src/test/resources/db/db_laura_test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 12 - parasub.",
+        "pdf": "https://drive.google.com/file/d/0B5TXUq-rPwifRXFfZjJOVVJ4cFU",
+        "posizione": {
+          "idposizione": "205",
+          "idtipofoglio": "1"
+        },
+        "cedolino": {
+          "totaleretriblorda": "1111.00",
+          "totaletrattenute": "204.01",
+          "elementi": [
+            {
+              "codice": "1115",
+              "qnt": "1",
+              "base": "1111.0000"
+            }
+            
+          ]
+        }
+      }
+    }
+  ]
+}

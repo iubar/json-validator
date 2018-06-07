@@ -1,0 +1,43 @@
+{
+  "databases": {
+    "local-path": "src/test/resources/db/db_laura_test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 3 - busta paga ordinaria",
+        "pdf": "https://drive.google.com/open?id=0B5TXUq-rPwifSHFYa1FWaFRYWnc",
+        "posizione": {
+          "idposizione": "68",
+          "idtipofoglio": "1"
+        },
+        "cedolino": {
+          "detrazredditolavoro": "95.98",
+          "detrazconiuge": "57.50",
+		  "detrazfigli": "51.77",
+          "redditoannuoriferim": "21215.81",
+          "addcomsaldo": "15.03",
+          "addcomacconto": "5.51",
+          "addizregionale": "26.31",
+          "elementi": [
+            {
+              "codice": "1101",
+              "qnt": "26",
+              "base": "69.1204"
+            },
+            {
+              "codice": "2507",
+              "qnt": "1",
+              "base": "69.1204"
+            },
+            {
+              "codice": "3301",
+              "qnt": "1",
+              "base": "78.6000"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "databases": {
+	"local-path": "src/test/resources/db/db_laura_test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "malattia mese 2",
+        "pdf": "https://drive.google.com/file/d/1nP3k-v-wvVj3AYTSNG1a4yj3JsmsMa8g/view",
+        "posizione": {
+          "idposizione": "155",
+          "idtipofoglio": "1",
+          "azienda": "52",
+          "lavoratore": "11",
+          "mese": "5",
+          "anno": "2012"
+        },
+        "cedolino": {
+         
+		  
+          "totaleretribnetta": "1353.00",
+          "arrotondamento": "0.18",
+          "totaletrattenute": "321.18",
+          "imponibileprev": "1502.00",
+		  "contributoprev": "138.03",
+          "redditoimponibile": "1422.85",
+		  "redditoannuoriferim": "18260.72",
+          "elementi": [
+            {
+              "codice": "1103",
+              "qnt": "20",
+              "base": "69.6152"
+			              },
+            {
+              "codice": "2503",
+              "qnt": "1",
+              "base": "70.1549"
+            },
+            {
+              "codice": "2507",
+              "qnt": "1",
+              "base": "70.1549"
+            },
+			 {
+              "codice": "1416",
+              "qnt": "2",
+              "base": "69.6152"
+            },
+			 {
+              "codice": "1451",
+              "qnt": "2",
+              "base": "52.2114"
+            },
+			 {
+              "codice": "1469",
+              "qnt": "1",
+              "base": "59.1432"
+            },
+			 {
+              "codice": "1470",
+              "qnt": "1",
+              "base": "39.2944"
+            },
+			 {
+              "codice": "3301",
+              "qnt": "1",
+              "base": "113.4800"
+            },
+			 
+			 {
+              "codice": "1001",
+              "fig": "59.14"
+                          }
+          ],
+          "datistatistici":{
+			"hh_lav": "160.00",
+			"gg_lav": "20.00",
+			"hh_retrib": "192.00",
+			"gg_retrib": "23.00",
+			"gg_utili": "26.00",
+			"sett_utili": "4.80",
+			"hh_contrib": "172.00",
+			"gg_contrib":"23.00"
+		}
+          
+        }
+      }
+    }
+  ]
+}

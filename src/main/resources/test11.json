@@ -1,0 +1,40 @@
+{
+  "databases": {
+    "local-path": "src/test/resources/db/db_laura_test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 11 - ente bilaterale ASPO+PULI",
+        "pdf": "https://drive.google.com/file/d/0B5TXUq-rPwifWGdSN002LTVrOWc",
+        "posizione": {
+          "idposizione": "204",
+          "idtipofoglio": "1"
+        },
+        "cedolino": {
+          "contributoente1": "0",
+          "contributoente2": "9.90",
+          "totaletrattenute": "577.37",
+		  "totaleretribnetta": "1600.00",
+          "elementi": [
+            {
+              "codice": "1101",
+              "qnt": "26",
+              "base": "82.0150"
+            },
+			{
+              "codice": "2504",
+              "qnt": "1",
+              "base": "82.0150"
+            },
+			{
+              "codice": "1121",
+              "qnt": "1",
+              "base": "45.948080"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

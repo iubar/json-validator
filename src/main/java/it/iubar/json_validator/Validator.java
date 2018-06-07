@@ -2,7 +2,8 @@ package it.iubar.json_validator;
 
  
 import java.io.InputStream;
- 
+import java.util.ArrayList;
+import java.util.List;
 
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
@@ -14,7 +15,20 @@ import org.json.JSONTokener;
 public class Validator {
 	
 	public void run()  {
-		validate("data01.json");
+		
+		List<String> names = new ArrayList<String>();;
+		for (int i = 1; i<17 ; i++)
+		{
+			if (i<10)
+				names.add("test0" + i + ".json");
+			else 
+				names.add("test" + i + ".json");
+		}
+		names.add("test17A.json");
+		names.add("test17B.json");
+		
+		for (int i = 0; i<18 ; i++)
+			validate(names.get(i));
 	}
 	public void validate(String data_name)  {
 		
@@ -26,12 +40,16 @@ public class Validator {
 	
 		InputStream inputData = loader.getResourceAsStream(data_name);
 		JSONObject data = new JSONObject(new JSONTokener(inputData));
-		System.out.println(data);
+		//System.out.println(data);
+		System.out.println("\nValidazione di: " + data_name);
 		try {
 			  schema.validate(data);
+				System.out.println("JSON CORRETTO");
+
 			} catch (ValidationException e) {
 			  // prints #/rectangle/a: -5.0 is not higher or equal to 0
-				System.out.println(e.getMessage());
+				System.out.print("JSON ERRATO: ");
+				System.out.print(e.getMessage()+"\n");
 				  e.getCausingExceptions().stream()
 				      .map(ValidationException::getMessage)
 				      .forEach(System.out::println);
