@@ -2,6 +2,8 @@ package it.iubar.json_validator;
 
  
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class Validator {
 	    }
 	    int error = result.size()-passed;
 	    
-	    System.out.print("\nTOTAL [PASSED: " + passed +"] [ERROR: " + error + "]");
+	    System.out.print("\nTOTAL [PASSED: " + passed +"] [ERROR: " + error + "]\n");
 	    names();
 	}
 	
@@ -78,11 +80,25 @@ public class Validator {
 	public void names(){
 	        List<String> results = new ArrayList<String>();
 	        
-	        String start_path = new File("src/resources/schema.json").getAbsolutePath();
+	        ClassLoader loader = Thread.currentThread().getContextClassLoader();
 	        
-	        String final_path = start_path.replace("\\schema.json", "");
+	        String str = loader.getResource("schema.json").getFile();
+	        try {
+				str = URLDecoder.decode(str, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        File prova = new File (str);
 	        
-	        File[] files = new File(final_path).listFiles();
+	        String final_path = prova.getParent();
+	        
+	      // LOGGER.info(final_path);
+	        	        
+	        File f = new File(final_path).getAbsoluteFile();
+	        boolean b = f.isDirectory();
+	        
+	        File[] files = f.listFiles();
 	        
 	        for (File file : files) {
 	            if (file.isFile()) {
