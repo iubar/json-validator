@@ -1,8 +1,8 @@
 package it.iubar.json_validator;
 
- 
 import java.io.InputStream;
-import java.net.URL;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,25 +12,18 @@ import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import java.io.File;
-
+import java.util.logging.Logger;
 
 // throws IOException
 public class Validator {
 	
+	private static final Logger LOGGER = Logger.getLogger(Validator.class.getName());
+	
 	public void run()  {
 		
-		List<String> names = new ArrayList<String>();
+		List<String> names = Names() ;
 		List<Boolean> result = new ArrayList<Boolean>();;
-		for (int i = 1; i<17 ; i++)
-		{
-			if (i<10)
-				names.add("test0" + i + ".json");
-			else 
-				names.add("test" + i + ".json");
-		}
-		names.add("test17A.json");
-		names.add("test17B.json");
-		
+				
 		for (int i = 0; i<18 ; i++)
 			result.add(validate(names.get(i)));
 		
@@ -40,10 +33,9 @@ public class Validator {
 	            passed ++;
 	    }
 	    int error = result.size()-passed;
-	    
-	    System.out.print("\nTOTAL [PASSED: " + passed +"][ERROR: " + error + "]\n");
-	    
-	    Names();
+
+	    LOGGER.info("\nTOTAL: " + result.size() + "  [PASSED: " + passed +"][ERROR: " + error + "]\n");
+
 	    
 	}
 	
@@ -78,23 +70,39 @@ public class Validator {
 	
 	
 	
-	public void Names(){
-	        List<String> results = new ArrayList<String>();
-	                  
-	        File[] files = new File("src/resources/").listFiles(); 
-
-	        for (File file : files) {
-	            if (file.isFile()) {
-	                if (!file.getName().equals("schema.json")) {
-	                    results.add(file.getName());
-	                }                
-	            }
-	            
-	        }
-	        for (int i=0; i<results.size(); i++) {
-	            System.out.println(results.get(i));
-	        }
-	    }
+	public List<String> Names(){
+        List<String> results = new ArrayList<String>();
+        
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        
+        String str = loader.getResource("schema.json").getFile();
+        try {
+			str = URLDecoder.decode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        File prova = new File (str);
+        
+        String final_path = prova.getParent();
+        
+      // LOGGER.info(final_path);
+        	        
+        File f = new File(final_path).getAbsoluteFile();
+        boolean b = f.isDirectory();
+        
+        File[] files = f.listFiles();
+        
+        for (File file : files) {
+            if (file.isFile()) {
+                if (!file.getName().equals("schema.json")) {
+                    results.add(file.getName());
+                }                
+            }
+            
+        }
+        return results;
+    }
 
 	
 
