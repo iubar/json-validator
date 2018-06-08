@@ -12,6 +12,8 @@ import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
 // throws IOException
@@ -19,25 +21,34 @@ public class Validator {
 	
 	private static final Logger LOGGER = Logger.getLogger(Validator.class.getName());
 	
-	private File schema = new File("");
-	private String targetFolder = null;
+	private JSONObject schema = new JSONObject();
+	private File targetFolder = null;
 	
+	/**
+	 * 
+	 * @param schema = path del file schema
+	 */
 	public void setSchema(File schema) {
-		this.schema = schema;
+		try {
+		FileInputStream objFileInputStream = null;
+		objFileInputStream = new  FileInputStream(schema);
+		this.schema = new JSONObject(new JSONTokener(objFileInputStream));
+		}catch (FileNotFoundException ex) {
+        }
 	}
-
-	public void setTargetFolder(String directory) {
+		
+	public void setTargetFolder(File directory) {
 		this.targetFolder = directory;
 	}
 	
 	public void run()  {
 		
-		List<JSONObject> names = JsonFiles(targetFolder) ;
-		List<Boolean> result = new ArrayList<Boolean>();;
+		List<JSONObject> names = JsonFiles();
+		List<Boolean> result = new ArrayList<Boolean>();
 				
 		for (int i = 0; i<18 ; i++)
 			result.add(validate(names.get(i)));
-		
+			
 		int passed = 0;
 	    for (Boolean value : result) {
 	        if (value.booleanValue())
@@ -47,23 +58,18 @@ public class Validator {
 
 	    LOGGER.info("\nTOTAL: " + result.size() + "  [PASSED: " + passed +"][ERROR: " + error + "]\n");
 
-	    
 	}
 	
-	public boolean validate(String data_name)  {
+	public boolean validate(JSONObject file)  {
 		
 		boolean passed = false;
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		InputStream inputSchema = loader.getResourceAsStream("schema.json");
-		JSONObject rawSchema = new JSONObject(new JSONTokener(inputSchema));
-		//System.out.println(rawSchema);
-		Schema schema = SchemaLoader.load(rawSchema);
-		InputStream inputData = loader.getResourceAsStream(data_name);
-		JSONObject data = new JSONObject(new JSONTokener(inputData));
-		//System.out.println(data);
-		System.out.println("\nValidation of: " + data_name);
+		
+		Schema schemaJSON = SchemaLoader.load(this.schema); 
+		
+		System.out.println("\nValidation of: " + ""); 
+		
 		try {
-			  schema.validate(data);
+			    schemaJSON.validate(file);
 				System.out.println("JSON PASSED");
 				passed = true;
 
@@ -81,9 +87,10 @@ public class Validator {
 	
 	
 	
-	public List<JSONObject> JsonFiles(String directory){
-        List<String> results = new ArrayList<String>();
-        
+	public List<JSONObject> JsonFiles(){
+		
+        List<JSONObject> results = new ArrayList<JSONObject>();
+        /*
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         
         String str = loader.getResource("schema.json").getFile();
@@ -108,7 +115,7 @@ public class Validator {
                 if (!file.getName().equals("schema.json"))
                     results.add(file.getName());                
             }  
-        }
+        }*/
         return results;
     }
 }
