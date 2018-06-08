@@ -6,8 +6,11 @@ import java.io.File;
 
 public class PoTestJsonValidator {
 	
+
+
 	public static void main(String[] args) {
-			
+
+		
 		if (args.length != 2) {
 			System.out.println("[ERROR] Attenzione, le due directory non sono state inserite correttamente!");
 			showHelp();

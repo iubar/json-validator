@@ -46,9 +46,9 @@ public class Validator {
 		List<JSONObject> names = JsonFiles();
 		List<Boolean> result = new ArrayList<Boolean>();
 				
-		for (int i = 0; i<18 ; i++)
+		for (int i = 0; i<names.size() ; i++) {
 			result.add(validate(names.get(i)));
-			
+		}
 		int passed = 0;
 	    for (Boolean value : result) {
 	        if (value.booleanValue())
@@ -87,35 +87,38 @@ public class Validator {
 	
 	
 	
-	public List<JSONObject> JsonFiles(){
-		
-        List<JSONObject> results = new ArrayList<JSONObject>();
-        /*
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        
-        String str = loader.getResource("schema.json").getFile();
-        try {
-			str = URLDecoder.decode(str, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-        File prova = new File (str);
-        
-        String final_path = prova.getParent();
-        
+	public List<JSONObject> JsonFiles (){
+        List<String> results = new ArrayList<String>();
+        String directory = "" + targetFolder;
       // LOGGER.info(final_path);
-        	        
-        File f = new File(final_path).getAbsoluteFile();
-        boolean b = f.isDirectory();
+                    
+       // File f = new File(directory).getAbsoluteFile();
+      //  System.out.println(f);
+        boolean b = this.targetFolder.isDirectory();
         
-        File[] files = f.listFiles();
+        File[] files = this.targetFolder.listFiles();
         
         for (File file : files) {
-            if (file.isFile()) {
-                if (!file.getName().equals("schema.json"))
-                    results.add(file.getName());                
+            if (file.isFile()) {                
+                results.add(file.getName()); 
             }  
-        }*/
-        return results;
+        }
+               
+        List<JSONObject> JSONlist = new ArrayList<JSONObject>();
+        
+        
+        
+        for (int i=0; i<results.size(); i++) {
+            FileInputStream objFileInputStream=null;
+            try {
+                objFileInputStream = new FileInputStream(directory + "\\" + results.get(i));
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            JSONlist.add(new JSONObject(new JSONTokener(objFileInputStream)));
+        }
+        
+        return JSONlist;
     }
 }
