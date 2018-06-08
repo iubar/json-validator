@@ -5,7 +5,7 @@ import java.io.File;
 public class PoTestJsonValidator {
 	
 	public static void main(String[] args) {
-		/*if (args.length != 2) {
+		if (args.length != 2) {
 			// visualizzare l'help
 			System.exit(1);
 		}
@@ -16,13 +16,14 @@ public class PoTestJsonValidator {
 			/// visualizzare errore
 			System.exit(1);
 		}
+		
 		String targetPath = args[1];
 		File f2 = new File(targetPath);
 		if(!f2.isDirectory()) {
 			/// visualizzare errore
 			System.exit(1);
 		}
-		*/
+		
 		Validator client = new Validator();
 		//client.setSchema(...);
 		//client.setTargetFolder(...);

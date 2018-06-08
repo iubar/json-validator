@@ -19,9 +19,20 @@ public class Validator {
 	
 	private static final Logger LOGGER = Logger.getLogger(Validator.class.getName());
 	
+	private File schema = new File("");
+	private String targetFolder = null;
+	
+	public void setSchema(File schema) {
+		this.schema = schema;
+	}
+
+	public void setTargetFolder(String directory) {
+		this.targetFolder = directory;
+	}
+	
 	public void run()  {
 		
-		List<String> names = Names() ;
+		List<JSONObject> names = JsonFiles(targetFolder) ;
 		List<Boolean> result = new ArrayList<Boolean>();;
 				
 		for (int i = 0; i<18 ; i++)
@@ -70,7 +81,7 @@ public class Validator {
 	
 	
 	
-	public List<String> Names(){
+	public List<JSONObject> JsonFiles(String directory){
         List<String> results = new ArrayList<String>();
         
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -79,7 +90,6 @@ public class Validator {
         try {
 			str = URLDecoder.decode(str, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         File prova = new File (str);
@@ -95,15 +105,10 @@ public class Validator {
         
         for (File file : files) {
             if (file.isFile()) {
-                if (!file.getName().equals("schema.json")) {
-                    results.add(file.getName());
-                }                
-            }
-            
+                if (!file.getName().equals("schema.json"))
+                    results.add(file.getName());                
+            }  
         }
         return results;
     }
-
-	
-
 }
