@@ -4,7 +4,7 @@ TEST-JSON-VALIDATOR is a JSON validator
 
 ### How to use
 
-Write on the CMD console ```java -jar json-test-validator-X.X.X.jar <schema> <test>```
+> Write on the CMD console ```java -jar json-test-validator-X.X.X.jar <schema> <test>```
 
 | Key | Syntax |
 | ------ | ------ |
