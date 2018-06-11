@@ -8,8 +8,8 @@ Write on the CMD console ```java -jar json-test-validator-X.X.X.jar <schema> <te
 
 | Key | Syntax |
 | ------ | ------ |
-| ```schema``` | >path\of\schema.json |
-| ```test``` | >path\of\tests |
+| ```schema``` | > path\of\schema.json |
+| ```test``` | > path\of\tests |
 
 ### Used Tools
 
