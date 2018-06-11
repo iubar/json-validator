@@ -105,9 +105,7 @@ public class Validator {
 						  System.out.println("	- " + message);
 					  }
 					  System.out.println();
-				}
-				  
-				  
+				}	  
 			}
 		 System.out.println("################################################\n");
 		return passed;
