@@ -9,7 +9,7 @@ Write on the CMD console
 
 | Key | Syntax |
 | ------ | ------ |
-| ```<schema>``` | >\ path\of\schema.json |
+| ```<schema>``` | path\of\schema.json |
 | ```<test>``` | path\of\tests |
 
 ### Used Tools
