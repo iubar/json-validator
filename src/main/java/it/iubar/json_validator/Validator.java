@@ -4,7 +4,10 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
@@ -43,11 +46,12 @@ public class Validator {
 	
 	public void run()  {
 		
-		List<JSONObject> names = JsonFiles();
+		Map<String, JSONObject> map = getJsonFilesMap();
 		List<Boolean> result = new ArrayList<Boolean>();
-				
-		for (int i = 0; i<names.size() ; i++) {
-			result.add(validate(names.get(i)));
+		for (Map.Entry<String, JSONObject> entry : map.entrySet()){
+
+			
+			result.add(validate(entry));
 		}
 		int passed = 0;
 	    for (Boolean value : result) {
@@ -60,34 +64,58 @@ public class Validator {
 
 	}
 	
-	public boolean validate(JSONObject file)  {
-		
+	public boolean validate(Entry<String, JSONObject> entry)  {
 		boolean passed = false;
+		
+		  
+		String key = entry.getKey(); 
+		JSONObject value = entry.getValue();
 		
 		Schema schemaJSON = SchemaLoader.load(this.schema); 
 		
-		System.out.println("\nValidation of: " + ""); 
+		System.out.println("\n########## Validation of: " + key + " ##########");
 		
 		try {
-			    schemaJSON.validate(file);
+			    schemaJSON.validate(value);
 				System.out.println("JSON PASSED");
 				passed = true;
 
 			} catch (ValidationException e) {
 			  // prints #/rectangle/a: -5.0 is not higher or equal to 0
-				System.out.print("JSON ERROR: ");
+				System.out.println("\nJSON ERRORS: ");
 				passed = false;
+				
 				System.out.print(e.getMessage()+"\n");
 				  e.getCausingExceptions().stream()
 				      .map(ValidationException::getMessage)
 				      .forEach(System.out::println);
+				  
+				  List<ValidationException> list = e.getCausingExceptions();
+				  System.out.println();
+				  for (ValidationException validationException : list) {
+					  String violation = validationException.getPointerToViolation();
+					  String[] parts = violation.split("/");
+					  String name = parts[parts.length-1];
+					  int count = validationException.getViolationCount();
+					  System.out.println("******************************************************");
+					  System.out.println("Object name: " + name);
+					  System.out.println("Violation: " + count);
+					  List<String> messages = validationException.getAllMessages();
+					  for (String message : messages) {
+						  System.out.println("	- " + message);
+					  }
+					  System.out.println();
+				}
+				  
+				  
 			}
+		 System.out.println("################################################\n");
 		return passed;
 	}
 	
 	
 	
-	public List<JSONObject> JsonFiles (){
+	public Map<String, JSONObject> getJsonFilesMap (){
         List<String> results = new ArrayList<String>();
         String directory = "" + targetFolder;
       // LOGGER.info(final_path);
@@ -104,21 +132,23 @@ public class Validator {
             }  
         }
                
-        List<JSONObject> JSONlist = new ArrayList<JSONObject>();
+        Map<String, JSONObject> jsonMap = new HashMap<String, JSONObject>();
         
         
         
         for (int i=0; i<results.size(); i++) {
             FileInputStream objFileInputStream=null;
             try {
-                objFileInputStream = new FileInputStream(directory + "\\" + results.get(i));
+            	String filename = directory + "\\" + results.get(i);
+                objFileInputStream = new FileInputStream(filename);
+                jsonMap.put(results.get(i), new JSONObject(new JSONTokener(objFileInputStream)));
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            JSONlist.add(new JSONObject(new JSONTokener(objFileInputStream)));
+            
         }
         
-        return JSONlist;
+        return jsonMap;
     }
 }
