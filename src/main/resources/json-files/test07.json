@@ -1,0 +1,33 @@
+{
+  "databases": {
+    "local-path": "src/test/resources/db/db_laura_test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 7 - busta paga ordinaria",
+        "pdf": "https://drive.google.com/open?id=0B5TXUq-rPwifclVMV0FJclBFNFE",
+        "posizione": {
+          "idposizione": 194,
+          "idtipofoglio": 1
+        },
+        "cedolino": {
+          "totaleretriblorda": 1318.69,
+		  "totaleretribnetta": 1119.00,
+          "elementi": [
+            {
+              "codice": 1121,
+              "qnt": 1,
+              "base": 53.3333
+            },
+			{
+              "codice": 1101,
+              "qnt": 22,
+              "base": 57.5164
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

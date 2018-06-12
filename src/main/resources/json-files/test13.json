@@ -1,0 +1,51 @@
+{
+  "databases": {
+    "local-path": "src/test/resources/db/db_laura_mal"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 13 - malattia - eff ore",
+        "pdf": "https://drive.google.com/file/d/0B5TXUq-rPwifMGZYX25YZ2N3SlU/view",
+        "posizione": {
+          "idposizione": 145,
+          "idtipofoglio": 1,
+		  "azienda": 51,
+          "lavoratore": 13,
+          "mese": 9,
+          "anno": 2011
+        },
+        "cedolino": {
+          "totaleretribnetta": 947.00,
+          "elementi": [
+            {
+              "codice": 1104,
+              "qnt": 76,
+              "base": 10.4053
+            },
+            {
+              "codice": 2503,
+              "qnt": 4,
+              "base": 10.4053
+            },
+            {
+              "codice": 1416,
+              "qnt": 8,
+              "base": 10.4053
+            },
+            {
+              "codice": 1468,
+              "qnt": 8,
+              "base": 10.4053
+            },
+            {
+              "codice": 3301,
+              "qnt": 1,
+              "base": 116.3461
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
