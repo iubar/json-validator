@@ -4,7 +4,7 @@ TEST-JSON-VALIDATOR is a JSON validator
 
 ### How to use
  
-> ```java -jar json-test-validator-X.X.X.jar ```<schema-file>``` ```<test-folder>``````
+> java -jar json-test-validator-X.X.X.jar ```<schema-file>``` ```<test-folder>```
 
 ### Tools
 
