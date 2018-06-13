@@ -62,11 +62,11 @@ public class Validator {
 	public boolean validate(Entry<String, JSONObject> entry)  {
 		boolean passed = false;
 		
+		
 		String key = entry.getKey(); 
 		JSONObject value = entry.getValue();
 		
 		Schema schemaJSON = SchemaLoader.load(this.schema); 
-		
 		System.out.println("\n########## Validation of: " + key + " ##########");
 		
 		try {
