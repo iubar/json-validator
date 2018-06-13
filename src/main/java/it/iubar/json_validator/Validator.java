@@ -1,8 +1,5 @@
 package it.iubar.json_validator;
 
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +47,6 @@ public class Validator {
 		List<Boolean> result = new ArrayList<Boolean>();
 		for (Map.Entry<String, JSONObject> entry : map.entrySet()){
 
-			
 			result.add(validate(entry));
 		}
 		int passed = 0;
@@ -61,13 +57,11 @@ public class Validator {
 	    int error = result.size()-passed;
 
 	    LOGGER.info("\nTOTAL: " + result.size() + "  [PASSED: " + passed +"][ERROR: " + error + "]\n");
-
 	}
 	
 	public boolean validate(Entry<String, JSONObject> entry)  {
 		boolean passed = false;
 		
-		  
 		String key = entry.getKey(); 
 		JSONObject value = entry.getValue();
 		
@@ -110,18 +104,11 @@ public class Validator {
 		 System.out.println("################################################\n");
 		return passed;
 	}
-	
-	
-	
+		
 	public Map<String, JSONObject> getJsonFilesMap (){
         List<String> results = new ArrayList<String>();
         String directory = "" + targetFolder;
-      // LOGGER.info(final_path);
-                    
-       // File f = new File(directory).getAbsoluteFile();
-      //  System.out.println(f);
-        boolean b = this.targetFolder.isDirectory();
-        
+                 
         File[] files = this.targetFolder.listFiles();
         
         for (File file : files) {
@@ -129,11 +116,9 @@ public class Validator {
                 results.add(file.getName()); 
             }  
         }
-               
+        
         Map<String, JSONObject> jsonMap = new HashMap<String, JSONObject>();
-        
-        
-        
+                
         for (int i=0; i<results.size(); i++) {
             FileInputStream objFileInputStream=null;
             try {
@@ -143,10 +128,8 @@ public class Validator {
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            }
-            
-        }
-        
+            }            
+        }        
         return jsonMap;
     }
 }
