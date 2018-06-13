@@ -3,8 +3,9 @@
   <groupId>it.iubar</groupId>
   <artifactId>po-test-json-validator</artifactId>
   <version>1.1.0-RELEASE</version>
+  <packaging>jar</packaging>
   <build>
-  
+  <finalName>${pom.artifactId}-${pom.version}</finalName>
   <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -28,6 +29,8 @@
             		<goal>single</goal>
             	</goals>
            		<configuration>
+           		<finalName>${pom.artifactId}-${pom.version}</finalName>
+				<!-- <outputDirectory>build/maven/${pom.artifactId}/target</outputDirectory> -->
                		<archive>
                 	<manifest>
                     <mainClass>
@@ -68,6 +71,7 @@
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
+         <finalName>${pom.artifactId}-${pom.version}</finalName> 
           	<archive>
             	<manifest>
               		<addClasspath>true</addClasspath>
