@@ -1,12 +1,12 @@
-# TEST-JSON-VALIDATOR
-
 TEST-JSON-VALIDATOR is a JSON validator
 
 ### How to use
  
 > java -jar json-test-validator-X.X.X.jar ```<schema-file>``` ```<test-folder>```
 
-### Tools
-
+## Riferimenti
+- [Json](http://www.json.org/json-it.html)
 - [Json Schema](https://json-schema.org)
-- [Json Schema (Online tool)](https://jsonschema.net)
+
+### Tools
+- [JSONschema.Net (online schema generator)](https://jsonschema.net)
