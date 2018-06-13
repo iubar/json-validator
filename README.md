@@ -1,4 +1,4 @@
-A tool to check a Json file against its Schema
+A tool to check one or more Json files against its Schema
 
 ### How to use
  
