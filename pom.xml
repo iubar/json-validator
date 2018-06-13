@@ -4,6 +4,7 @@
   <artifactId>po-test-json-validator</artifactId>
   <version>1.1.0-RELEASE</version>
   <build>
+  
   <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -15,71 +16,72 @@
           <target>1.8</target>
         </configuration>
       </plugin>
-      
-<!-- @see http://www.baeldung.com/executable-jar-with-maven       -->
 
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-assembly-plugin</artifactId>
-    <version>3.1.0</version>
-    <executions>
-        <execution>
-            <phase>package</phase>
-            <goals>
-                <goal>single</goal>
-            </goals>
-            <configuration>
-                <archive>
-                <manifest>
+	<plugin>
+    	<groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-assembly-plugin</artifactId>
+    	<version>3.1.0</version>
+    	<executions>
+        	<execution>
+            	<phase>package</phase>
+            	<goals>
+            		<goal>single</goal>
+            	</goals>
+           		<configuration>
+               		<archive>
+                	<manifest>
                     <mainClass>
                         it.iubar.json_validator.PoTestJsonValidator
                     </mainClass>
-                </manifest>
-                </archive>
-                <descriptorRefs>
-                    <descriptorRef>jar-with-dependencies</descriptorRef>
-                </descriptorRefs>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
+                	</manifest>
+                	</archive>
+                	<descriptorRefs>
+                    	<descriptorRef>jar-with-dependencies</descriptorRef>
+                	</descriptorRefs>
+            	</configuration>
+        	</execution>
+    	</executions>
+	</plugin>
 
-<!-- <plugin> -->
-<!--     <groupId>org.apache.maven.plugins</groupId> -->
-<!--     <artifactId>maven-dependency-plugin</artifactId> -->
-<!--     <executions> -->
-<!--         <execution> -->
-<!--             <id>copy-dependencies</id> -->
-<!--             <phase>prepare-package</phase> -->
-<!--             <goals> -->
-<!--                 <goal>copy-dependencies</goal> -->
-<!--             </goals> -->
-<!--             <configuration> -->
-<!--                 <outputDirectory> -->
-<!--                     ${project.build.directory}/libs -->
-<!--                 </outputDirectory> -->
-<!--             </configuration> -->
-<!--         </execution> -->
-<!--     </executions> -->
-<!-- </plugin> -->
+	<plugin>
+    	<groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-dependency-plugin</artifactId>
+    	<version>3.1.1</version>
+    	<executions>
+        	<execution>
+            	<id>copy-dependencies</id>
+            	<phase>prepare-package</phase>
+            	<goals>
+                	<goal>copy-dependencies</goal>
+            	</goals>
+            	<configuration>
+                	<outputDirectory>
+                    	${project.build.directory}/libs
+                	</outputDirectory>
+            	</configuration>
+        	</execution>
+    	</executions>
+	</plugin>
 
-<plugin>
+	<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>libs/</classpathPrefix>
-              <mainClass>it.iubar.json_validator.PoTestJsonValidator</mainClass>
-            </manifest>
-          </archive>
+          	<archive>
+            	<manifest>
+              		<addClasspath>true</addClasspath>
+              		<classpathPrefix>libs/</classpathPrefix>
+              		<mainClass>it.iubar.json_validator.PoTestJsonValidator</mainClass>
+            	</manifest>
+          	</archive>
         </configuration>
       </plugin>
       
     </plugins>
     </build>
+    
+    
     <dependencies>
 		<dependency>
 			<groupId>com.github.everit-org.json-schema</groupId>
