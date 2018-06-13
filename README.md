@@ -1,4 +1,4 @@
-TEST-JSON-VALIDATOR is a JSON validator
+A tool to check a Json file against its Schema
 
 ### How to use
  
