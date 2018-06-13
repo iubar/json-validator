@@ -9,4 +9,4 @@ TEST-JSON-VALIDATOR is a JSON validator
 - [Json Schema](https://json-schema.org)
 
 ### Tools
-- [Json Schema (Online tool)](https://jsonschema.net)
+- [Json Schema Net (online schema generator)](https://jsonschema.net)
