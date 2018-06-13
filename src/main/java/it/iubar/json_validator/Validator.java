@@ -137,7 +137,7 @@ public class Validator {
         for (int i=0; i<results.size(); i++) {
             FileInputStream objFileInputStream=null;
             try {
-            	String filename = directory + "\\" + results.get(i);
+            	String filename = directory + File.separator + results.get(i);
                 objFileInputStream = new FileInputStream(filename);
                 jsonMap.put(results.get(i), new JSONObject(new JSONTokener(objFileInputStream)));
             } catch (FileNotFoundException e) {

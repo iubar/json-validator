@@ -11,7 +11,7 @@
         "server": {
           "$id": "/properties/databases/properties/server",
           "type": "string",
-          "title": "The Server Schema ",
+          "title": "The Server Schema",
           "default": "",
           "examples": [
             "atena"
@@ -20,7 +20,7 @@
         "remote-path": {
           "$id": "/properties/databases/properties/remote-path",
           "type": "string",
-          "title": "The Remote-path Schema ",
+          "title": "The Remote-path Schema",
           "default": "",
           "examples": [
             "c:/firebird_data_users/laura/test"
@@ -29,13 +29,13 @@
         "local-path": {
           "$id": "/properties/databases/properties/local-path",
           "type": "string",
-          "title": "The Local-path Schema ",
+          "title": "The Local-path Schema",
           "default": "",
           "examples": [
             "C:/Users/Laura/Documents/iubar/paghe/iubar-paghe-test/src/main/resources/db/db_laura_test"
           ]
         }
-      }
+      } 
     },
     "tests": {
       "$id": "/properties/tests",
@@ -51,7 +51,7 @@
               "descrizione": {
                 "$id": "/properties/tests/items/properties/test/properties/descrizione",
                 "type": "string",
-                "title": "The Descrizione Schema ",
+                "title": "The Descrizione Schema",
                 "default": "",
                 "examples": [
                   ""
@@ -60,7 +60,7 @@
               "pdf": {
                 "$id": "/properties/tests/items/properties/test/properties/pdf",
                 "type": "string",
-                "title": "The Pdf Schema ",
+                "title": "The Pdf Schema",
                 "default": "",
                 "examples": [
                   "https://drive.google.com/open?id=0B5TXUq-rPwifSHJLdzFEY1B5WEE"
@@ -72,8 +72,8 @@
                 "properties": {
                   "idposizione": {
                     "$id": "/properties/tests/items/properties/test/properties/posizione/properties/idposizione",
-                    "type": "string",
-                    "title": "The Idposizione Schema ",
+                    "type": "integer",
+                    "title": "The Idposizione Schema",
                     "default": "",
                     "examples": [
                       "104"
@@ -81,8 +81,8 @@
                   },
                   "idtipofoglio": {
                     "$id": "/properties/tests/items/properties/test/properties/posizione/properties/idtipofoglio",
-                    "type": "string",
-                    "title": "The Idtipofoglio Schema ",
+                    "type": "number",
+                    "title": "The Idtipofoglio Schema",
                     "default": "",
                     "examples": [
                       "1"
@@ -90,8 +90,8 @@
                   },
                   "azienda": {
                     "$id": "/properties/tests/items/properties/test/properties/posizione/properties/azienda",
-                    "type": "string",
-                    "title": "The Azienda Schema ",
+                    "type": "integer",
+                    "title": "The Azienda Schema",
                     "default": "",
                     "examples": [
                       "12"
@@ -99,8 +99,8 @@
                   },
                   "lavoratore": {
                     "$id": "/properties/tests/items/properties/test/properties/posizione/properties/lavoratore",
-                    "type": "string",
-                    "title": "The Lavoratore Schema ",
+                    "type": "integer",
+                    "title": "The Lavoratore Schema",
                     "default": "",
                     "examples": [
                       "1"
@@ -108,8 +108,8 @@
                   },
                   "mese": {
                     "$id": "/properties/tests/items/properties/test/properties/posizione/properties/mese",
-                    "type": "string",
-                    "title": "The Mese Schema ",
+                    "type": "integer",
+                    "title": "The Mese Schema",
                     "default": "",
                     "examples": [
                       "1"
@@ -117,8 +117,8 @@
                   },
                   "anno": {
                     "$id": "/properties/tests/items/properties/test/properties/posizione/properties/anno",
-                    "type": "string",
-                    "title": "The Anno Schema ",
+                    "type": "integer",
+                    "title": "The Anno Schema",
                     "default": "",
                     "examples": [
                       "2014"
@@ -132,8 +132,8 @@
                 "properties": {
                   "retribglobaledifatto": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/retribglobaledifatto",
-                    "type": "string",
-                    "title": "The Retribglobaledifatto Schema ",
+                    "type": "number",
+                    "title": "The Retribglobaledifatto Schema",
                     "default": "",
                     "examples": [
                       "12.45"
@@ -141,8 +141,8 @@
                   },
                   "totaleretriblorda": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/totaleretriblorda",
-                    "type": "string",
-                    "title": "The Totaleretriblorda Schema ",
+                    "type": "number",
+                    "title": "The Totaleretriblorda Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -150,8 +150,8 @@
                   },
                   "totaleretribnetta": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/totaleretribnetta",
-                    "type": "string",
-                    "title": "The Totaleretribnetta Schema ",
+                    "type": "number",
+                    "title": "The Totaleretribnetta Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -159,8 +159,8 @@
                   },
                   "arrotondamento": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/arrotondamento",
-                    "type": "string",
-                    "title": "The Arrotondamento Schema ",
+                    "type": "number",
+                    "title": "The Arrotondamento Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -168,8 +168,8 @@
                   },
                   "detrazredditolavoro": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/detrazredditolavoro",
-                    "type": "string",
-                    "title": "The Detrazredditolavoro Schema ",
+                    "type": "number",
+                    "title": "The Detrazredditolavoro Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -177,8 +177,8 @@
                   },
                   "detrazconiuge": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/detrazconiuge",
-                    "type": "string",
-                    "title": "The Detrazconiuge Schema ",
+                    "type": "number",
+                    "title": "The Detrazconiuge Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -186,8 +186,8 @@
                   },
                   "detrazfigli": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/detrazfigli",
-                    "type": "string",
-                    "title": "The Detrazfigli Schema ",
+                    "type": "number",
+                    "title": "The Detrazfigli Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -195,8 +195,8 @@
                   },
                   "totaletrattenute": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/totaletrattenute",
-                    "type": "string",
-                    "title": "The Totaletrattenute Schema ",
+                    "type": "number",
+                    "title": "The Totaletrattenute Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -204,8 +204,8 @@
                   },
                   "imponibileprev": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/imponibileprev",
-                    "type": "string",
-                    "title": "The Imponibileprev Schema ",
+                    "type": "number",
+                    "title": "The Imponibileprev Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -213,8 +213,8 @@
                   },
                   "contributoprev": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/contributoprev",
-                    "type": "string",
-                    "title": "The Contributoprev Schema ",
+                    "type": "number",
+                    "title": "The Contributoprev Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -222,8 +222,8 @@
                   },
                   "redditoimponibile": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/redditoimponibile",
-                    "type": "string",
-                    "title": "The Redditoimponibile Schema ",
+                    "type": "number",
+                    "title": "The Redditoimponibile Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -231,8 +231,8 @@
                   },
                   "imponibileente": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/imponibileente",
-                    "type": "string",
-                    "title": "The Imponibileente Schema ",
+                    "type": "number",
+                    "title": "The Imponibileente Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -240,8 +240,8 @@
                   },
                   "irpefnetta": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/irpefnetta",
-                    "type": "string",
-                    "title": "The Irpefnetta Schema ",
+                    "type": "number",
+                    "title": "The Irpefnetta Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -249,8 +249,8 @@
                   },
                   "irpeflorda": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/irpeflorda",
-                    "type": "string",
-                    "title": "The Irpeflorda Schema ",
+                    "type": "number",
+                    "title": "The Irpeflorda Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -258,8 +258,8 @@
                   },
                   "contributoente1": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/contributoente1",
-                    "type": "string",
-                    "title": "The Contributoente1 Schema ",
+                    "type": "number",
+                    "title": "The Contributoente1 Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -267,8 +267,8 @@
                   },
                   "contributoente2": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/contributoente2",
-                    "type": "string",
-                    "title": "The Contributoente2 Schema ",
+                    "type": "number",
+                    "title": "The Contributoente2 Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -276,8 +276,8 @@
                   },
                   "addcomsaldo": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/addcomsaldo",
-                    "type": "string",
-                    "title": "The Addcomsaldo Schema ",
+                    "type": "number",
+                    "title": "The Addcomsaldo Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -285,8 +285,8 @@
                   },
                   "addcomacconto": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/addcomacconto",
-                    "type": "string",
-                    "title": "The Addcomacconto Schema ",
+                    "type": "number",
+                    "title": "The Addcomacconto Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -294,8 +294,8 @@
                   },
                   "addizregionale": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/addizregionale",
-                    "type": "string",
-                    "title": "The Addizregionale Schema ",
+                    "type": "number",
+                    "title": "The Addizregionale Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -303,8 +303,8 @@
                   },
                   "redditoannuoriferim": {
                     "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/redditoannuoriferim",
-                    "type": "string",
-                    "title": "The Redditoannuoriferim Schema ",
+                    "type": "number",
+                    "title": "The Redditoannuoriferim Schema",
                     "default": "",
                     "examples": [
                       ""
@@ -319,8 +319,8 @@
                       "properties": {
                         "codice": {
                           "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/elementi/items/properties/codice",
-                          "type": "string",
-                          "title": "The Codice Schema ",
+                          "type": "number",
+                          "title": "The Codice Schema",
                           "default": "",
                           "examples": [
                             ""
@@ -328,8 +328,8 @@
                         },
                         "qnt": {
                           "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/elementi/items/properties/qnt",
-                          "type": "string",
-                          "title": "The Qnt Schema ",
+                          "type": "number",
+                          "title": "The Qnt Schema",
                           "default": "",
                           "examples": [
                             ""
@@ -337,8 +337,8 @@
                         },
                         "base": {
                           "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/elementi/items/properties/base",
-                          "type": "string",
-                          "title": "The Base Schema ",
+                          "type": "number",
+                          "title": "The Base Schema",
                           "default": "",
                           "examples": [
                             ""
@@ -346,8 +346,8 @@
                         },
                         "fig": {
                           "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/elementi/items/properties/fig",
-                          "type": "string",
-                          "title": "The Fig Schema ",
+                          "type": "number",
+                          "title": "The Fig Schema",
                           "default": "",
                           "examples": [
                             ""
@@ -362,75 +362,51 @@
                     "properties": {
                       "hh_lav": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/hh_lav",
-                        "type": "string",
-                        "title": "The Hh_lav Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Hh_lav Schema",
+                        "default": ""
                       },
                       "gg_lav": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/gg_lav",
-                        "type": "string",
-                        "title": "The Gg_lav Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Gg_lav Schema",
+                        "default": ""
                       },
                       "hh_retrib": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/hh_retrib",
-                        "type": "string",
-                        "title": "The Hh_retrib Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Hh_retrib Schema",
+                        "default": ""
                       },
                       "gg_retrib": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/gg_retrib",
-                        "type": "string",
-                        "title": "The Gg_retrib Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Gg_retrib Schema",
+                        "default": ""
                       },
                       "gg_utili": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/gg_utili",
-                        "type": "string",
-                        "title": "The Gg_utili Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Gg_utili Schema",
+                        "default": ""
                       },
                       "sett_utili": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/sett_utili",
-                        "type": "string",
-                        "title": "The Sett_utili Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Sett_utili Schema",
+                        "default": ""
                       },
                       "hh_contrib": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/hh_contrib",
-                        "type": "string",
-                        "title": "The Hh_contrib Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Hh_contrib Schema",
+                        "default": ""
                       },
                       "gg_contrib": {
                         "$id": "/properties/tests/items/properties/test/properties/cedolino/properties/datistatistici/properties/gg_contrib",
-                        "type": "string",
-                        "title": "The Gg_contrib Schema ",
-                        "default": "",
-                        "examples": [
-                          ""
-                        ]
+                        "type": "number",
+                        "title": "The Gg_contrib Schema",
+                        "default": ""
                       }
                     }
                   }
