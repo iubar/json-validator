@@ -42,8 +42,8 @@ public class PoTestJsonValidator {
 	
 	public static void showHelp() {
 		System.out.println("[HELP] Ecco come fare: java -jar applicativo.jar <schema> <test>");
-		System.out.println("[HELP] <schema> = percorso/del/file/schema.json");
-		System.out.println("[HELP] <test> = percorso/della/cartella/tests");
+		System.out.println("[HELP] <schema> = percorso"+File.separator+"del"+File.separator+"file"+File.separator+"schema.json");
+		System.out.println("[HELP] <test> = percorso"+File.separator+"della"+File.separator+"cartella"+File.separator+"tests");
 	}
 	
 
