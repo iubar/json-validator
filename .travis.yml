@@ -2,11 +2,13 @@ language: java
 jdk: oraclejdk8
 sudo: false
 install: true # The install step runs before script step, and with Maven you don't usually need the install step, at least I personally haven't ever found it useful — Maven will download dependencies on script step anyway
-script: mvn -f pom_travis.xml clean verify
+script: 
+  - mvn -f pom_travis.xml clean verify
+  - echo TRAVIS_TAG = $TRAVIS_TAG
 deploy: # see https://docs.travis-ci.com/user/deployment/releases/
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
   file: "target/po-test-json-validator-jar-with-dependencies.jar
   skip_cleanup: true
   on:
-    tags: true
+    tags: true # see https://docs.travis-ci.com/user/deployment#Conditional-Releases-with-on%3A
