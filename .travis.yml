@@ -7,7 +7,7 @@ install: true # The install step runs before script step, and with Maven you don
 script: 
   - mvn -f pom_travis.xml clean verify
 after_script:  
-  - echo "TRAVIS_TAG = ${TRAVIS_TAG}"
+  - echo "TRAVIS_TAG = ${TRAVIS_TAG} \${TRAVIS_TAG} $TRAVIS_TAG \$TRAVIS_TA"
   - echo "GITHUB_OAUTH_TOKEN = ${GITHUB_OAUTH_TOKEN}"
 deploy: # see https://docs.travis-ci.com/user/deployment/releases/ 
   provider: releases
