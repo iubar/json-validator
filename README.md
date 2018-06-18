@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/iubar/po-test-json-validator.svg?branch=master)](https://travis-ci.org/iubar/po-test-json-validator)
+
 # Paghe-Open-test-json-validator
 A tool to check one or more Json files against its Schema
 
@@ -12,4 +14,3 @@ A tool to check one or more Json files against its Schema
 ### Tools
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
 
-[![Build Status](https://travis-ci.org/iubar/po-test-json-validator.svg?branch=master)](https://travis-ci.org/iubar/po-test-json-validator)
