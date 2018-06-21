@@ -15,3 +15,5 @@ A tool to check one or more Json files against its Schema
 ### Tools
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
 
+### Todo
+ - Validate the schema itself against the json syntax rule (lint), before validate the json data files
