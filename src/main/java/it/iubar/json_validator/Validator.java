@@ -23,7 +23,7 @@ public class Validator {
 	private static final Logger LOGGER = Logger.getLogger(Validator.class.getName());
 	
 	private JSONObject schema = new JSONObject();
-	private File targetFolder = null;
+	private File targetFolderOrFile = null;
 	
 	/**
 	 * 
@@ -38,8 +38,8 @@ public class Validator {
         }
 	}
 		
-	public void setTargetFolder(File directory) {
-		this.targetFolder = directory;
+	public void setTargetFolderOrFile(File directory_or_file) {
+		this.targetFolderOrFile = directory_or_file;
 	}
 	
 	public void run()  {
@@ -107,30 +107,32 @@ public class Validator {
 	}
 		
 	public Map<String, JSONObject> getJsonFilesMap (){
-        List<String> results = new ArrayList<String>();
-        String directory = "" + targetFolder;
-                 
-        File[] files = this.targetFolder.listFiles();
-        
-        for (File file : files) {
-            if (file.isFile()) {                
-                results.add(file.getName()); 
-            }  
+		Map<String, JSONObject> jsonMap = new HashMap<String, JSONObject>();
+		try {	        	        
+	        if (targetFolderOrFile.isDirectory()) {
+	        	String directory = "" + targetFolderOrFile;
+	        	File[] files = this.targetFolderOrFile.listFiles();
+	        	
+	        	List<String> results = new ArrayList<String>();
+	            for (File file : files) {
+	                if (file.isFile()) {                
+	                    results.add(file.getName()); 
+	                }  
+	            }
+	            
+	            for (int i=0; i<results.size(); i++) {	                
+                	String filename = directory + File.separator + results.get(i);
+                	FileInputStream objFileInputStream = new FileInputStream(filename);
+                    jsonMap.put(results.get(i), new JSONObject(new JSONTokener(objFileInputStream)));	           
+	            }
+	        } else {
+	        	FileInputStream objFileInputStream = new FileInputStream(this.targetFolderOrFile);
+	            jsonMap.put(this.targetFolderOrFile.getName(), new JSONObject(new JSONTokener(objFileInputStream)));
+	        }        
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        
-        Map<String, JSONObject> jsonMap = new HashMap<String, JSONObject>();
-                
-        for (int i=0; i<results.size(); i++) {
-            FileInputStream objFileInputStream=null;
-            try {
-            	String filename = directory + File.separator + results.get(i);
-                objFileInputStream = new FileInputStream(filename);
-                jsonMap.put(results.get(i), new JSONObject(new JSONTokener(objFileInputStream)));
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }            
-        }        
+     
         return jsonMap;
     }
 }

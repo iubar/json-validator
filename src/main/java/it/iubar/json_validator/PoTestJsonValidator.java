@@ -27,23 +27,23 @@ public class PoTestJsonValidator {
 			System.exit(1);
 		}
 		
-		String targetPath = args[1];
-		File f2 = new File(targetPath);
-		if(!f2.isDirectory()) {
-			System.out.println("[ERROR] Attenzione, errore nell'inserimento del percorso della cartella test!");
+		String targetPathOrFile = args[1];
+		File f2 = new File(targetPathOrFile);
+		if (!f2.exists()) {
+			System.out.println("[ERROR] Attenzione, '" + targetPathOrFile + "' non esiste");
 			System.exit(1);
 		}
 		
 		Validator client = new Validator();
 		client.setSchema(f1);
-		client.setTargetFolder(f2);
+		client.setTargetFolderOrFile(f2);
 		client.run();
 	}
 	
 	public static void showHelp() {
 		System.out.println("[HELP] Ecco come fare: java -jar applicativo.jar <schema> <test>");
-		System.out.println("[HELP] <schema> = percorso"+File.separator+"del"+File.separator+"file"+File.separator+"schema.json");
-		System.out.println("[HELP] <test> = percorso"+File.separator+"della"+File.separator+"cartella"+File.separator+"tests");
+		System.out.println("[HELP] <schema> = percorso"+File.separator+"del"+File.separator+"file"+File.separator+"schema.json oppure json-hyper-schema");
+		System.out.println("[HELP] <test> = percorso"+File.separator+"della"+File.separator+"cartella"+File.separator+"tests oppure schema.json");
 	}
 	
 
