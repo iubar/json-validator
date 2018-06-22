@@ -4,13 +4,12 @@
 # Paghe-Open-test-json-validator
 A tool to check one or more Json files against its Schema
 
-### How to use
- 
-> java -jar json-test-validator-X.X.X.jar ```<schema-file>``` ```<test-folder>```
+### How to use it
+> java -jar json-test-validator-X.X.X.jar ```<schema-file>``` ```<json folder>|<json file>```
 
 ## Riferimenti
-- [Json](http://www.json.org/json-it.html)
-- [Json Schema](https://json-schema.org)
+- [Introducing JSON](http://www.json.org/json-it.html)
+- [Json-Schema.org](https://json-schema.org)
 
 ### Tools
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
