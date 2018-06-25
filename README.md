@@ -10,8 +10,13 @@ A tool to check one or more json files against a schema
 ## References
 - [Introducing JSON](http://www.json.org/json-it.html)
 - [Json-Schema.org](https://json-schema.org)
+- [Building a product schema](http://json-schema.org/example1.html)
+- [Specifications](http://json-schema.org/specification-links.html)
+- [Examples](http://json-schema.org/examples.html)
+- [Implementations](http://json-schema.org/implementations.html)
 
 ### Tools
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
 - [JSONschemaValidator.Net (online validator)](https://www.jsonschemavalidator.net/)
+- [Another validator](http://json-schema-validator.herokuapp.com)
 
