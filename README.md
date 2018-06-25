@@ -17,6 +17,8 @@ A tool to check one or more json files against a schema
 
 ### Tools
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
-- [JSONschemaValidator.Net (online validator)](https://www.jsonschemavalidator.net/)
+- [JSONschemaValidator.Net (online validator)](https://www.jsonschemavalidator.net)
 - [Another validator](http://json-schema-validator.herokuapp.com)
+- [JsonFormatter.org](https://jsonformatter.org/json-editor)
+- [JsonEditorOnline.org](https://jsoneditoronline.org)
 
