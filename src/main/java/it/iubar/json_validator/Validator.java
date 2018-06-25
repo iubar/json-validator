@@ -17,7 +17,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
-// throws IOException
+/**
+* @throws IOException
+*
+*/
 public class Validator {
 	
 	private static final Logger LOGGER = Logger.getLogger(Validator.class.getName());
