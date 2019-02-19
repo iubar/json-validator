@@ -10,9 +10,7 @@ A tool to check one or more json files against a schema
 ## References
 - [Introducing JSON](http://www.json.org/json-it.html)
 - [Json-Schema.org](https://json-schema.org)
-- [Building a product schema](http://json-schema.org/example1.html)
 - [Specifications](http://json-schema.org/specification-links.html)
-- [Examples](http://json-schema.org/examples.html)
 - [Implementations](http://json-schema.org/implementations.html)
 - [JSON Schema Validator for Java](https://github.com/everit-org/json-schema)
 
