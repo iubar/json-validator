@@ -15,4 +15,4 @@ deploy: # see https://docs.travis-ci.com/user/deployment/releases/
   file: "target/po-test-json-validator-jar-with-dependencies.jar"
   skip_cleanup: true
   on:
-    tags: true # see https://docs.travis-ci.com/user/deployment#Conditional-Releases-with-on%3A
+    tags: true # see https://docs.travis-ci.com/user/deployment#Conditional-Releases-with-on
