@@ -1,9 +1,9 @@
+dist: bionic # https://docs.travis-ci.com/user/reference/bionic/
 language: java
-jdk: oraclejdk8 # see https://docs.travis-ci.com/user/languages/java/#Testing-Against-Multiple-JDKs
+jdk: openjdk10 # https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support
 sudo: false # see https://docs.travis-ci.com/user/reference/overview/
 env:
   - TRAVIS_TAG=00.01 # see https://docs.travis-ci.com/user/environment-variables/
-install: true # The install step runs before script step, and with Maven you don't usually need the install step, at least I personally haven't ever found it useful — Maven will download dependencies on script step anyway
 script: 
   - mvn -f pom_travis.xml clean verify
 after_script:  
