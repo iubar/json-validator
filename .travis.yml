@@ -4,6 +4,7 @@ jdk: openjdk10 # https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-g
 sudo: false # see https://docs.travis-ci.com/user/reference/overview/
 env:
   - TRAVIS_TAG=00.01 # see https://docs.travis-ci.com/user/environment-variables/
+install: true # Without that statement, Travis will run 'mvn install' on pom.xml before the script step.  
 script: 
   - mvn -f pom_travis.xml clean verify
 after_script:  
