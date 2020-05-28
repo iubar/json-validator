@@ -9,17 +9,14 @@
 	<groupId>it.iubar</groupId>
 	<artifactId>po-test-json-validator</artifactId>
 	<version>1.2.0-RELEASE</version>
-	<packaging>jar</packaging>
 	<build>
-		<finalName>${project.artifactId}-${project.version}</finalName>
-		<!-- TODO verificare se viene onorato da maven-assembly-plugin (forse è una direttiva per maven-jar-plugin) -->
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.3.0</version>
-				<configuration>
-					<finalName>${project.artifactId}</finalName>
+				<configuration>					
 					<!-- <outputDirectory>build/maven/${pom.artifactId}/target</outputDirectory> -->
 					<archive>
 						<manifest>
@@ -42,7 +39,7 @@
 		</plugins>
 	</build>
 	<dependencies>
-				<!-- Dependencies managed by the parent pom -->
+		<!-- Dependencies managed by the parent pom -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
