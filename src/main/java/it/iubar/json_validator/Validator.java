@@ -45,7 +45,7 @@ public class Validator {
 		this.targetFolderOrFile = directory_or_file;
 	}
 	
-	public void run()  {
+	public int run()  {
 		
 		Map<String, JSONObject> map = getJsonFilesMap();
 		List<Boolean> result = new ArrayList<Boolean>();
@@ -61,6 +61,8 @@ public class Validator {
 	    int error = result.size()-passed;
 
 	    LOGGER.info("\nTOTAL: " + result.size() + "  [PASSED: " + passed +"][ERROR: " + error + "]\n");
+	    
+	    return error;
 	}
 	
 	public boolean validate(Entry<String, JSONObject> entry)  {
@@ -70,11 +72,24 @@ public class Validator {
 		String key = entry.getKey(); 
 		JSONObject value = entry.getValue();
 		
-		Schema schemaJSON = SchemaLoader.load(this.schema); 
+		SchemaLoader loader = SchemaLoader.builder()
+        .schemaJson(this.schema)
+        .draftV7Support()
+        .build();
+		
+		Schema schemaJSON = loader.load().build();
+
 		System.out.println("\n########## Validation of: " + key + " ##########");
 		
 		try {
-			    schemaJSON.validate(value);
+			System.out.println(value);
+			
+			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator.builder()
+					.failEarly()
+					.build();
+
+				validator.performValidation(schemaJSON, value);
+
 				System.out.println("JSON PASSED");
 				passed = true;
 
@@ -126,11 +141,11 @@ public class Validator {
 	            for (int i=0; i<results.size(); i++) {	                
                 	String filename = directory + File.separator + results.get(i);
                 	FileInputStream objFileInputStream = new FileInputStream(filename);
-                    jsonMap.put(results.get(i), new JSONObject(new JSONTokener(objFileInputStream)));	           
+                    jsonMap.put(results.get(i), new JSONObject(objFileInputStream));	           
 	            }
 	        } else {
 	        	FileInputStream objFileInputStream = new FileInputStream(this.targetFolderOrFile);
-	            jsonMap.put(this.targetFolderOrFile.getName(), new JSONObject(new JSONTokener(objFileInputStream)));
+	            jsonMap.put(this.targetFolderOrFile.getName(), new JSONObject(objFileInputStream));
 	        }        
         } catch (FileNotFoundException e) {
             e.printStackTrace();

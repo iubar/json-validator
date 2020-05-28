@@ -1,0 +1,54 @@
+{
+  "databases": {
+    "local-path": "test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 1 - busta paga ordinaria",
+        "pdf": "test001.pdf",
+        "posizione": {
+          "idposizione": 191,
+          "idtipofoglio": 1
+        },
+        "cedolino": {
+          "totaleretribnetta": 1086.00,
+		  "totaleretriblorda": 1265.36,
+		  "totalecompetenze": 1265.36,
+		 
+          "detrazredditolavoro": 152.01,
+          "detrazconiuge": 60.56,
+          "elementi": [
+            {
+              "codice": 1101,
+              "qnt": 22,
+              "base": 57.5164
+            },
+            {
+              "codice": 2504,
+              "qnt": 1,
+              "base": 57.5164
+            },
+            {
+              "codice": 2504,
+              "qnt": 1,
+              "base": 57.5164
+            },
+            {
+              "codice": 2201,
+              "qnt": 10,
+              "base": 57.5164
+            }
+          ],
+          "datistatistici": {
+            "hh_lav": 88.00,
+            "gg_lav": 11.00,
+            "hh_retrib": 168.00,
+            "gg_retrib": 22.00,
+            "sett_utili": 4.31
+          }
+        }
+      }
+    }
+  ]
+}
