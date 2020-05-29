@@ -39,18 +39,16 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<!-- Dependencies managed by the parent pom -->
+				<!-- Dependencies managed by the parent pom -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
 		</dependency>
-		<!-- / -->
+		<!-- / -->	
 		<!-- La seguente dipendenza aggiuntiva per junit5 è richiesta per gestire i @ParameterizedTest -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -80,24 +78,7 @@
 			<artifactId>org.everit.json.schema</artifactId>
 			<version>1.12.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<!-- / -->
-		<!-- La seguente dipendenza aggiuntiva per junit5 è richiesta per gestire i @ParameterizedTest -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
 		<!-- https://howtodoinjava.com/junit5/execute-testcase-eclipse/ -->
 		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->		
         <!--
