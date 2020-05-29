@@ -1,7 +1,7 @@
 package it.iubar.helloworld;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
@@ -24,14 +24,14 @@ public class ValidatorTest {
 	
 	@Test
 	public void testValidator1() throws IOException {
-		int errors = parseWithValidator(new File(ValidatorTest.class.getResource("/validation-1.json").getFile()));
-		assertEquals(0, errors);
+		int errors = parseWithValidator(new File(ValidatorTest.class.getResource("/must-fail.json").getFile()));
+		assertTrue(errors > 0);
 	}
 	
 	@Test
 	public void testValidator2() throws IOException {
-		int errors = parseWithValidator(new File(ValidatorTest.class.getResource("/validation-2.json").getFile()));
-		assertEquals(0, errors);
+		int errors = parseWithValidator(new File(ValidatorTest.class.getResource("/must-pass.json").getFile()));
+		assertTrue(errors == 0);
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ public class ValidatorTest {
 		schema.validate(jsonToValidate); 
 	}
 	
-	private int parseWithValidator(File file) {		
+	private int parseWithValidator(File file) throws FileNotFoundException {		
 		Validator client = new Validator();
 		client.setSchema(ValidatorTest.schemaFile);
 		client.setTargetFolderOrFile(file);
