@@ -114,7 +114,6 @@ public class Validator {
 		Schema schemaJSON = loader.load().build();
 
 		try {
-			System.out.println(jsonObj);
 			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator.builder().failEarly().build();
 			validator.performValidation(schemaJSON, jsonObj);
 			valid = true;
@@ -124,7 +123,6 @@ public class Validator {
 			e.getCausingExceptions().stream().map(ValidationException::getMessage).forEach(System.out::println);
 
 			List<ValidationException> list = e.getCausingExceptions();
-			System.out.println();
 			for (ValidationException validationException : list) {
 				String violation = validationException.getPointerToViolation();
 				String[] parts = violation.split("/");
