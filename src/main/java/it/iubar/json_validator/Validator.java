@@ -61,10 +61,7 @@ public class Validator {
 			
 			boolean valid1 = validateUseJavaxLib(file);
 			boolean valid2 = validateUseEveritLib(file);
-			
-			LOGGER.info("Validation with Javax result: " + valid1);
-			LOGGER.info("Validation with Everit result: " + valid2);
-			
+				
 			boolean valid = (valid1 && valid2);
 			if (valid) {
 				LOGGER.info("File '" + fileName + "' is valid");	
