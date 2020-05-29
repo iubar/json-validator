@@ -2,11 +2,7 @@ package it.iubar.json_validator;
 
 import java.io.File;
 
-
-
 public class PoTestJsonValidator {
-	
-	
 	
 	public static void main(String[] args) {
 
