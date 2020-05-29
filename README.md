@@ -20,4 +20,6 @@ A tool to check one or more json files against a schema
 - [JsonFormatter.org](https://jsonformatter.org/json-editor)
 - [JsonEditorOnline.org](https://jsoneditoronline.org)
 
+### Problema parsing del json
 
+https://github.com/everit-org/json-schema/issues/143

@@ -1,10 +1,12 @@
 package it.iubar.json_validator;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class PoTestJsonValidator {
-	
-	public static void main(String[] args) {
+ 
+	public static void main(String[] args) throws FileNotFoundException {
+ 
 
 		//String[] temp = new String[2];
 		//temp[0] = "C:\\Users\\iubar\\Desktop\\Progetti\\po-test-json-validator\\src\\main\\resources\\json\\schema.json";
