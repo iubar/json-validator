@@ -12,12 +12,10 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
         <configuration>
-          <!-- or whatever version you use -->
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
       </plugin>
-
 	 <plugin>
     	<groupId>org.apache.maven.plugins</groupId>
     	<artifactId>maven-assembly-plugin</artifactId>
@@ -29,71 +27,48 @@
             		<goal>single</goal>
             	</goals>
            		<configuration>
-           		<finalName>${project.artifactId}</finalName>
-				<!-- <outputDirectory>build/maven/${pom.artifactId}/target</outputDirectory> -->
+           			<finalName>${project.artifactId}</finalName>
+					<!-- <outputDirectory>build/maven/${pom.artifactId}/target</outputDirectory> -->
                		<archive>
-                	<manifest>
-                    <mainClass>
-                        it.iubar.json_validator.PoTestJsonValidator
-                    </mainClass>
-                	</manifest>
+	                	<manifest>
+	                    	<mainClass>it.iubar.json.PoJsonValidator</mainClass>
+	                	</manifest>
                 	</archive>
                 	<descriptorRefs>
-                    	<descriptorRef>jar-with-dependencies</descriptorRef>
+                    	<descriptorRef>with-dependencies</descriptorRef>
                 	</descriptorRefs>
             	</configuration>
         	</execution>
     	</executions>
-	</plugin>
-
-	<plugin>
-    	<groupId>org.apache.maven.plugins</groupId>
-    	<artifactId>maven-dependency-plugin</artifactId>
-    	<version>3.1.1</version>
-    	<executions>
-        	<execution>
-            	<id>copy-dependencies</id>
-            	<phase>prepare-package</phase>
-            	<goals>
-                	<goal>copy-dependencies</goal>
-            	</goals>
-            	<configuration>
-                	<outputDirectory>
-                    	${project.build.directory}/libs
-                	</outputDirectory>
-            	</configuration>
-        	</execution>
-    	</executions>
-	</plugin>
-
-	<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.1.0</version>
-        <configuration>
-         <finalName>${project.artifactId}-${project.version}</finalName> 
-          	<archive>
-            	<manifest>
-              		<addClasspath>true</addClasspath>
-              		<classpathPrefix>libs/</classpathPrefix>
-              		<mainClass>it.iubar.json_validator.PoTestJsonValidator</mainClass>
-            	</manifest>
-          	</archive>
-        </configuration>
-      </plugin>
-      
+	</plugin>     
     </plugins>
-    </build>
-    
-    
+    </build>        
     <dependencies>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.7</version>
+		</dependency>        
+		<!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<version>1.4</version>
+		</dependency>    
+		<!-- https://github.com/everit-org/json-schema -->
 		<dependency>
 			<groupId>com.github.everit-org.json-schema</groupId>
 			<artifactId>org.everit.json.schema</artifactId>
-			<version>1.8.0</version>
+			<version>1.12.1</version>
 		</dependency>
-	</dependencies>
-	
+		<!-- https://javaee.github.io/jsonp/getting-started.html -->
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>javax.json</artifactId>
+		    <version>1.1</version>
+		</dependency>
+	</dependencies>	
 	<repositories>
 		<repository>
 			<id>jitpack.io</id>
