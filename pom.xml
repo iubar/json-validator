@@ -9,8 +9,8 @@
 	<groupId>it.iubar</groupId>
 	<artifactId>po-test-json-validator</artifactId>
 	<version>1.2.1</version>
-	<name>Po Json Validator</name>
-	<description>A json validator for PagheOpen</description>	
+	<name>Iubar Json Validator</name>
+	<description>A json validator</description>	
 	<properties>
 		<maven-assembly-mainclass>it.iubar.json.PoJsonValidator</maven-assembly-mainclass>		
 	</properties>
