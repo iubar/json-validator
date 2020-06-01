@@ -35,7 +35,10 @@ public class PoTestJsonValidator {
 		Validator client = new Validator();
 		client.setSchema(f1);
 		client.setTargetFolderOrFile(f2);
-		client.run();
+		int errors = client.run();
+		if (errors > 0) {
+			System.exit(1);
+		}
 	}
 	
 	public static void showHelp() {
