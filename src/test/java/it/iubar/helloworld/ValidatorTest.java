@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.junit.jupiter.api.Test;
 
-import it.iubar.json_validator.Validator;
+import it.iubar.json.Validator;
 
 public class ValidatorTest {
 
