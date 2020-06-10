@@ -6,15 +6,21 @@ pipeline {
     		args '-v ${HOME}/.m2:/home/jenkins/.m2:rw,z -v ${HOME}/.sonar:/home/jenkins/.sonar:rw,z'
     	} 
     }
+	options {
+		ansiColor('xterm')
+	}    
+	environment {	
+		MAVEN_CLI_OPTS = '--batch-mode --fail-fast --show-version'
+	}    
     stages {
         stage ('Build') {
             steps {
-                sh 'mvn --batch-mode clean compile'
+                sh 'mvn $MAVEN_CLI_OPTS clean compile'
             }
         }
 		stage('Test') {
             steps {
-                sh 'mvn --batch-mode -Djava.io.tmpdir=${WORKSPACE}@tmp -Djava.awt.headless=true test'
+                sh 'mvn $MAVEN_CLI_OPTS -Djava.io.tmpdir=${WORKSPACE}@tmp -Djava.awt.headless=true test'
             }
             post {
                 always {
@@ -53,7 +59,7 @@ pipeline {
         }
 		stage ('Deploy') {
             steps {
-                sh 'mvn --batch-mode -DskipTests=true deploy'
+                sh 'mvn $MAVEN_CLI_OPTS -DskipTests=true deploy'
             }
         }		
     }
@@ -62,6 +68,11 @@ pipeline {
         	echo "CURRENT STATUS: ${currentBuild.currentResult}"
             sh "curl -H 'JENKINS: Pipeline Hook Iubar' -i -X GET -G ${env.IUBAR_WEBHOOK_URL} -d status=${currentBuild.currentResult} -d project_name=${JOB_NAME}"
         }
+        success {
+        	sh 'mvn $MAVEN_CLI_OPTS dependency:analyze'
+			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates versions:display-plugin-updates'
+			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates'          
+        }        
 		cleanup {
 			cleanWs()
 			dir("${env.WORKSPACE}@tmp") {				
