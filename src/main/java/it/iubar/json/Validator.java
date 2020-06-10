@@ -61,6 +61,18 @@ public class Validator {
 			
 			boolean valid1 = validateUseJavaxLib(file);
 			boolean valid2 = validateUseEveritLib(file);
+			
+			if (valid1) {
+				LOGGER.info("File parsing validation is valid");
+			} else {
+				LOGGER.info("File parsing validation is NOT valid");
+			}
+			
+			if (valid2) {
+				LOGGER.info("File with schema validation is valid");
+			} else {
+				LOGGER.info("File with schema validation is NOT valid");
+			}
 				
 			boolean valid = (valid1 && valid2);
 			if (valid) {
