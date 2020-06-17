@@ -39,10 +39,15 @@ public class CliJsonValidator {
 	    }  catch( ParseException exp ) {
 	        // oops, something went wrong
 	        System.err.println( "The parsing has failed. Reason: " + exp.getMessage() );
-	    } catch (SyntaxException e) {
-			e.printStackTrace();
+	        System.exit(1);
+	    } catch (SyntaxException e) {	    	
+			// e.printStackTrace();
+	    	System.err.println( "SyntaxException: " + e.getMessage() );	    	
+			System.exit(1);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			System.err.println( "FileNotFoundException: " + e.getMessage() );
+			System.exit(1);
 		}
 
 	}
