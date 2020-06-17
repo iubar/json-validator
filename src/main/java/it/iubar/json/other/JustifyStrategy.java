@@ -15,11 +15,12 @@ import jakarta.json.stream.JsonParser;
 public class JustifyStrategy extends RootStrategy  {
 
 	@Override
-	public boolean validate(File file) {
+	public boolean validate(File file) throws SyntaxException {
 		return validate1(file);
 	}
 	
-	public boolean validate1(File file) {
+	public boolean validate1(File file) throws SyntaxException {
+		boolean b = false;
 		JsonValidationService service = JsonValidationService.newInstance();
 
 		// Reads the JSON schema
@@ -31,14 +32,26 @@ public class JustifyStrategy extends RootStrategy  {
 		Path path = Paths.get(file.toString());
 		// Reads the JSON instance by JsonReader
 		try (JsonReader reader = service.createReader(path, schema, handler)) {
-		    JsonValue value = reader.readValue();
-		    // Do something useful here
-		    System.out.println("value: " + value);
+			try {
+				JsonValue value = reader.readValue();
+			    // Do something useful here
+			    System.out.println("value: " + value);
+			    b=true;
+			}catch (jakarta.json.stream.JsonParsingException e) {
+				 System.out.println(e.getMessage());
+				 // eg: Invalid token=COMMA at (line no=40, column no=15, offset=911). Expected tokens are: [CURLYOPEN, SQUAREOPEN, STRING, NUMBER, TRUE, FALSE, NULL]
+				throw  new SyntaxException(e.getMessage());
+			}
+
 		}
-		return false;
+		
+	 
+			
+		return b;
 	}
 	
 	public boolean validate2(File file) {
+		boolean b = false;
 		JsonValidationService service = JsonValidationService.newInstance();
 
 		// Reads the JSON schema
@@ -55,8 +68,9 @@ public class JustifyStrategy extends RootStrategy  {
 		        // Do something useful here
 			    System.out.println("event: " + event);
 		    }
+		    b = true;
 		}
-		return false;
+		return b;
 	}
  
 

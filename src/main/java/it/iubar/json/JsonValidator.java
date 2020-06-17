@@ -26,6 +26,8 @@ import org.json.JSONTokener;
 
 import it.iubar.json.other.EveritStrategy;
 import it.iubar.json.other.IValidator;
+import it.iubar.json.other.JustifyStrategy;
+import it.iubar.json.other.SyntaxException;
 
 /**
  * Per la validazione del json vengono utilizzate 2 librerie in quanto:
@@ -44,32 +46,37 @@ public class JsonValidator {
 		this.validator = validator;
 	}
 
-
-
 	public void setTargetFolderOrFile(File directory_or_file) {
 		this.targetFolderOrFile = directory_or_file;
 	}
 
-	public int run() throws FileNotFoundException  {
+	public int run() throws FileNotFoundException, SyntaxException  {
 		Map<String, File> map = getFilesMap();
 		List<Boolean> result = new ArrayList<Boolean>();
 		for (Map.Entry<String, File> entry : map.entrySet()){
 			String fileName = entry.getKey();
 			File file = entry.getValue();
-			
-			LOGGER.info("Validating " + fileName + " ... 1/2...");
-			PreValidator preValidator = new PreValidator();
-			boolean valid1 = preValidator.validate(file);
-			LOGGER.info("Validating " + fileName + " ... 2/2...");
-			boolean valid2 = this.validator.validate(file);			
-			boolean valid = (valid1 && valid2);
+			boolean valid = false;
+			if(this.validator instanceof EveritStrategy) {
+				LOGGER.info("Validating " + fileName + " ... 1/2...");
+				PreValidator preValidator = new PreValidator();
+				boolean valid1 = preValidator.validate(file);
+				LOGGER.info("Validating " + fileName + " ... 2/2...");
+				boolean valid2 = this.validator.validate(file);			
+				valid = (valid1 && valid2);
+			}else if(this.validator instanceof JustifyStrategy) {
+				LOGGER.info("Validating " + fileName);
+				valid = this.validator.validate(file);	
+			}else {
+				throw new RuntimeException("Situazione imprevista");
+			}					
 			if (valid) {
 				LOGGER.info("File '" + fileName + "' is valid");	
 			} else {
 				LOGGER.warning("File '" + fileName + "' is NOT valid");
 			}
 			
-			result.add(valid1 && valid2);
+			result.add(valid);
 		}
 		int passed = 0;
 		for (Boolean value : result) {

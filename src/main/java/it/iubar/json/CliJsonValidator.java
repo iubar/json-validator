@@ -15,12 +15,14 @@ import org.apache.commons.cli.ParseException;
 
 import it.iubar.json.other.EveritStrategy;
 import it.iubar.json.other.IValidator;
+import it.iubar.json.other.JustifyStrategy;
+import it.iubar.json.other.SyntaxException;
 
 public class CliJsonValidator {
  
 	private static Options options = null;
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		
 		// create the command line parser
 		CommandLineParser parser = new DefaultParser();
@@ -32,18 +34,21 @@ public class CliJsonValidator {
 	        // parse the command line arguments
 	        CommandLine line = parser.parse( options, args );
 	        List<String> argList = line.getArgList();
-	        CliJsonValidator validator = new CliJsonValidator();
-	        validator.run(argList);
-	    }
-	    catch( ParseException exp ) {
+	        CliJsonValidator cliValidator = new CliJsonValidator();
+	        cliValidator.run(argList);
+	    }  catch( ParseException exp ) {
 	        // oops, something went wrong
-	        System.err.println( "The paarsing has failed. Reason: " + exp.getMessage() );
-	    }
+	        System.err.println( "The parsing has failed. Reason: " + exp.getMessage() );
+	    } catch (SyntaxException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
 	}
 	
 	
-	private void run(List<String> argList) {  
+	private void run(List<String> argList) throws SyntaxException, FileNotFoundException {  
 		if (argList.size() != 2) {
 			handleWrongUsage("[ERROR] Attention wrong number of arguments", true);
 		}		
@@ -58,18 +63,17 @@ public class CliJsonValidator {
 		if (!f2.exists()) {
 			handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
 		}
-		IValidator strategy = new EveritStrategy();
+		//IValidator strategy = new EveritStrategy();
+		IValidator strategy = new JustifyStrategy();
 		JsonValidator client = new JsonValidator(strategy);
 		client.setSchema(f1);
 		client.setTargetFolderOrFile(f2);
-		try {
+ 
 			int errors = client.run();
 			if (errors > 0) {
 				System.exit(1);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+ 
 	}
 	
 	private static void handleWrongUsage(String msg, boolean b) {
