@@ -83,6 +83,13 @@
 		    <version>3.0.0-M1</version>
 		    <scope>test</scope>
 		</dependency>
+ 
+		
+<dependency>
+    <groupId>org.glassfish.jersey.inject</groupId>
+    <artifactId>jersey-hk2</artifactId>
+    <version>3.0.0-M1</version>
+</dependency>	
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>

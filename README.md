@@ -24,5 +24,9 @@ A tool to check one or more json files against its json schema
 
 ### Issues
 
-- [json-schema/issues/143](https://github.com/everit-org/json-schema/issues/143)
+- https://github.com/ssilverman/snowy-json/issues/2
+- https://github.com/leadpony/justify/issues/57
+- https://github.com/everit-org/json-schema/issues/143
 - https://github.com/everit-org/json-schema/issues/140
+- https://github.com/everit-org/json-schema/issues/371
+

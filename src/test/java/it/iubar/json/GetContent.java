@@ -1,6 +1,7 @@
 package it.iubar.json;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.logging.Level;
@@ -33,6 +35,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
 
 import jakarta.ws.rs.client.Client;
@@ -81,14 +84,35 @@ public class GetContent {
 
 
 	/*
-	 * A JErsey
+	 * A Jersey
 	 */	
-	private static long getContent2(URL sourceUrl, File outFile) throws IOException{
+	private static long getContent2(URL sourceUrl, File outFile) throws IOException, NoSuchAlgorithmException, KeyManagementException{
 		long bytesCopied = 0;   	
 		Path out = Paths.get(outFile.toString());
 		InputStream in = null;
 		try {
-			Client client = ClientBuilder.newClient();
+			Client client = null;
+			if(false) {
+			client = ClientBuilder.newClient();
+			}else {
+				 
+				// for java 7
+				SSLContext ctx = SSLContext.getInstance("SSL");
+				// for java 8 
+				// SSLContext sc = SSLContext.getInstance("TLSv1");
+				//System.setProperty("https.protocols", "TLSv1");
+				
+		        ctx.init(null, TrustAllHostNameVerifier.certs, new SecureRandom());
+		        
+				client = ClientBuilder.newBuilder()
+	            //.withConfig(config)
+	            .hostnameVerifier(new TrustAllHostNameVerifier())
+	            .sslContext(ctx)
+	            .build();				
+			} 
+			
+			
+			
 			client.property(ClientProperties.CONNECT_TIMEOUT, 1000);
 			client.property(ClientProperties.READ_TIMEOUT,    1000);
 			WebTarget webTarget = client.target(sourceUrl.toString());
@@ -139,6 +163,9 @@ public class GetContent {
 
 	}
  
+	/**
+	 * Soluzione applicabile solo a getContent1()
+	 */
 	static void disableSslVerification() {
 		try {
 			// Create a trust manager that does not validate certificate chains
@@ -171,7 +198,8 @@ public class GetContent {
 
 				@Override
 				public boolean verify(String hostname, SSLSession session) {
-				     if(hostname.equals(HOST_NAME)) {
+					// System.out.println("Verify " + hostname);
+					if(hostname.equals(HOST_NAME)) {
 				         return true; 
 				     }
 				     return false;
@@ -185,5 +213,33 @@ public class GetContent {
 		} catch (KeyManagementException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
+	}
+
+
+
+	public static void getContent(URL url, File file) {
+		
+		try {
+			getContent1(url, file);
+		} catch (IOException e) {
+			fail(e.getMessage());
+		}
+ 
+			try {
+				getContent2(url, file);
+			} catch (KeyManagementException | NoSuchAlgorithmException | IOException e) {
+				fail(e.getMessage());
+			}
+ 
+		
+		if(false) {
+		try {
+			getContent2(url, file);
+		} catch (KeyManagementException | NoSuchAlgorithmException | IOException e) {
+			fail(e.getMessage());
+		}
+		}
+	 
+		
 	}	
 }
