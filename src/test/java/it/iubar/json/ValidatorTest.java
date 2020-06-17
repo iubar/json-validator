@@ -1,4 +1,4 @@
-package it.iubar.helloworld;
+package it.iubar.json;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,7 +16,9 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.junit.jupiter.api.Test;
 
-import it.iubar.json.Validator;
+import it.iubar.json.JsonValidator;
+import it.iubar.json.other.EveritStrategy;
+import it.iubar.json.other.IValidator;
 
 public class ValidatorTest {
 
@@ -56,8 +58,9 @@ public class ValidatorTest {
 		schema.validate(jsonToValidate); 
 	}
 	
-	private int parseWithValidator(File file) throws FileNotFoundException {		
-		Validator client = new Validator();
+	private int parseWithValidator(File file) throws FileNotFoundException {
+		IValidator strategy = new EveritStrategy();
+		JsonValidator client = new JsonValidator(strategy);
 		client.setSchema(ValidatorTest.schemaFile);
 		client.setTargetFolderOrFile(file);
 		

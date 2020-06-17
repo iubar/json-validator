@@ -9,16 +9,20 @@ A tool to check one or more json files against its json schema
 ## References
 - [Introducing JSON](http://www.json.org/json-it.html)
 - [Json-Schema.org](https://json-schema.org)
-- [Specifications](http://json-schema.org/specification-links.html)
+- [Specifications](http://json-schema.org/specification-links.html) 
+- [Docs](https://json-schema.org/understanding-json-schema/)
 - [Implementations](http://json-schema.org/implementations.html)
+
+### Implementations
 - [JSON Schema Validator for Java](https://github.com/everit-org/json-schema)
 
-### References
+### Others
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
 - [JSONschemaValidator.Net (online validator)](https://www.jsonschemavalidator.net)
 - [JsonFormatter.org](https://jsonformatter.org/json-editor)
 - [JsonEditorOnline.org](https://jsoneditoronline.org)
 
-### Problema parsing del json
+### Issues
 
 - [json-schema/issues/143](https://github.com/everit-org/json-schema/issues/143)
+- https://github.com/everit-org/json-schema/issues/140

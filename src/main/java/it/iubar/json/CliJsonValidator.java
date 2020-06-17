@@ -13,7 +13,10 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-public class PoJsonValidator {
+import it.iubar.json.other.EveritStrategy;
+import it.iubar.json.other.IValidator;
+
+public class CliJsonValidator {
  
 	private static Options options = null;
 	
@@ -23,13 +26,13 @@ public class PoJsonValidator {
 		CommandLineParser parser = new DefaultParser();
 
 		// create the Options
-		PoJsonValidator.options = new Options();
+		CliJsonValidator.options = new Options();
 		
 	    try {
 	        // parse the command line arguments
 	        CommandLine line = parser.parse( options, args );
 	        List<String> argList = line.getArgList();
-	        PoJsonValidator validator = new PoJsonValidator();
+	        CliJsonValidator validator = new CliJsonValidator();
 	        validator.run(argList);
 	    }
 	    catch( ParseException exp ) {
@@ -55,8 +58,8 @@ public class PoJsonValidator {
 		if (!f2.exists()) {
 			handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
 		}
-		
-		Validator client = new Validator();
+		IValidator strategy = new EveritStrategy();
+		JsonValidator client = new JsonValidator(strategy);
 		client.setSchema(f1);
 		client.setTargetFolderOrFile(f2);
 		try {
@@ -74,14 +77,14 @@ public class PoJsonValidator {
 		System.out.println(msg);
 		if(b) {
 			System.out.println("");
-			PoJsonValidator.printHelp();	
+			CliJsonValidator.printHelp();	
 		}
 		System.exit(1);
 	}
 	
 	private static void printAppNameAndVersion() {
 		// String className = PoJsonValidator.class.getName();
-		Package mainPackage = PoJsonValidator.class.getPackage(); // returns "package it.iubar.json"
+		Package mainPackage = CliJsonValidator.class.getPackage(); // returns "package it.iubar.json"
 		String version = mainPackage.getImplementationVersion(); // returns "0.0.2"
 		// String groupId = mainPackage.getName(); // returns "it.iubar.json"	 
 		String appName = mainPackage.getImplementationTitle(); // returns "Po Json Validator"		  		
@@ -94,9 +97,9 @@ public class PoJsonValidator {
 	private static void printHelp() {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.setWidth(200);
-    	String jarName = new java.io.File(PoJsonValidator.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
+    	String jarName = new java.io.File(CliJsonValidator.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
     	String cmdLineSyntax = "java -jar " + jarName + " <schema.json> <data.json>|<folder path>";
-	    formatter.printHelp(cmdLineSyntax, PoJsonValidator.options, true);	        
+	    formatter.printHelp(cmdLineSyntax, CliJsonValidator.options, true);	        
 		 if(false) { 
 			 StringWriter out = new StringWriter();
 			 PrintWriter pw = new PrintWriter(out);	     
