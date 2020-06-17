@@ -4,7 +4,7 @@
 A tool to check one or more json files against its json schema
 
 ### How to use it
-    java -jar po-test-json-validator-jar-with-dependencies.jar <schema-file> (<json folder>|<json file>)
+    java -jar json-validator-jar-with-dependencies.jar <schema-file> (<json folder>|<json file>)
 
 ## References
 - [Introducing JSON](http://www.json.org/json-it.html)

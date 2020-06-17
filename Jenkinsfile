@@ -50,9 +50,8 @@ pipeline {
                     if [ $QUALITYGATE = OK ]; then
                        echo "High five !"
                     else
-                       echo "Poor quality !"
+                       echo "Poor quality ! (but don't exit)"
 					   echo "( see ${SONAR_URL}/dashboard?id=${SONAR_PROJECTKEY})"
-                       // exit 1
                     fi				    
 				'''
             }
