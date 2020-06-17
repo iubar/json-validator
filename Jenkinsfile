@@ -52,7 +52,7 @@ pipeline {
                     else
                        echo "Poor quality !"
 					   echo "( see ${SONAR_URL}/dashboard?id=${SONAR_PROJECTKEY})"
-                       exit 1
+                       // exit 1
                     fi				    
 				'''
             }

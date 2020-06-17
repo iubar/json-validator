@@ -84,7 +84,7 @@ public class GetContent {
 
 
 	/*
-	 * A Jersey
+	 * A Jersey implementation
 	 */	
 	private static long getContent2(URL sourceUrl, File outFile) throws IOException, NoSuchAlgorithmException, KeyManagementException{
 		long bytesCopied = 0;   	
@@ -141,6 +141,7 @@ public class GetContent {
 
 
 	/**
+	 * An Apache HttpClient implementation
 	 * Or with the fluent API if one likes it better
 	 * Request.Get("http://host/stuff").execute().saveContent(myFile);
 	 * @throws IOException 
