@@ -48,13 +48,13 @@ pipeline {
 			steps {
 				sh 'ls -la $WORKSPACE'	
 				echo 'Validazione schema.json cedolini'
-                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/cedolini/schema.json'				
+                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/cedolini/schema.json'				
 				echo 'Validazione file json cedolini'
-				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar-jar-with-dependencies.jar $WORKSPACE/data/cedolini/schema.json $WORKSPACE/data/cedolini/json'
+				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/cedolini/schema.json $WORKSPACE/data/cedolini/json'
 				echo 'Validazione schema.json uniemens'
-                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/uniemens/schema.json'				
+                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/uniemens/schema.json'				
 				echo 'Validazione file json uniemens'
-				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar-jar-with-dependencies.jar $WORKSPACE/data/uniemens/schema.json $WORKSPACE/data/uniemens/json'
+				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/uniemens/schema.json $WORKSPACE/data/uniemens/json'
 			}
 		}		
 	}
