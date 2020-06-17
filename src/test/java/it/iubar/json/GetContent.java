@@ -18,6 +18,8 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -41,12 +43,16 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 public class GetContent {
-
+	
 	static {
 		GetContent.disableSslVerification();
 	}
+
+	private static final String HOST_NAME = "192.168.0.121";
 	
-	//////////////////////////////////////////////////////////
+	public static String BASE_ADDRESS = "https://" + HOST_NAME + "/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json";
+	
+	private static final Logger LOGGER = Logger.getLogger(GetContent.class.getName());
 
 	/*
 	 * A NIO implementation
@@ -132,37 +138,7 @@ public class GetContent {
 		}
 
 	}
-
-	////////////////////////////////////////////
-
-	//public Client hostIgnoringClient() {
-	//try
-	//{
-	//SSLContext sslcontext = SSLContext.getInstance( "TLS" );
-	//sslcontext.init( null, null, null );
-	//DefaultClientConfig config = new DefaultClientConfig();
-	//Map<String, Object> properties = config.getProperties();
-	//HTTPSProperties httpsProperties = new HTTPSProperties(
-	//new HostnameVerifier()
-	//{
-	//@Override
-	//public boolean verify( String s, SSLSession sslSession )
-	//{
-	//return true;
-	//}
-	//}, sslcontext
-	//);
-	//properties.put( HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, httpsProperties );
-	//config.getClasses().add( JacksonJsonProvider.class );
-	//return Client.create( config );
-	//}
-	//catch ( KeyManagementException | NoSuchAlgorithmException e )
-	//{
-	//throw new RuntimeException( e );
-	//}
-	//}
-
-
+ 
 	static void disableSslVerification() {
 		try {
 			// Create a trust manager that does not validate certificate chains
@@ -195,17 +171,19 @@ public class GetContent {
 
 				@Override
 				public boolean verify(String hostname, SSLSession session) {
-					// TODO Auto-generated method stub
-					return true;
+				     if(hostname.equals(HOST_NAME)) {
+				         return true; 
+				     }
+				     return false;
 				}
 			};
 
 			// Install the all-trusting host verifier
 			HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage());
 		} catch (KeyManagementException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 	}	
 }
