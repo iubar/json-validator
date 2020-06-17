@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -13,13 +15,14 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import it.iubar.json.other.EveritStrategy;
 import it.iubar.json.other.IValidator;
 import it.iubar.json.other.JustifyStrategy;
 import it.iubar.json.other.SyntaxException;
 
 public class CliJsonValidator {
  
+	private static final Logger LOGGER = Logger.getLogger(CliJsonValidator.class.getName());
+	
 	private static Options options = null;
 	
 	public static void main(String[] args) {
@@ -35,25 +38,33 @@ public class CliJsonValidator {
 	        CommandLine line = parser.parse( options, args );
 	        List<String> argList = line.getArgList();
 	        CliJsonValidator cliValidator = new CliJsonValidator();
-	        cliValidator.run(argList);
-	    }  catch( ParseException exp ) {
-	        // oops, something went wrong
-	        System.err.println( "The parsing has failed. Reason: " + exp.getMessage() );
-	        System.exit(1);
-	    } catch (SyntaxException e) {	    	
-			// e.printStackTrace();
-	    	System.err.println( "SyntaxException: " + e.getMessage() );	    	
-			System.exit(1);
+	        int errors = cliValidator.run(argList);
+			if (errors > 0) {
+				String errorMsg = "Found " + errors + " !"; 	
+		    	die(errorMsg);
+			}
+	    }  catch( ParseException exp ) {    	
+	    	String errorMsg = "The parsing has failed. Reason: " + exp.getMessage() ;
+	    	die(errorMsg);
+	    } catch (SyntaxException e) {
+	    	String errorMsg = "Syntax error: " + e.getMessage();
+	    	die(errorMsg);
 		} catch (FileNotFoundException e) {
-			// e.printStackTrace();
-			System.err.println( "FileNotFoundException: " + e.getMessage() );
-			System.exit(1);
+			String errorMsg = "File not found: " + e.getMessage();
+			die(errorMsg);
 		}
 
 	}
 	
 	
-	private void run(List<String> argList) throws SyntaxException, FileNotFoundException {  
+	private static void die(String errorMsg) {
+    	LOGGER.log(Level.SEVERE, errorMsg);
+        System.err.println(errorMsg);
+        System.exit(1);
+	}
+
+
+	private int run(List<String> argList) throws SyntaxException, FileNotFoundException {  
 		if (argList.size() != 2) {
 			handleWrongUsage("[ERROR] Attention wrong number of arguments", true);
 		}		
@@ -72,13 +83,8 @@ public class CliJsonValidator {
 		IValidator strategy = new JustifyStrategy();
 		JsonValidator client = new JsonValidator(strategy);
 		client.setSchema(f1);
-		client.setTargetFolderOrFile(f2);
- 
-			int errors = client.run();
-			if (errors > 0) {
-				System.exit(1);
-			}
- 
+		client.setTargetFolderOrFile(f2); 
+		return client.run();
 	}
 	
 	private static void handleWrongUsage(String msg, boolean b) {

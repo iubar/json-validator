@@ -10,7 +10,7 @@ pipeline {
 		ansiColor('xterm')
 	}    
 	environment {	
-		MAVEN_CLI_OPTS = '--batch-mode --fail-fast --show-version'
+		MAVEN_CLI_OPTS = '--batch-mode --show-version'
 	}    
     stages {
         stage ('Build') {

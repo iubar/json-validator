@@ -13,7 +13,7 @@ pipeline {
 		ansiColor('xterm')
 	}	
     environment {
-		MAVEN_CLI_OPTS = '--batch-mode --errors --fail-fast --show-version --quiet'
+		MAVEN_CLI_OPTS = '--batch-mode --errors --show-version --quiet'
 		MAVEN_OPTS = '-Dmaven.test.failure.ignore=false -Dstyle.color=always -Djava.awt.headless=true -Dhttps.protocols=TLSv1.2' // -Djava.io.tmpdir=${WORKSPACE}@tmp
     }	
 	stages {
