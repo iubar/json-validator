@@ -1,4 +1,4 @@
-package it.iubar.json.other;
+package it.iubar.json.validators;
 
 import java.io.File;
 import java.io.FileInputStream;

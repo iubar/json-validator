@@ -1,4 +1,4 @@
-package it.iubar.json.other;
+package it.iubar.json.validators;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +29,7 @@ public class NetworkntStrategy extends RootStrategy {
 	private static final Logger LOGGER = Logger.getLogger(NetworkntStrategy.class.getName());
 	
 	@Override
-	public boolean validate(File file) {
+	public int validate(File file) {
 
 		Set<ValidationMessage> errors = null;	
 		try {
@@ -42,17 +42,19 @@ public class NetworkntStrategy extends RootStrategy {
 				for (ValidationMessage errorMsg : errors) {
 					String msg = errorMsg.getMessage();
 					Map<String, Object> details = errorMsg.getDetails();
-					LOGGER.severe("Error: " + msg);
+					LOGGER.severe(msg);
 				}
 			}
+			return errors.size();
 		} catch (Exception e) {
 			LOGGER.severe("Exception: " + e.getMessage());
 			if(e.getCause()!=null) {
 				LOGGER.severe("Cause: " + e.getCause());
 			}
-			return false;
+	 
+			return 1;
 		}		
-		return (errors.size() == 0);
+ 
 	}
 	
 	/**
@@ -61,13 +63,13 @@ public class NetworkntStrategy extends RootStrategy {
 	 * @return
 	 * @throws Exception
 	 */
-    protected JsonSchema getJsonSchemaFromStringContent(String schemaContent) throws Exception {
+    public static JsonSchema getJsonSchemaFromStringContent(String schemaContent) throws Exception {
         JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7);
         JsonSchema schema = factory.getSchema(schemaContent);
         return schema;
     }
     
-    protected JsonNode getJsonNodeFromStringContent(String content) throws Exception {
+    public static JsonNode getJsonNodeFromStringContent(String content) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(content);
         return node;

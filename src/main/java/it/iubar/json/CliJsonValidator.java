@@ -15,9 +15,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import it.iubar.json.other.IValidator;
-import it.iubar.json.other.JustifyStrategy;
-import it.iubar.json.other.SyntaxException;
+import it.iubar.json.validators.IValidator;
+import it.iubar.json.validators.JustifyStrategy;
 
 public class CliJsonValidator {
  
@@ -46,9 +45,6 @@ public class CliJsonValidator {
 	    }  catch( ParseException exp ) {    	
 	    	String errorMsg = "The parsing has failed. Reason: " + exp.getMessage() ;
 	    	die(errorMsg);
-	    } catch (SyntaxException e) {
-	    	String errorMsg = "Syntax error: " + e.getMessage();
-	    	die(errorMsg);
 		} catch (FileNotFoundException e) {
 			String errorMsg = "File not found: " + e.getMessage();
 			die(errorMsg);
@@ -64,7 +60,7 @@ public class CliJsonValidator {
 	}
 
 
-	private int run(List<String> argList) throws SyntaxException, FileNotFoundException {  
+	private int run(List<String> argList) throws FileNotFoundException {  
 		if (argList.size() != 2) {
 			handleWrongUsage("[ERROR] Attention wrong number of arguments", true);
 		}		
@@ -79,8 +75,9 @@ public class CliJsonValidator {
 		if (!f2.exists()) {
 			handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
 		}
-		//IValidator strategy = new EveritStrategy();
-		IValidator strategy = new JustifyStrategy();
+		// IValidator strategy = new EveritStrategy();
+		// IValidator strategy = new NetworkntStrategy();
+		IValidator strategy = new JustifyStrategy(); 
 		JsonValidator client = new JsonValidator(strategy);
 		client.setSchema(f1);
 		client.setTargetFolderOrFile(f2); 

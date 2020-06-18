@@ -1,8 +1,9 @@
-package it.iubar.json.other;
+package it.iubar.json.validators;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -17,8 +18,8 @@ public class EveritStrategy extends RootStrategy {
 	private static final Logger LOGGER = Logger.getLogger(EveritStrategy.class.getName());
 	
 	@Override
-	public boolean validate(File file) throws FileNotFoundException {
-		boolean valid = false;
+	public int validate(File file) throws FileNotFoundException {
+ 
 		
 		JSONObject jsonObj = new JSONObject(new FileInputStream(file));
 
@@ -28,7 +29,7 @@ public class EveritStrategy extends RootStrategy {
 		try {
 			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator.builder().failEarly().build();
 			validator.performValidation(schemaJSON, jsonObj);
-			valid = true;
+ 
 		} catch (ValidationException e) {
 			LOGGER.severe(e.getMessage());
 			
@@ -44,19 +45,20 @@ public class EveritStrategy extends RootStrategy {
 				LOGGER.severe("Violation: " + count);
 				List<String> messages = validationException.getAllMessages();
 				for (String message : messages) {
-					LOGGER.severe("	- " + message);
+					LOGGER.severe(message);
 				}
-			}	  
+			}
+			return list.size();
 		}
 		
-		return valid;
+		return 0;
 	}
 	
 	public JSONObject getSchemaASJsonObjct() {
 		
 	JSONObject _schema =  null;
 	try {
-		FileInputStream objFileInputStream = new FileInputStream(this.schema);
+		InputStream objFileInputStream = new FileInputStream(this.schema);
 		_schema = new JSONObject(new JSONTokener(objFileInputStream));
 	} catch (FileNotFoundException ex) {
 		LOGGER.severe(ex.getMessage());

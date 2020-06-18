@@ -1,11 +1,11 @@
-package it.iubar.json.other;
+package it.iubar.json.validators;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public interface IValidator {
 
-	public boolean validate(File file) throws FileNotFoundException, SyntaxException;
+	public int validate(File file) throws FileNotFoundException;
 	
 	public File getSchema();
 

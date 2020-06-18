@@ -20,28 +20,27 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import it.iubar.json.other.EveritStrategy;
-import it.iubar.json.other.IValidator;
-import it.iubar.json.other.JustifyStrategy;
-import it.iubar.json.other.SyntaxException;
-import it.iubar.json.other.NetworkntStrategy;
+import it.iubar.json.validators.EveritStrategy;
+import it.iubar.json.validators.IValidator;
+import it.iubar.json.validators.JustifyStrategy;
+import it.iubar.json.validators.NetworkntStrategy;
 
 
-class JsonValidatorTest2 {
+class RealDataValidatorTest {
 
-	private static final Logger LOGGER = Logger.getLogger(JsonValidatorTest2.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(RealDataValidatorTest.class.getName());
 	
 	private static File schemaFile = null;
 	
 	@BeforeAll 
 	private static void init() throws MalformedURLException, IOException {
-		JsonValidatorTest2.schemaFile = JsonValidatorTest2.fetchSchemaFile();
+		RealDataValidatorTest.schemaFile = RealDataValidatorTest.fetchSchemaFile();
 	}
 	
 	 
 @Test
 @DisplayName("EveritStrategy")
-@Disabled("La Everit libreria fallisce nel valutare la direttiva \"required\"")
+@Disabled("Fallisce nel valutare la direttiva \"required\"")
 void runTest1() {
 	 Assertions.assertDoesNotThrow(() -> {
 		 IValidator strategy = new EveritStrategy();
@@ -86,7 +85,7 @@ void runTest1() {
 	}
 	
 		
-	private void run(IValidator strategy) throws MalformedURLException, FileNotFoundException, IOException, SyntaxException {
+	private void run(IValidator strategy) throws MalformedURLException, FileNotFoundException, IOException {
 			
 		File targetFile = new File(getOutPath() + File.separator + "test001.json");
 		String address2 = GetContent.BASE_ADDRESS + "/test001.json";
@@ -100,7 +99,7 @@ void runTest1() {
 				
 
 		JsonValidator client = new JsonValidator(strategy);
-		client.setSchema(JsonValidatorTest2.schemaFile );
+		client.setSchema(RealDataValidatorTest.schemaFile );
 		client.setTargetFolderOrFile(targetFile);
 	 
 			int errors = client.run();

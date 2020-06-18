@@ -1,33 +1,15 @@
 package it.iubar.json;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-//import javax.json.Json;
-//import javax.json.JsonObject;
-//import javax.json.JsonReader;
-//import javax.json.stream.JsonParsingException;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.everit.json.schema.Schema;
-import org.everit.json.schema.ValidationException;
-import org.everit.json.schema.loader.SchemaLoader;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import it.iubar.json.other.EveritStrategy;
-import it.iubar.json.other.IValidator;
-import it.iubar.json.other.JustifyStrategy;
-import it.iubar.json.other.SyntaxException;
+import it.iubar.json.validators.EveritStrategy;
+import it.iubar.json.validators.IValidator;
 
 /**
  * Per la validazione del json vengono utilizzate 2 librerie in quanto:
@@ -38,6 +20,8 @@ import it.iubar.json.other.SyntaxException;
 public class JsonValidator {
 
 	private static final Logger LOGGER = Logger.getLogger(JsonValidator.class.getName());
+
+	private static boolean failFast = false;
  
 	private File targetFolderOrFile = null;
 	private IValidator validator = null;
@@ -50,40 +34,53 @@ public class JsonValidator {
 		this.targetFolderOrFile = directory_or_file;
 	}
 
-	public int run() throws FileNotFoundException, SyntaxException  {
+	public int run() throws FileNotFoundException  {
 		Map<String, File> map = getFilesMap();
-		List<Boolean> result = new ArrayList<Boolean>();
+		List<Boolean> results = new ArrayList<Boolean>();
 		for (Map.Entry<String, File> entry : map.entrySet()){
 			String fileName = entry.getKey();
 			File file = entry.getValue();
 			boolean valid = false;
+	 
+				
 			if(this.validator instanceof EveritStrategy) {
 				LOGGER.info("Validating " + fileName + " ... 1/2...");
 				PreValidator preValidator = new PreValidator();
 				boolean valid1 = preValidator.validate(file);
 				LOGGER.info("Validating " + fileName + " ... 2/2...");
-				boolean valid2 = this.validator.validate(file);			
-				valid = (valid1 && valid2);
+				int errorsCount = this.validator.validate(file);			
+				valid = (valid1 && (errorsCount==0));
 			}else  {
 				LOGGER.info("Validating " + fileName);
-				valid = this.validator.validate(file);	
-			} 					
+				int errorsCount = this.validator.validate(file);	
+				valid = (errorsCount==0);
+			}
+ 
+			
 			if (valid) {
 				LOGGER.info("File '" + fileName + "' is valid");	
 			} else {
 				LOGGER.warning("File '" + fileName + "' is NOT valid");
 			}
 			
-			result.add(valid);
-		}
+			results.add(valid);
+			
+			if(failFast) { // non proseguo con gli altri file
+				if(!valid) {
+					break;
+				}
+			}
+			
+		} // end for
+		
 		int passed = 0;
-		for (Boolean value : result) {
+		for (Boolean value : results) {
 			if (value.booleanValue())
 				passed ++;
 		}
-		int error = result.size()-passed;
+		int error = results.size() - passed;
 
-		LOGGER.info("TOTAL: " + result.size() + "  [PASSED: " + passed +"][ERROR: " + error + "]\n");
+		LOGGER.info("TOTAL: " + results.size() + "  [PASSED: " + passed +"][ERROR: " + error + "]\n");
 
 		return error;
 	}
