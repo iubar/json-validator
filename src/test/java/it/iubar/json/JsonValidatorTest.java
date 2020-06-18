@@ -26,7 +26,7 @@ import it.iubar.json.other.EveritStrategy;
 import it.iubar.json.other.IValidator;
 import it.iubar.json.other.JustifyStrategy;
 import it.iubar.json.other.SyntaxException;
-import it.iubar.json.other.UnnamedStrategy;
+import it.iubar.json.other.NetworkntStrategy;
 
 public class JsonValidatorTest {
 
@@ -45,8 +45,8 @@ public class JsonValidatorTest {
 		assertTrue(errors > 0);
 	}
 	
-	@Test
-	@Disabled("La libreria non supporta la direttiva \"additionalProperties\": false nello schema")
+	@Test	
+	@Disabled("La libreria Everit fallisce nel valutare la direttiva \"required\"")
 	public void testValidator2() throws IOException, SyntaxException {
 		File file = new File(JsonValidatorTest.class.getResource("/must-pass.json").getFile());
 		IValidator strategy = new EveritStrategy();
@@ -85,7 +85,7 @@ public class JsonValidatorTest {
 		 Assertions.assertDoesNotThrow( () -> {
  
 				File file = new File(JsonValidatorTest.class.getResource("/must-fail.json").getFile());
-				IValidator strategy = new UnnamedStrategy();
+				IValidator strategy = new NetworkntStrategy();
 				int errors = parseWithValidator(strategy, file);
 				assertTrue(errors > 0);
 				
@@ -95,7 +95,7 @@ public class JsonValidatorTest {
 	@Test
 	public void testValidator6() throws IOException, SyntaxException {
 		File file = new File(JsonValidatorTest.class.getResource("/must-pass.json").getFile());
-		IValidator strategy = new UnnamedStrategy();
+		IValidator strategy = new NetworkntStrategy();
 		int errors = parseWithValidator(strategy, file);
 		assertTrue(errors == 0);
 	}	

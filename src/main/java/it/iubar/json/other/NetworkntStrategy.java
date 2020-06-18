@@ -24,9 +24,9 @@ import com.networknt.schema.SpecVersion;
  * @author Borgo
  *
  */
-public class UnnamedStrategy extends RootStrategy {
+public class NetworkntStrategy extends RootStrategy {
 
-	private static final Logger LOGGER = Logger.getLogger(UnnamedStrategy.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(NetworkntStrategy.class.getName());
 	
 	@Override
 	public boolean validate(File file) {

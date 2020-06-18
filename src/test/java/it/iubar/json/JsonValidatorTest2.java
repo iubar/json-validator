@@ -8,10 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
@@ -22,7 +24,7 @@ import it.iubar.json.other.EveritStrategy;
 import it.iubar.json.other.IValidator;
 import it.iubar.json.other.JustifyStrategy;
 import it.iubar.json.other.SyntaxException;
-import it.iubar.json.other.UnnamedStrategy;
+import it.iubar.json.other.NetworkntStrategy;
 
 
 class JsonValidatorTest2 {
@@ -39,7 +41,7 @@ class JsonValidatorTest2 {
 	 
 @Test
 @DisplayName("EveritStrategy")
-@Disabled("La libreria non supporta la direttiva \"additionalProperties\": false nello schema")	
+@Disabled("La Everit libreria fallisce nel valutare la direttiva \"required\"")
 void runTest1() {
 	 Assertions.assertDoesNotThrow(() -> {
 		 IValidator strategy = new EveritStrategy();
@@ -69,10 +71,10 @@ void runTest1() {
 	}
 	
 	@Test
-	@DisplayName("UnnamedStrategy")
+	@DisplayName("NetworkntStrategy")
 	void runTest3() {
 		 Assertions.assertDoesNotThrow(() -> {
-			 IValidator strategy = new UnnamedStrategy();
+			 IValidator strategy = new NetworkntStrategy();
 			try {
 				run(strategy);
 			} catch (Exception e) {				
@@ -91,6 +93,9 @@ void runTest1() {
 		GetContent.getContent(new URL(address2), targetFile); 
 		if (!targetFile.exists()) {
 			fail("The path " + targetFile + " does not exist or is not readable");
+		}else {
+			String dataContent = FileUtils.readFileToString(targetFile, StandardCharsets.UTF_8);
+			System.out.println(dataContent);
 		}
 				
 
