@@ -22,6 +22,7 @@ import it.iubar.json.other.EveritStrategy;
 import it.iubar.json.other.IValidator;
 import it.iubar.json.other.JustifyStrategy;
 import it.iubar.json.other.SyntaxException;
+import it.iubar.json.other.UnnamedStrategy;
 
 
 class JsonValidatorTest2 {
@@ -35,9 +36,26 @@ class JsonValidatorTest2 {
 		JsonValidatorTest2.schemaFile = JsonValidatorTest2.fetchSchemaFile();
 	}
 	
+	 
+@Test
+@DisplayName("EveritStrategy")
+@Disabled("La libreria non supporta la direttiva \"additionalProperties\": false nello schema")	
+void runTest1() {
+	 Assertions.assertDoesNotThrow(() -> {
+		 IValidator strategy = new EveritStrategy();
+		try {
+			run(strategy);
+		} catch (Exception e) {				
+			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage());
+			throw e;
+		}
+	 } );
+}
+
 	@Test
 	@DisplayName("JustifyStrategy")
-	void runTest1() {
+	void runTest2() {
 		 Assertions.assertDoesNotThrow(() -> {
 			 IValidator strategy = new JustifyStrategy();
 			try {
@@ -51,11 +69,10 @@ class JsonValidatorTest2 {
 	}
 	
 	@Test
-	@DisplayName("EveritStrategy")
-	@Disabled("La libreria non funziona, questo test fallisce sempre anche se non dovrebbe")	
-	void runTest2() {
+	@DisplayName("UnnamedStrategy")
+	void runTest3() {
 		 Assertions.assertDoesNotThrow(() -> {
-			 IValidator strategy = new EveritStrategy();
+			 IValidator strategy = new UnnamedStrategy();
 			try {
 				run(strategy);
 			} catch (Exception e) {				
@@ -65,6 +82,7 @@ class JsonValidatorTest2 {
 			}
 		 } );
 	}
+	
 		
 	private void run(IValidator strategy) throws MalformedURLException, FileNotFoundException, IOException, SyntaxException {
 			

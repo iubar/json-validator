@@ -64,12 +64,10 @@ public class JsonValidator {
 				LOGGER.info("Validating " + fileName + " ... 2/2...");
 				boolean valid2 = this.validator.validate(file);			
 				valid = (valid1 && valid2);
-			}else if(this.validator instanceof JustifyStrategy) {
+			}else  {
 				LOGGER.info("Validating " + fileName);
 				valid = this.validator.validate(file);	
-			}else {
-				throw new RuntimeException("Situazione imprevista");
-			}					
+			} 					
 			if (valid) {
 				LOGGER.info("File '" + fileName + "' is valid");	
 			} else {

@@ -3,17 +3,22 @@ package it.iubar.json.other;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 
 import org.leadpony.justify.api.JsonSchema;
 import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.ProblemHandler;
+import org.leadpony.justify.api.SpecVersion;
 
 import jakarta.json.JsonReader;
 import jakarta.json.JsonValue;
+import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonParser;
 
 public class JustifyStrategy extends RootStrategy  {
 
+	private static final Logger LOGGER = Logger.getLogger(JustifyStrategy.class.getName());
+	
 	@Override
 	public boolean validate(File file) throws SyntaxException {
 		return validate1(file);
@@ -21,6 +26,7 @@ public class JustifyStrategy extends RootStrategy  {
 	
 	public boolean validate1(File file) throws SyntaxException {
 		boolean b = false;
+
 		JsonValidationService service = JsonValidationService.newInstance();
 
 		// Reads the JSON schema
@@ -42,11 +48,7 @@ public class JustifyStrategy extends RootStrategy  {
 				 // eg: Invalid token=COMMA at (line no=40, column no=15, offset=911). Expected tokens are: [CURLYOPEN, SQUAREOPEN, STRING, NUMBER, TRUE, FALSE, NULL]
 				throw  new SyntaxException(e.getMessage());
 			}
-
 		}
-		
-	 
-			
 		return b;
 	}
 	
@@ -73,5 +75,4 @@ public class JustifyStrategy extends RootStrategy  {
 		return b;
 	}
  
-
 }

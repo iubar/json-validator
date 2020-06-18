@@ -22,7 +22,7 @@ public class EveritStrategy extends RootStrategy {
 		
 		JSONObject jsonObj = new JSONObject(new FileInputStream(file));
 
-		SchemaLoader loader = SchemaLoader.builder().schemaJson(getSchemaASJsonObjct()).draftV7Support().build();
+		SchemaLoader loader = SchemaLoader.builder().schemaJson(getSchemaASJsonObjct()).draftV7Support().build(); // Draft V7
 		Schema schemaJSON = loader.load().build();
 
 		try {
