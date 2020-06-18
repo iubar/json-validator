@@ -1,4 +1,4 @@
-package it.iubar.json;
+package it.iubar.json.validators;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -18,8 +18,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import it.iubar.json.JsonValidator;
 import it.iubar.json.validators.EveritStrategy;
 import it.iubar.json.validators.IValidator;
 import it.iubar.json.validators.JustifyStrategy;
@@ -40,6 +42,7 @@ class RealDataValidatorTest {
 	 
 @Test
 @DisplayName("EveritStrategy")
+@Tag("LocalTestOnly")
 @Disabled("Fallisce nel valutare la direttiva \"required\"")
 void runTest1() {
 	 Assertions.assertDoesNotThrow(() -> {
@@ -56,6 +59,7 @@ void runTest1() {
 
 	@Test
 	@DisplayName("JustifyStrategy")
+	@Tag("LocalTestOnly")
 	void runTest2() {
 		 Assertions.assertDoesNotThrow(() -> {
 			 IValidator strategy = new JustifyStrategy();
@@ -71,6 +75,7 @@ void runTest1() {
 	
 	@Test
 	@DisplayName("NetworkntStrategy")
+	@Tag("LocalTestOnly")
 	void runTest3() {
 		 Assertions.assertDoesNotThrow(() -> {
 			 IValidator strategy = new NetworkntStrategy();

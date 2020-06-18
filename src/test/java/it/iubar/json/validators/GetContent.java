@@ -1,4 +1,4 @@
-package it.iubar.json;
+package it.iubar.json.validators;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.junit.jupiter.api.Assertions.fail;

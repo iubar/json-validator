@@ -1,4 +1,4 @@
-package it.iubar.json;
+package it.iubar.json.validators;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import it.iubar.json.JsonValidator;
 import it.iubar.json.validators.EveritStrategy;
 import it.iubar.json.validators.IValidator;
 import it.iubar.json.validators.JustifyStrategy;

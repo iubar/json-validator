@@ -29,6 +29,10 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${surefire.plugin.version}</version>
 				<configuration>
+
+					<!-- exclude tags -->
+					<excludedGroups>LocalTestOnly</excludedGroups>
+
 					<!-- <systemPropertyVariables> -->
 					<!--    <user.language>it</user.language> -->
 					<!--    <user.region>IT</user.region> -->
