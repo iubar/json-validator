@@ -6,7 +6,7 @@ env:
   - TRAVIS_TAG=00.01 # see https://docs.travis-ci.com/user/environment-variables/
 install: true # Without that statement, Travis will run 'mvn install' on pom.xml before the script step.  
 script: 
-  - mvn -f pom_travis.xml test
+  - mvn -f pom_travis.xml clean package
 after_script:  
   - echo "TRAVIS_TAG = ${TRAVIS_TAG}"
 #  - echo "GITHUB_OAUTH_TOKEN = ${GITHUB_OAUTH_TOKEN}" # print out: GITHUB_OAUTH_TOKEN = [secure]
