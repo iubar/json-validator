@@ -30,6 +30,8 @@
 				<version>${surefire.plugin.version}</version>
 				<configuration>
 
+					<!-- include tags -->
+					<!-- <groups>tag1, tag2</groups> -->
 					<!-- exclude tags -->
 					<excludedGroups>LocalTestOnly</excludedGroups>
 
