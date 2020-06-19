@@ -3,10 +3,13 @@ package it.iubar.json.validators;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
 import org.everit.json.schema.loader.SchemaLoader;
@@ -20,21 +23,52 @@ public class EveritStrategy extends RootStrategy {
 	@Override
 	public int validate(File file) throws FileNotFoundException {
  
+		//InputStream is = new FileInputStream(file);
+		//JSONObject jsonObj = new JSONObject(new JSONTokener(is));
 		
-		JSONObject jsonObj = new JSONObject(new FileInputStream(file));
+		String dataContent = null;
+		try {
+			  dataContent = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		JSONObject jsonObj = null;
+		try {
+			jsonObj = new JSONObject(dataContent);
+		} catch (Exception e) {
+			return 1;
+		}
+		return validate2(jsonObj);
+	}
+	
+	public int validate(String strJson) throws FileNotFoundException {		  
+		JSONObject jsonObj = null;
+		try {
+			jsonObj = new JSONObject(strJson);
+		} catch (Exception e) {
+			return 1;
+		}
+		return validate2(jsonObj);
+	}	
+	
+	private int validate2(JSONObject jsonObj) throws FileNotFoundException {
 
 		SchemaLoader loader = SchemaLoader.builder().schemaJson(getSchemaASJsonObjct()).draftV7Support().build(); // Draft V7
 		Schema schemaJSON = loader.load().build();
-
-		try {
-			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator.builder().failEarly().build();
-			validator.performValidation(schemaJSON, jsonObj);
  
-		} catch (ValidationException e) {
+		try {
+			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator.builder()
+					//.failEarly()
+					.build();
+			validator.performValidation(schemaJSON, jsonObj);
+ 		} catch (ValidationException e) {
 			LOGGER.severe(e.getMessage());
 			
 			e.getCausingExceptions().stream().map(ValidationException::getMessage).forEach(System.out::println);
-
+			
+			JSONObject errorsAsJson = e.toJSON();
+			
 			List<ValidationException> list = e.getCausingExceptions();
 			for (ValidationException validationException : list) {
 				String violation = validationException.getPointerToViolation();
@@ -48,22 +82,22 @@ public class EveritStrategy extends RootStrategy {
 					LOGGER.severe(message);
 				}
 			}
-			return list.size();
-		}
-		
+			if(list.size()>0) {
+				return list.size(); //  the size of the causing exceptions
+			}else {
+				return 1;
+			}
+		}		
 		return 0;
 	}
-	
-	public JSONObject getSchemaASJsonObjct() {
-		
-	JSONObject _schema =  null;
-	try {
-		InputStream objFileInputStream = new FileInputStream(this.schema);
+
+	public JSONObject getSchemaASJsonObjct() throws FileNotFoundException {
+		JSONObject _schema =  null;
+ 		InputStream objFileInputStream = new FileInputStream(this.schema);
 		_schema = new JSONObject(new JSONTokener(objFileInputStream));
-	} catch (FileNotFoundException ex) {
-		LOGGER.severe(ex.getMessage());
-	}	
-	return _schema;
+		return _schema;
 	}
+
+
 
 }

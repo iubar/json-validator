@@ -42,7 +42,6 @@ class RealDataValidatorTest {
 	@Test
 	@DisplayName("EveritStrategy")
 	@Tag("LocalTestOnly")
-	@Tag("Skip")
 	void runTest1() {
 		Assertions.assertDoesNotThrow(() -> {
 			IValidator strategy = new EveritStrategy();

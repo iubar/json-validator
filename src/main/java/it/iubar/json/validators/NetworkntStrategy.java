@@ -2,6 +2,7 @@ package it.iubar.json.validators;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Set;
@@ -30,11 +31,19 @@ public class NetworkntStrategy extends RootStrategy {
 	
 	@Override
 	public int validate(File file) {
-
+		String dataContent = null;
+		try {
+			dataContent = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			LOGGER.severe(e.getMessage());
+		}
+		return validate(dataContent);
+	}
+	
+	public int validate(String dataContent) {
 		Set<ValidationMessage> errors = null;	
 		try {
 			String schemaContent = FileUtils.readFileToString(this.schema, StandardCharsets.UTF_8);
-			String dataContent = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 			JsonSchema schema = getJsonSchemaFromStringContent(schemaContent);
 			JsonNode node = getJsonNodeFromStringContent(dataContent);
 			errors = schema.validate(node);	
@@ -53,8 +62,7 @@ public class NetworkntStrategy extends RootStrategy {
 			}
 	 
 			return 1;
-		}		
- 
+		}	
 	}
 	
 	/**

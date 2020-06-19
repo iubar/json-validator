@@ -1,11 +1,14 @@
 package it.iubar.json.validators;
 
 import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.IOUtils;
 import org.leadpony.justify.api.JsonSchema;
 import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.ProblemHandler;
@@ -25,6 +28,41 @@ public class JustifyStrategy extends RootStrategy  {
 		return validate1(file);
 	}
 	
+ 
+	public int validate(String string) {
+		return validate1(string);
+	}	
+	public int validate1(String string)  {
+		int errorCount = 0;
+		JsonValidationService service = JsonValidationService.newInstance();
+
+		// Reads the JSON schema
+		JsonSchema schema = service.readSchema(Paths.get(this.schema.toString()));
+
+		// Problem handler which will print problems found.
+		//ProblemHandler handler = service.createProblemPrinter(System.out::println);
+		MyProblemHandler handler = new MyProblemHandler();
+
+		InputStream is = IOUtils.toInputStream(string, StandardCharsets.UTF_8);
+		// Reads the JSON instance by JsonReader
+		try (JsonReader reader = service.createReader(is, schema, handler)) {
+			try {
+				JsonValue value = reader.readValue();
+			    // Do something useful here
+			    // System.out.println("value: " + value); // prints the entire json content
+				List<String> problems = handler.getProblems2();
+				if(problems!=null) {
+					errorCount = problems.size();
+				}				
+			}catch (jakarta.json.stream.JsonParsingException e) {
+				LOGGER.severe(e.getMessage());
+				 // eg: Invalid token=COMMA at (line no=40, column no=15, offset=911). Expected tokens are: [CURLYOPEN, SQUAREOPEN, STRING, NUMBER, TRUE, FALSE, NULL]
+				errorCount = 1;
+			}
+		}
+	
+		return errorCount;
+	}
 	public int validate1(File file)  {
 		int errorCount = 0;
 		JsonValidationService service = JsonValidationService.newInstance();

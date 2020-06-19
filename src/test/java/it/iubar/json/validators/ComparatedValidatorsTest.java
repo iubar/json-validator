@@ -40,7 +40,6 @@ public class ComparatedValidatorsTest {
 	}
 	
 	@Test
-	@Tag("Skip")
 	public void testValidator7() throws IOException {
 		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail2.json").getFile());
 		IValidator strategy = new EveritStrategy();
@@ -49,7 +48,6 @@ public class ComparatedValidatorsTest {
 	}
 	
 	@Test
-	@Tag("Skip")
 	public void testValidator8() throws IOException {
 		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail3.json").getFile());
 		IValidator strategy = new EveritStrategy();
@@ -88,7 +86,6 @@ public class ComparatedValidatorsTest {
 
 	@Test
 	public void testValidator5() throws IOException {			
-
 		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail.json").getFile());
 		IValidator strategy = new NetworkntStrategy();
 		int errorCount = parseWithValidator(strategy, file);

@@ -75,7 +75,7 @@ public class NetworkntTest {
 	
 	@Test
 	public void testNetworkntAdditionalProperties2()   {
-		String strJson = "{\"hello\" : \"world\", \"missingKeyFromSchema\" : \"should fail  because additionalProperties is false\"}";
+		String strJson = "{\"hello\" : \"world\", \"missingKeyFromSchema\" : \"should fail because additionalProperties is false\"}";
 	 	int errorCount = assertDoesNotThrow(() -> parseWithTheNetworkntLib(schema2, strJson));
 	 	assertEquals(1, errorCount);
 	}	
@@ -88,33 +88,9 @@ public class NetworkntTest {
 	}	
  
 	private int parseWithTheNetworkntLib(String schemaPath, String dataContent) throws FileNotFoundException {
-		Set<ValidationMessage> errors = null;	
-		try {
-			 
-			File schemaFile = new File(NetworkntTest.class.getResource(schemaPath).getFile());
-			String schemaContent = FileUtils.readFileToString(schemaFile);
-			
-			// InputStream inputStream = new FileInputStream(schemaFile);
-			// String schemaContent = IOUtils.toString(inputStream, StandardCharsets.UTF_8.name());
-
-			JsonSchema schema = NetworkntStrategy.getJsonSchemaFromStringContent(schemaContent);
-			JsonNode node = NetworkntStrategy.getJsonNodeFromStringContent(dataContent);
-			errors = schema.validate(node);	
-			if(errors!=null) {
-				for (ValidationMessage errorMsg : errors) {
-					String msg = errorMsg.getMessage();
-					Map<String, Object> details = errorMsg.getDetails();
-					LOGGER.severe("Error: " + msg);
-				}
-			}
-			return errors.size();
-		} catch (Exception e) {
-			LOGGER.severe("Exception: " + e.getMessage());
-			if(e.getCause()!=null) {
-				LOGGER.severe("Cause: " + e.getCause());
-			}
-	 
-			return 1;
-		}
+		NetworkntStrategy strategy = new NetworkntStrategy();
+		File schemaFile = new File(NetworkntTest.class.getResource(schemaPath).getFile());
+		strategy.setSchema(schemaFile);
+		return strategy.validate(dataContent); 
 	}
 }

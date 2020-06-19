@@ -27,7 +27,7 @@
 					<!-- include tags -->
 					<!-- <groups>tag1, tag2</groups> -->
 					<!-- exclude tags -->
-					<excludedGroups>Skip</excludedGroups>
+					<!--  <excludedGroups>Skip</excludedGroups> -->
 				</configuration>					
 			</plugin>
 			<!-- / -->

@@ -57,8 +57,8 @@ public class EveritTest {
 	@Test
 	public void testEveritWrongSyntax2()  {
 		String strJson = "{\"hello\" : \"world\"\"}";  // wrong syntax
-		JSONException ex = Assertions.assertThrows(JSONException.class, () -> parseWithTheEveritLib(schema1, strJson));
-		LOGGER.severe(ex.getMessage());
+		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema1, strJson));
+		assertEquals(1, errorCount);
 	}
 	
 	@Test
@@ -68,8 +68,6 @@ public class EveritTest {
 	}
 			
 	@Test
-	@Tag("Skip")
-	//("The Everit library fails to evaluate the directive \"required\"")
 	public void testEveritRequired1()   {
 		String strJson = "{\"missingKeyFromSchema\" : \"should fail because the hello key is required\"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema1, strJson));
@@ -83,18 +81,14 @@ public class EveritTest {
 		assertEquals(0, errorCount);		
 	}	
 	
-	@Test
-	@Tag("Skip")
-	//("The Everit library fails to evaluate the directive \"additionalProperties\"")		
+	@Test	
 	public void testEveritRequired2()   {
-		String strJson = "{\"missingKeyFromSchema2\" : \"should fail because the hello key is required additionalProperties is false \"}";
+		String strJson = "{\"missingKeyFromSchema2\" : \"should fail because the hello key is required and additionalProperties is false \"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema2, strJson));
-		assertEquals(1, errorCount);
+		assertEquals(2, errorCount);
 	}
 	
 	@Test
-	@Tag("Skip")
-	//("The Everit library fails to evaluate the directive \"additionalProperties\"")	
 	public void testEveritAdditionalProperties2()   {
 		String strJson = "{\"hello\" : \"world\", \"missingKeyFromSchema\" : \"should fail because additionalProperties is false\"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema2, strJson));
@@ -122,7 +116,6 @@ public class EveritTest {
 		Schema schema = loader.load().build();
 		return schema;
 	}
-
 	
 	private void parseWithJSONObject(String schemaPath, String strJson) throws FileNotFoundException {			
 		JSONObject jsonToValidate = new JSONObject(strJson);
@@ -130,35 +123,12 @@ public class EveritTest {
 		Schema schema = getSchema(schemaPath);  
 		schema.validate(jsonToValidate); 
 	}
+ 	
+	private int parseWithTheEveritLib(String schemaPath, String strJson) throws FileNotFoundException {				
+		EveritStrategy strategy = new EveritStrategy();
+		File schemaFile = new File(EveritTest.class.getResource(schemaPath).getFile());
+		strategy.setSchema(schemaFile);
+		return strategy.validate(strJson);
 	
-	private int parseWithTheEveritLib(String schemaPath, String strJson) throws FileNotFoundException {
-		JSONObject jsonToValidate = new JSONObject(strJson);
-		Schema schema = getSchema(schemaPath); 
-
-		try {
-			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator.builder().failEarly().build();
-			validator.performValidation(schema, jsonToValidate);
- 
-		} catch (ValidationException e) {
-			LOGGER.severe(e.getMessage());
-			
-			e.getCausingExceptions().stream().map(ValidationException::getMessage).forEach(System.out::println);
-
-			List<ValidationException> list = e.getCausingExceptions();
-			for (ValidationException validationException : list) {
-				String violation = validationException.getPointerToViolation();
-				String[] parts = violation.split("/");
-				String name = parts[parts.length-1];
-				int count = validationException.getViolationCount();
-				LOGGER.severe("Object name: " + name);
-				LOGGER.severe("Violation: " + count);
-				List<String> messages = validationException.getAllMessages();
-				for (String message : messages) {
-					LOGGER.severe("	- " + message);
-				}
-			}	
-			return list.size();
-		}
-		return 0;	
 	}
 }

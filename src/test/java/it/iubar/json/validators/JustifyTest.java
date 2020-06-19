@@ -26,9 +26,7 @@ public class JustifyTest {
 	
 	private static String schema1 = "/hello-schema.json"; // "additionalProperties": true, "required": ... 
 	private static String schema2 = "/hello2-schema.json"; // "additionalProperties": false, "required": ... 
- 
- 
-	
+ 	
 	@Test
 	public void testRelaxedSyntax()   {
 		String strJson = "{\"hello\" : \"world\";}";  // relaxed syntax not permitted
@@ -84,38 +82,11 @@ public class JustifyTest {
 		int errorCount = assertDoesNotThrow(() -> parseWithTheJustifyLib(schema2, strJson));
 		assertEquals(0, errorCount);
 	}	
- 
-	private int parseWithTheJustifyLib(String schemaPath, String strJson) throws FileNotFoundException {
-		int errorCount = 0;
-		JsonValidationService service = JsonValidationService.newInstance();
- 
+
+	private int parseWithTheJustifyLib(String schemaPath, String strJson) throws FileNotFoundException {		
+		JustifyStrategy strategy = new JustifyStrategy();
 		File schemaFile = new File(JustifyTest.class.getResource(schemaPath).getFile());
-		InputStream inputStream = new FileInputStream(schemaFile);
-		
-		// Reads the JSON schema
-		JsonSchema schema = service.readSchema(inputStream);
-		 
-		Reader strReader = new CharSequenceReader(strJson);
-		
-		// Problem handler which will print problems found.
-		// ProblemHandler handler2 = service.createProblemPrinter(System.out::println);
-		MyProblemHandler handler = new MyProblemHandler();
-		// Reads the JSON instance by JsonReader
-		try (JsonReader reader = service.createReader(strReader, schema, handler)) {
-			try {
-				JsonValue value = reader.readValue();
-			    // Do something useful here
-				List<String> problems = handler.getProblems2();
-				if(problems!=null) {
-					errorCount = problems.size();
-				}				
-			}catch (jakarta.json.stream.JsonParsingException e) {
-				LOGGER.severe(e.getMessage());
-				 // eg: Invalid token=COMMA at (line no=40, column no=15, offset=911). Expected tokens are: [CURLYOPEN, SQUAREOPEN, STRING, NUMBER, TRUE, FALSE, NULL]
-				 errorCount = 1;
-			}		
-		}
-	
-		return errorCount;
+		strategy.setSchema(schemaFile);
+		return strategy.validate(strJson);
 	}
 }
