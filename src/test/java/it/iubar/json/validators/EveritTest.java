@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class EveritTest {
@@ -67,7 +68,8 @@ public class EveritTest {
 	}
 			
 	@Test
-	@Disabled("The Everit library fails to evaluate the directive \"required\"")
+	@Tag("Skip")
+	//("The Everit library fails to evaluate the directive \"required\"")
 	public void testEveritRequired1()   {
 		String strJson = "{\"missingKeyFromSchema\" : \"should fail because the hello key is required\"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema1, strJson));
@@ -82,7 +84,8 @@ public class EveritTest {
 	}	
 	
 	@Test
-	@Disabled("The Everit library fails to evaluate the directive \"additionalProperties\"")		
+	@Tag("Skip")
+	//("The Everit library fails to evaluate the directive \"additionalProperties\"")		
 	public void testEveritRequired2()   {
 		String strJson = "{\"missingKeyFromSchema2\" : \"should fail because the hello key is required additionalProperties is false \"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema2, strJson));
@@ -90,7 +93,8 @@ public class EveritTest {
 	}
 	
 	@Test
-	@Disabled("The Everit library fails to evaluate the directive \"additionalProperties\"")	
+	@Tag("Skip")
+	//("The Everit library fails to evaluate the directive \"additionalProperties\"")	
 	public void testEveritAdditionalProperties2()   {
 		String strJson = "{\"hello\" : \"world\", \"missingKeyFromSchema\" : \"should fail because additionalProperties is false\"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema2, strJson));

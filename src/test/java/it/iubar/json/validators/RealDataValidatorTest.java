@@ -42,7 +42,7 @@ class RealDataValidatorTest {
 	@Test
 	@DisplayName("EveritStrategy")
 	@Tag("LocalTestOnly")
-	@Disabled("Fallisce nel valutare la direttiva \"required\"")
+	@Tag("Skip")
 	void runTest1() {
 		Assertions.assertDoesNotThrow(() -> {
 			IValidator strategy = new EveritStrategy();

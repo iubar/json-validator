@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import it.iubar.json.JsonValidator;
@@ -39,6 +40,7 @@ public class ComparatedValidatorsTest {
 	}
 	
 	@Test
+	@Tag("Skip")
 	public void testValidator7() throws IOException {
 		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail2.json").getFile());
 		IValidator strategy = new EveritStrategy();
@@ -47,6 +49,7 @@ public class ComparatedValidatorsTest {
 	}
 	
 	@Test
+	@Tag("Skip")
 	public void testValidator8() throws IOException {
 		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail3.json").getFile());
 		IValidator strategy = new EveritStrategy();

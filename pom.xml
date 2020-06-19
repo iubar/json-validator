@@ -20,6 +20,15 @@
 			<!-- Plugins managed by the parent -->
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
+			</plugin>		
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- include tags -->
+					<!-- <groups>tag1, tag2</groups> -->
+					<!-- exclude tags -->
+					<excludedGroups>Skip</excludedGroups>
+				</configuration>					
 			</plugin>
 			<!-- / -->
 		</plugins>
