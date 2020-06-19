@@ -60,7 +60,7 @@ public class GetContent {
 	/*
 	 * A NIO implementation
 	 */
-	public static void getContent1(URL sourceUrl, File outFile) throws IOException {
+	private static void getContent1(URL sourceUrl, File outFile) throws IOException {
 		// To read the file from our URL, we'll create a new ReadableByteChannel from the URL stream:			
 		URLConnection con = sourceUrl.openConnection();
 		final int connectTimeout = 3000; // milliseconds
@@ -218,7 +218,7 @@ public class GetContent {
 
 
 
-	public static void getContent(URL url, File file) {
+	public static void download(URL url, File file) {
 		
 		try {
 			getContent1(url, file);
