@@ -67,7 +67,7 @@ public class EveritTest {
 	}
 			
 	@Test
-	@Disabled("La libreria Everit fallisce nel valutare la direttiva \"required\"")
+	// To Disable ("The Everit library fails to evaluate the directive \"required\"")
 	public void testEveritRequired1()   {
 		String strJson = "{\"missingKeyFromSchema\" : \"should fail because the hello key is required\"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema1, strJson));
@@ -82,7 +82,7 @@ public class EveritTest {
 	}	
 	
 	@Test
-	@Disabled("La libreria Everit fallisce nel valutare la direttiva \"additionalProperties\"")		
+	// To Disable ("The Everit library fails to evaluate the directive \"additionalProperties\"")		
 	public void testEveritRequired2()   {
 		String strJson = "{\"missingKeyFromSchema2\" : \"should fail because the hello key is required additionalProperties is false \"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema2, strJson));
@@ -90,7 +90,7 @@ public class EveritTest {
 	}
 	
 	@Test
-	@Disabled("La libreria Everit fallisce nel valutare la direttiva \"additionalProperties\"")	
+	// To Disable ("The Everit library fails to evaluate the directive \"additionalProperties\"")	
 	public void testEveritAdditionalProperties2()   {
 		String strJson = "{\"hello\" : \"world\", \"missingKeyFromSchema\" : \"should fail because additionalProperties is false\"}";
 		int errorCount = assertDoesNotThrow(() -> parseWithTheEveritLib(schema2, strJson));
