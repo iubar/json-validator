@@ -34,16 +34,32 @@ public class ComparatedValidatorsTest {
 	public void testValidator1() throws IOException {
 		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail.json").getFile());
 		IValidator strategy = new EveritStrategy();
-		int errors = parseWithValidator(strategy, file);
-		assertTrue(errors > 0);
+		int errorCount = parseWithValidator(strategy, file);
+		assertEquals(1, errorCount);
 	}
+	
+	@Test
+	public void testValidator7() throws IOException {
+		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail2.json").getFile());
+		IValidator strategy = new EveritStrategy();
+		int errorCount = parseWithValidator(strategy, file);
+		assertEquals(1, errorCount);
+	}
+	
+	@Test
+	public void testValidator8() throws IOException {
+		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail3.json").getFile());
+		IValidator strategy = new EveritStrategy();
+		int errorCount = parseWithValidator(strategy, file);
+		assertEquals(1, errorCount);
+	}	
 
 	@Test	
 	public void testValidator2() throws IOException {
 		File file = new File(ComparatedValidatorsTest.class.getResource("/must-pass.json").getFile());
 		IValidator strategy = new EveritStrategy();
-		int errors = parseWithValidator(strategy, file);
-		assertTrue(errors == 0);
+		int errorCount = parseWithValidator(strategy, file);
+		assertEquals(0, errorCount);
 	}
 
 	/**
