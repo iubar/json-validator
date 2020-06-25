@@ -30,25 +30,6 @@ public class EveritTest {
 	private static String schema2 = "/hello2-schema.json"; // "additionalProperties": false, "required": ... 
 
 	@Test
-	public void testRelaxedSyntax()   {
-		String strJson = "{\"hello\" : \"world\";}";  // relaxed syntax
-		assertDoesNotThrow(() -> parseWithJSONObject(schema1 , strJson));
-	}
-	
-	@Test
-	public void testWrongSyntax()  {
-		String strJson = "{\"hello\" : \"world\"\"}"; // wrong syntax
-		JSONException ex = Assertions.assertThrows(JSONException.class, () -> parseWithJSONObject(schema1, strJson));
-		LOGGER.severe(ex.getMessage());
-	}
-	
-	@Test
-	public void testRightSyntax()   {
-		String strJson = "{\"hello\" : \"world\"}";
-		assertDoesNotThrow(() -> parseWithJSONObject(schema1, strJson));
-	}
-	
-	@Test
 	public void testRelaxedSyntax2()   {
 		String strJson = "{\"hello\" : \"world\";}";  // relaxed syntax
 		assertDoesNotThrow(() -> parseWithTheEveritLib(schema1 , strJson));
@@ -101,29 +82,7 @@ public class EveritTest {
 		assertDoesNotThrow(() -> parseWithTheEveritLib(schema2, strJson));
 	}	
 
-	private Schema getSchema(String schemaPath) throws FileNotFoundException {
-		File schemaFile = new File(ComparatedValidatorsTest.class.getResource(schemaPath).getFile());
-		InputStream inputStream = new FileInputStream(schemaFile);
-		JSONObject rawSchema = new JSONObject(new JSONTokener(inputStream));
-		Schema schema = SchemaLoader.load(rawSchema);
-		return schema;
-	}
-	
-	private Schema getSchema2(String schemaPath) throws FileNotFoundException {
- 		InputStream inputStream = new FileInputStream(schemaPath);
-		JSONObject rawSchema = new JSONObject(new JSONTokener(inputStream));		
-		SchemaLoader loader = SchemaLoader.builder().schemaJson(rawSchema).draftV7Support().build(); // Draft V7
-		Schema schema = loader.load().build();
-		return schema;
-	}
-	
-	private void parseWithJSONObject(String schemaPath, String strJson) throws FileNotFoundException {			
-		JSONObject jsonToValidate = new JSONObject(strJson);
-		JSONObject.testValidity(jsonToValidate);				
-		Schema schema = getSchema(schemaPath);  
-		schema.validate(jsonToValidate); 
-	}
- 	
+
 	private int parseWithTheEveritLib(String schemaPath, String strJson) throws FileNotFoundException {				
 		EveritStrategy strategy = new EveritStrategy();
 		File schemaFile = new File(EveritTest.class.getResource(schemaPath).getFile());
