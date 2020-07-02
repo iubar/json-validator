@@ -8,7 +8,7 @@ A tool to check one or more json files against its json schema
 
 ## References
 - [Introducing JSON](http://www.json.org/json-it.html)
-- [Json-Schema.org](https://json-schema.org)
+- [Json-Schema.org](https://json-schema.org) [Understanding JSON Schema](https://json-schema.org/understanding-json-schema/index.html)
 - [Specifications](http://json-schema.org/specification-links.html) 
 - [Docs](https://json-schema.org/understanding-json-schema/)
 - [Implementations](http://json-schema.org/implementations.html)
