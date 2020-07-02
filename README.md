@@ -3,7 +3,7 @@
 # Json Cli Validator
 A tool to check one or more json files against its json schema
 
-### How to use it
+## How to use it
     java -jar json-validator-jar-with-dependencies.jar <schema-file> (<json folder>|<json file>)
 
 ## References
@@ -13,15 +13,23 @@ A tool to check one or more json files against its json schema
 - [Docs](https://json-schema.org/understanding-json-schema/)
 - [Implementations](http://json-schema.org/implementations.html)
 
-### JSON Validator - Implementations
+### Json validator - Implementations
 - [Everit](https://github.com/everit-org/json-schema)
 - [Justify](https://github.com/leadpony/justify)
 - [Networknt](https://github.com/networknt/json-schema-validator)
+- [json-schema-validator](https://github.com/java-json-tools/json-schema-validator) (not used)
 
-### Others
+### Json schema genertor
+- https://github.com/victools/jsonschema-generator (not used)
+
+### Tools
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
 - [JSONschemaValidator.Net (online validator)](https://www.jsonschemavalidator.net)
 - [JsonFormatter.org](https://jsonformatter.org/json-editor)
 - [JsonEditorOnline.org](https://jsoneditoronline.org)
+
+### Json libraries
+
 - [A look at JSR 374 - Java API for JSON Processing (JSON-P)](https://golb.hplar.ch/2019/08/json-p.html)
+- [jackson vs gson](https://www.baeldung.com/jackson-vs-gson)
 
