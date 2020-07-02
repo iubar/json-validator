@@ -13,12 +13,15 @@ A tool to check one or more json files against its json schema
 - [Docs](https://json-schema.org/understanding-json-schema/)
 - [Implementations](http://json-schema.org/implementations.html)
 
-### Implementations
-- [JSON Schema Validator for Java](https://github.com/everit-org/json-schema)
+### JSON Validator - Implementations
+- [Everit](https://github.com/everit-org/json-schema)
+- [Justify](https://github.com/leadpony/justify)
+- [Networknt](https://github.com/networknt/json-schema-validator)
 
 ### Others
 - [JSONschema.Net (online schema generator)](https://jsonschema.net)
 - [JSONschemaValidator.Net (online validator)](https://www.jsonschemavalidator.net)
 - [JsonFormatter.org](https://jsonformatter.org/json-editor)
 - [JsonEditorOnline.org](https://jsoneditoronline.org)
+- [A look at JSR 374 - Java API for JSON Processing (JSON-P)](https://golb.hplar.ch/2019/08/json-p.html)
 
