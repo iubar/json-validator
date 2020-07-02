@@ -20,7 +20,5 @@ abstract public class RootStrategy implements IValidator {
 	public void setSchema(File schema) {
 		this.schema = schema;
 	}
-	
 
-	
 }

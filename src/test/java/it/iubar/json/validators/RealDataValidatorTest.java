@@ -22,16 +22,19 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import it.iubar.json.JsonValidator;
+import it.iubar.json.utils.GetContent;
+import it.iubar.json.utils.TrustAllHostNameVerifier;
 import it.iubar.json.validators.EveritStrategy;
 import it.iubar.json.validators.IValidator;
 import it.iubar.json.validators.JustifyStrategy;
 import it.iubar.json.validators.NetworkntStrategy;
 
-
-class RealDataValidatorTest {
+public class RealDataValidatorTest {
 
 	private static final Logger LOGGER = Logger.getLogger(RealDataValidatorTest.class.getName());
-
+	
+	public static String BASE_ADDRESS = "https://" + TrustAllHostNameVerifier.HOST_NAME + "/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json";
+	
 	private static File schemaFile = null;
 
 	@BeforeAll 
@@ -101,8 +104,8 @@ class RealDataValidatorTest {
 	public static String getOutPath() {
 		String path1 = Paths.get("").toAbsolutePath().toString();  // Current dir
 		String path2 = System.getProperty("user.dir");  // Current dir
-		LOGGER.log(Level.INFO, path1);
-		LOGGER.log(Level.INFO, path2);
+		LOGGER.log(Level.INFO, "out path:" + path1);
+		LOGGER.log(Level.INFO, "out path:" + path2);
 		assertEquals(path1, path2, "Paths should be the same");
 		String targetPath = path2 + File.separator + "target";
 		File targetDir = new File(targetPath);
@@ -114,8 +117,8 @@ class RealDataValidatorTest {
 	
 	private File getJsonDataFile() throws IOException {
 		File targetFile = new File(getOutPath() + File.separator + "test001.json");
-		String address2 = GetContent.BASE_ADDRESS + "/test001.json";
-		GetContent.download(new URL(address2), targetFile); 
+		String address2 = RealDataValidatorTest.BASE_ADDRESS + "/test001.json";
+		GetContent.getContent1(new URL(address2), targetFile); 
 		if (!targetFile.exists()) {
 			fail("The path " + targetFile + " does not exist or is not readable");
 		}else {
@@ -127,8 +130,8 @@ class RealDataValidatorTest {
 
 	private static File fetchSchemaFile() throws MalformedURLException, IOException {
 		File schemaFile = new File(getOutPath() + File.separator + "schema.json");
-		String address = GetContent.BASE_ADDRESS + "/schema/schema.json";
-		GetContent.download(new URL(address), schemaFile); 
+		String address = RealDataValidatorTest.BASE_ADDRESS + "/schema/schema.json";
+		GetContent.getContent1(new URL(address), schemaFile); 
 		if(!schemaFile.isFile()) {
 			fail("The file " + schemaFile + " does not exist or is not readable");
 		}

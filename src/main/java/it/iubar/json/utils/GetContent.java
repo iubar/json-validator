@@ -1,7 +1,6 @@
-package it.iubar.json.validators;
+package it.iubar.json.utils;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,17 +49,13 @@ public class GetContent {
 	static {
 		GetContent.disableSslVerification();
 	}
-
-	private static final String HOST_NAME = "192.168.0.121";
-	
-	public static String BASE_ADDRESS = "https://" + HOST_NAME + "/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json";
-	
+		
 	private static final Logger LOGGER = Logger.getLogger(GetContent.class.getName());
 
 	/*
 	 * A NIO implementation
 	 */
-	private static void getContent1(URL sourceUrl, File outFile) throws IOException {
+	public static void getContent1(URL sourceUrl, File outFile) throws IOException {
 		// To read the file from our URL, we'll create a new ReadableByteChannel from the URL stream:			
 		URLConnection con = sourceUrl.openConnection();
 		final int connectTimeout = 3000; // milliseconds
@@ -81,26 +76,25 @@ public class GetContent {
 		fileChannel.close();
 	}
 
-
-
 	/*
-	 * A Jersey implementation
+	 * A Jersey implementation of an http client
+	 * uso la classe TrustAllHostNameVerifier per ovviare al problema del certificato self-signed presente sul server Svn
 	 */	
-	private static long getContent2(URL sourceUrl, File outFile) throws IOException, NoSuchAlgorithmException, KeyManagementException{
+	public static long getContent2(URL sourceUrl, File outFile) throws IOException, NoSuchAlgorithmException, KeyManagementException{
 		long bytesCopied = 0;   	
 		Path out = Paths.get(outFile.toString());
 		InputStream in = null;
 		try {
 			Client client = null;
 			if(false) {
-			client = ClientBuilder.newClient();
+				client = ClientBuilder.newClient();
 			}else {
 				 
 				// for java 7
 				SSLContext ctx = SSLContext.getInstance("SSL");
 				// for java 8 
 				// SSLContext sc = SSLContext.getInstance("TLSv1");
-				//System.setProperty("https.protocols", "TLSv1");
+				// System.setProperty("https.protocols", "TLSv1");
 				
 		        ctx.init(null, TrustAllHostNameVerifier.certs, new SecureRandom());
 		        
@@ -142,11 +136,17 @@ public class GetContent {
 
 	/**
 	 * An Apache HttpClient implementation
-	 * Or with the fluent API if one likes it better
+	 * 
+	 * With the fluent API I could write:
 	 * Request.Get("http://host/stuff").execute().saveContent(myFile);
-	 * @throws IOException 
+	 * 	 * 
+	 * @fixme non so come ovviare al problema del self-signed cert:
+	 * org.opentest4j.AssertionFailedError: sun.security.validator.ValidatorException: 
+	 * PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: 
+	 * unable to find valid certification path to requested target
+	 *  
 	 */
-	private static void getContent3(URL sourceUrl, File outFile) throws IOException {
+	public static void getContent3(URL sourceUrl, File outFile) throws IOException {
 
 		CloseableHttpClient client = HttpClients.createDefault();
 		try (CloseableHttpResponse response = client.execute(new HttpGet(sourceUrl.toString()))) {
@@ -167,7 +167,7 @@ public class GetContent {
 	/**
 	 * Soluzione applicabile solo a getContent1()
 	 */
-	static void disableSslVerification() {
+	private static void disableSslVerification() {
 		try {
 			// Create a trust manager that does not validate certificate chains
 			TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
@@ -200,7 +200,7 @@ public class GetContent {
 				@Override
 				public boolean verify(String hostname, SSLSession session) {
 					// System.out.println("Verify " + hostname);
-					if(hostname.equals(HOST_NAME)) {
+					if(hostname.equals(TrustAllHostNameVerifier.HOST_NAME)) {
 				         return true; 
 				     }
 				     return false;
@@ -218,29 +218,5 @@ public class GetContent {
 
 
 
-	public static void download(URL url, File file) {
-		
-		try {
-			getContent1(url, file);
-		} catch (IOException e) {
-			fail(e.getMessage());
-		}
- 
-			try {
-				getContent2(url, file);
-			} catch (KeyManagementException | NoSuchAlgorithmException | IOException e) {
-				fail(e.getMessage());
-			}
- 
-		
-		if(false) {
-		try {
-			getContent2(url, file);
-		} catch (KeyManagementException | NoSuchAlgorithmException | IOException e) {
-			fail(e.getMessage());
-		}
-		}
-	 
-		
-	}	
+
 }

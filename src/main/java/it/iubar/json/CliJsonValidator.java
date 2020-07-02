@@ -51,37 +51,11 @@ public class CliJsonValidator {
 		}
 
 	}
-	
-	
+		
 	private static void die(String errorMsg) {
     	LOGGER.log(Level.SEVERE, errorMsg);
         System.err.println(errorMsg);
         System.exit(1);
-	}
-
-
-	private int run(List<String> argList) throws FileNotFoundException {  
-		if (argList.size() != 2) {
-			handleWrongUsage("[ERROR] Attention wrong number of arguments", true);
-		}		
-		String schemaPath = argList.get(0);
-		File f1 = new File(schemaPath);
-		if(!f1.isFile()) {
-			handleWrongUsage("[ERROR] The file " + f1 + " does not exist or is not readable", false);
-		}
-		
-		String targetPathOrFile = argList.get(1);
-		File f2 = new File(targetPathOrFile);
-		if (!f2.exists()) {
-			handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
-		}
-		// IValidator strategy = new EveritStrategy();
-		// IValidator strategy = new NetworkntStrategy();
-		IValidator strategy = new JustifyStrategy(); 
-		JsonValidator client = new JsonValidator(strategy);
-		client.setSchema(f1);
-		client.setTargetFolderOrFile(f2); 
-		return client.run();
 	}
 	
 	private static void handleWrongUsage(String msg, boolean b) {
@@ -120,5 +94,33 @@ public class CliJsonValidator {
 		     System.out.println(out.toString());
 		 }     
 	}
+	
+	private int run(List<String> argList) throws FileNotFoundException {  
+		if (argList.size() != 2) {
+			handleWrongUsage("[ERROR] Attention wrong number of arguments", true);
+		}		
+		String schemaPath = argList.get(0);
+		File f1 = new File(schemaPath);
+		if(!f1.isFile()) {
+			handleWrongUsage("[ERROR] The file " + f1 + " does not exist or is not readable", false);
+		}
+		
+		String targetPathOrFile = argList.get(1);
+		File f2 = new File(targetPathOrFile);
+		if (!f2.exists()) {
+			handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
+		}
+		
+		// STRATEGY 
+		
+		// IValidator strategy = new EveritStrategy();
+		// IValidator strategy = new NetworkntStrategy();
+		IValidator strategy = new JustifyStrategy(); 
+		
+		JsonValidator client = new JsonValidator(strategy);
+		client.setSchema(f1);
+		client.setTargetFolderOrFile(f2); 
+		return client.run();
+	}	
 
 }

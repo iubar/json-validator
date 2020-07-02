@@ -23,8 +23,6 @@ import jakarta.json.stream.JsonParsingException;
 /**
  * 
  * It uses the Javax lib
- * 
- * @author Borgo
  *
  */
 public class PreValidator {
