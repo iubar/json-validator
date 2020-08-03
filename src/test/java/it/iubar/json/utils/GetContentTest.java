@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import it.iubar.json.validators.RealDataValidatorTest;
-
  
-
+@Tag("LocalTestOnly")
 class GetContentTest {
 
 	private static final Logger LOGGER = Logger.getLogger(GetContentTest.class.getName());
@@ -59,7 +59,7 @@ class GetContentTest {
 		}	
 	
 	@Test
-	@Disabled("Se uso Apache HttpClient, per il problema del self-signed cert non ho ancora trovato uan soluzione")
+	@Disabled("Se uso Apache HttpClient, per il problema del self-signed cert non ho ancora trovato una soluzione")
 	void test3() {
 		try {
 			GetContent.getContent3(GetContentTest.url, GetContentTest.file);
