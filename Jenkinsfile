@@ -63,15 +63,15 @@ pipeline {
         }		
     }
 	post {
+        success {
+        	sh 'mvn $MAVEN_CLI_OPTS dependency:analyze'
+			sh 'mvn $MAVEN_CLI_OPTS versions:display-plugin-updates'
+			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates'          
+        }	
         changed {
         	echo "CURRENT STATUS: ${currentBuild.currentResult}"
             sh "curl -H 'JENKINS: Pipeline Hook Iubar' -i -X GET -G ${env.IUBAR_WEBHOOK_URL} -d status=${currentBuild.currentResult} -d project_name=${JOB_NAME}"
-        }
-        success {
-        	sh 'mvn $MAVEN_CLI_OPTS dependency:analyze'
-			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates versions:display-plugin-updates'
-			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates'          
-        }        
+        }       
 		cleanup {
 			cleanWs()
 			dir("${env.WORKSPACE}@tmp") {				
