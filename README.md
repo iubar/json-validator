@@ -15,9 +15,10 @@ A tool to check one or more json files against its json schema
 
 ### Json validator - Implementations
 - [Everit](https://github.com/everit-org/json-schema)
-- [Justify](https://github.com/leadpony/justify)
+- [Justify](https://github.com/leadpony/justify) (the default strategy for that project)
 - [Networknt](https://github.com/networknt/json-schema-validator)
 - [json-schema-validator](https://github.com/java-json-tools/json-schema-validator) (not used)
+- [snowy-json](https://github.com/ssilverman/snowy-json#using-snow-in-your-own-projects) (not used)
 
 ### Json schema genertor
 - https://github.com/victools/jsonschema-generator (not used)
