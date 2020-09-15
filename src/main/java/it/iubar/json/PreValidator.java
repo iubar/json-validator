@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +33,8 @@ public class PreValidator {
 	public boolean validate(File file) throws FileNotFoundException  {
 		boolean valid = false;
 		try {
-			String content = FileUtils.readFileToString(file, "utf-8");
+			Charset charset = java.nio.charset.StandardCharsets.UTF_8;
+			String content = FileUtils.readFileToString(file, charset);
 	    	InputStream is = IOUtils.toInputStream(content);    	
 			JsonReader reader = Json.createReader(is);
 	    	JsonObject root = reader.readObject();
