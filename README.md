@@ -34,3 +34,7 @@ A tool to check one or more json files against its json schema
 - [A look at JSR 374 - Java API for JSON Processing (JSON-P)](https://golb.hplar.ch/2019/08/json-p.html)
 - [jackson vs gson](https://www.baeldung.com/jackson-vs-gson)
 
+### JSON-B and JSON-P
+
+JSON-B is just a layer on top of JSON-P: it does the binding part, while it delegates all the raw JSON processing to JSON-P. 
+You can mix and match any JSON-B implementation with any JSON-P implementation.
