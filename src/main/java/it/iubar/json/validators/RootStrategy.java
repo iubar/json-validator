@@ -1,11 +1,6 @@
 package it.iubar.json.validators;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 abstract public class RootStrategy implements IValidator {
 
@@ -13,7 +8,7 @@ abstract public class RootStrategy implements IValidator {
 
 	@Override
 	public File getSchema() {
-		return schema;
+		return this.schema;
 	}
 
 	@Override

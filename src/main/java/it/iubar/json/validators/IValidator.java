@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 
 public interface IValidator {
 
-	public int validate(File file) throws FileNotFoundException;
-	
-	public File getSchema();
+	File getSchema();
 
-	public void setSchema(File schema);
+	void setSchema(File schema);
+
+	int validate(File file) throws FileNotFoundException;
 }

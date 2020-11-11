@@ -29,25 +29,25 @@ import jakarta.json.stream.JsonParsingException;
 public class PreValidator {
 
 	private static final Logger LOGGER = Logger.getLogger(PreValidator.class.getName());
-	
-	public boolean validate(File file) throws FileNotFoundException  {
+
+	public boolean validate(File file) throws FileNotFoundException {
 		boolean valid = false;
 		try {
 			Charset charset = java.nio.charset.StandardCharsets.UTF_8;
 			String content = FileUtils.readFileToString(file, charset);
-	    	InputStream is = IOUtils.toInputStream(content);    	
+			InputStream is = IOUtils.toInputStream(content);
 			JsonReader reader = Json.createReader(is);
-	    	JsonObject root = reader.readObject();
-	    	if (root != null) {
-	    		valid = true;
-	    	}
+			JsonObject root = reader.readObject();
+			if (root != null) {
+				valid = true;
+			}
 		} catch (JsonParsingException ex) {
-			LOGGER.log(Level.SEVERE, ex.getMessage());
+			PreValidator.LOGGER.log(Level.SEVERE, ex.getMessage());
 		} catch (IOException ex) {
-			LOGGER.log(Level.SEVERE, ex.getMessage());
+			PreValidator.LOGGER.log(Level.SEVERE, ex.getMessage());
 		}
-		
+
 		return valid;
 	}
-	
+
 }
