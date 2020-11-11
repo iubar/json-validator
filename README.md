@@ -38,3 +38,9 @@ A tool to check one or more json files against its json schema
 
 JSON-B is just a layer on top of JSON-P: it does the binding part, while it delegates all the raw JSON processing to JSON-P. 
 You can mix and match any JSON-B implementation with any JSON-P implementation.
+
+### TODO
+
+* Nuove possibilità offerte da Json schema versione 2019-09: https://stackoverflow.com/questions/62957704/can-additionalproperties-apply-to-nested-objects-in-json-schema
+(la versione attualmente utilizzata è draft-07)
+ 

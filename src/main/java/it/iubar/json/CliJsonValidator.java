@@ -112,8 +112,7 @@ public class CliJsonValidator {
 			CliJsonValidator.handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
 		}
 
-		// STRATEGY
-
+		// STRATEGY:
 		// IValidator strategy = new EveritStrategy();
 		// IValidator strategy = new NetworkntStrategy();
 		IValidator strategy = new JustifyStrategy();

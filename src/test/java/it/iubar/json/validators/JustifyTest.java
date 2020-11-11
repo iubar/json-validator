@@ -30,7 +30,7 @@ public class JustifyTest {
 
 	@Test
 	public void testJustifyAdditionalProperties2() {
-		String strJson = "{\"hello\" : \"world\", \"missingKeyFromSchema\" : \"should fail  because additionalProperties is false\"}";
+		String strJson = "{\"hello\" : \"world\", \"missingKeyFromSchema\" : \"should fail because additionalProperties is false\"}";
 		int errorCount = Assertions.assertDoesNotThrow(() -> parseWithTheJustifyLib(JustifyTest.SCHEMA2, strJson));
 		Assertions.assertEquals(1, errorCount);
 	}
