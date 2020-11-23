@@ -111,16 +111,22 @@ public class CliJsonValidator {
 		if (!f2.exists()) {
 			CliJsonValidator.handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
 		}
-
-		// STRATEGY:
-		// IValidator strategy = new EveritStrategy();
-		// IValidator strategy = new NetworkntStrategy();
-		IValidator strategy = new JustifyStrategy();
+		 
+		IValidator strategy = factoryStrategy();
 
 		JsonValidator client = new JsonValidator(strategy);
 		client.setSchema(f1);
 		client.setTargetFolderOrFile(f2);
 		return client.run();
+	}
+
+	private IValidator factoryStrategy() {
+		// STRATEGIES:
+		// IValidator strategy = new EveritStrategy(); 		// https://github.com/everit-org/json-schema
+		// IValidator strategy = new NetworkntStrategy(); 	// https://github.com/networknt/json-schema-validator
+		// IValidator strategy = new JustifyStrategy();		// https://github.com/leadpony/justify
+		IValidator strategy = new JustifyStrategy();
+		return strategy;
 	}
 
 }
