@@ -76,7 +76,7 @@ public class CliJsonValidator {
 		String appName = mainPackage.getImplementationTitle(); // returns "Po Json Validator"
 		System.out.println("");
 		System.out.println(appName + " " + version);
-		System.out.println("(an xpath content extractor)");
+		System.out.println("(json validator tool)");
 		System.out.println("");
 	}
 

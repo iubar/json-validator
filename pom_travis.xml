@@ -202,7 +202,7 @@
 		</dependency>
 	</dependencies>
 	<repositories>
-	<!-- https://jitpack.io/#maven -->	
+	<!-- https://jitpack.io/#maven -->
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
