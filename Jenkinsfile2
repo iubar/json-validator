@@ -13,28 +13,36 @@ pipeline {
 		ansiColor('xterm')
 	}	
     environment {
-		MAVEN_CLI_OPTS = '--batch-mode --errors --fail-fast --show-version --quiet'
+		MAVEN_CLI_OPTS = '--batch-mode --errors --show-version --quiet'
 		MAVEN_OPTS = '-Dmaven.test.failure.ignore=false -Dstyle.color=always -Djava.awt.headless=true -Dhttps.protocols=TLSv1.2' // -Djava.io.tmpdir=${WORKSPACE}@tmp
     }	
 	stages {
  	    stage ('Scm'){
  	        steps{
-				echo 'Check out cedolini'
- 	            checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', locations: [[credentialsId: 'my-svn-server-account-id', local: 'data/cedolini/json', remote: 'https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json']]]
-                // svn non è installato in iubar-maven-alpine, altrimenti avrei usato: sh 'svn export https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/main/resources/json/template.json'
-                sh 'wget https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json/schema/schema.json --no-check-certificate -P data/cedolini'
+			echo 'Check out cedolini'
+ 	            	checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', locations: [[credentialsId: 'my-svn-server-account-id', local: 'data/cedolini/json', remote: 'https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json']]]
+                	// svn non è installato in iubar-maven-alpine, altrimenti avrei usato: sh 'svn export https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/main/resources/json/template.json'
+                	sh 'wget https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json/schema/schema.json --no-check-certificate -P data/cedolini'
 				
-				echo 'Check out uniemens'
- 	            checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', locations: [[credentialsId: 'my-svn-server-account-id', local: 'data/uniemens/json', remote: 'https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/uniemens/json']]]
-                sh 'wget https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/uniemens/json/schema/schema.json --no-check-certificate -P data/uniemens'
+			echo 'Check out uniemens'
+ 	            	checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', locations: [[credentialsId: 'my-svn-server-account-id', local: 'data/uniemens/json', remote: 'https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/uniemens/json']]]
+                	sh 'wget https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/uniemens/json/schema/schema.json --no-check-certificate -P data/uniemens'
                 
-				echo 'Downloading the schema...'
-				sh 'wget http://json-schema.org/draft-07/schema -O $WORKSPACE/draft-07.json'                
+			echo 'Check out F24'
+ 	            	checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', locations: [[credentialsId: 'my-svn-server-account-id', local: 'data/f24/json', remote: 'https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/f24/json']]]
+                	sh 'wget https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/f24/json/schema/schema.json --no-check-certificate -P data/f24'
+			
+			echo 'Check out nota contabile'
+ 	            	checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', locations: [[credentialsId: 'my-svn-server-account-id', local: 'data/notacontabile/json', remote: 'https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/notacontabile/json']]]
+                	sh 'wget https://192.168.0.121/svn/java/iubar-paghe-test/trunk/src/test/resources/notacontabile/json/schema/schema.json --no-check-certificate -P data/notacontabile'
+			
+			echo 'Downloading the schema...'
+			sh 'wget http://json-schema.org/draft-07/schema -O $WORKSPACE/draft-07.json'
  	        }
  	    }
 		stage('Package') {
             steps {
-                sh 'mvn $MAVEN_CLI_OPTS clean package'
+                sh 'mvn $MAVEN_CLI_OPTS clean package -DexcludedGroups="Skip"'
                 // ...or alternatively..
                 // sh 'wget https://github.com/iubar/po-test-json-validator/releases/download/00.01/po-test-json-validator-jar-with-dependencies.jar'
             }
@@ -48,13 +56,28 @@ pipeline {
 			steps {
 				sh 'ls -la $WORKSPACE'	
 				echo 'Validazione schema.json cedolini'
-                sh 'cd target && java -jar po-test-json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/cedolini/schema.json'				
+                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/cedolini/schema.json'				
+				
 				echo 'Validazione file json cedolini'
-				sh 'cd target && java -jar po-test-json-validator-jar-with-dependencies.jar $WORKSPACE/data/cedolini/schema.json $WORKSPACE/data/cedolini/json'
+				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/cedolini/schema.json $WORKSPACE/data/cedolini/json'
+				
 				echo 'Validazione schema.json uniemens'
-                sh 'cd target && java -jar po-test-json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/uniemens/schema.json'				
+                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/uniemens/schema.json'				
+				
 				echo 'Validazione file json uniemens'
-				sh 'cd target && java -jar po-test-json-validator-jar-with-dependencies.jar $WORKSPACE/data/uniemens/schema.json $WORKSPACE/data/uniemens/json'
+				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/uniemens/schema.json $WORKSPACE/data/uniemens/json'
+				
+				echo 'Validazione schema.json F24'
+                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/f24/schema.json'				
+				
+				echo 'Validazione file json F24'
+				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/f24/schema.json $WORKSPACE/data/f24/json'
+				
+				echo 'Validazione schema.json nota contabile'
+                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/notacontabile/schema.json'				
+				
+				echo 'Validazione file json nota contabile'
+				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/f24/schema.json $WORKSPACE/data/notacontabile/json'
 			}
 		}		
 	}

@@ -10,7 +10,7 @@ pipeline {
 		ansiColor('xterm')
 	}    
 	environment {	
-		MAVEN_CLI_OPTS = '--batch-mode --fail-fast --show-version'
+		MAVEN_CLI_OPTS = '--batch-mode --show-version'
 	}    
     stages {
         stage ('Build') {
@@ -51,9 +51,8 @@ pipeline {
                     if [ $QUALITYGATE = OK ]; then
                        echo "High five !"
                     else
-                       echo "Poor quality !"
+                       echo "Poor quality ! (but don't exit)"
 					   echo "( see ${SONAR_URL}/dashboard?id=${SONAR_PROJECTKEY})"
-                       exit 1
                     fi				    
 				'''
             }
@@ -65,15 +64,15 @@ pipeline {
         }		
     }
 	post {
+        success {
+        	sh 'mvn $MAVEN_CLI_OPTS dependency:analyze'
+			sh 'mvn $MAVEN_CLI_OPTS versions:display-plugin-updates'
+			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates'          
+        }	
         changed {
         	echo "CURRENT STATUS: ${currentBuild.currentResult}"
             sh "curl -H 'JENKINS: Pipeline Hook Iubar' -i -X GET -G ${env.IUBAR_WEBHOOK_URL} -d status=${currentBuild.currentResult} -d project_name=${JOB_NAME}"
-        }
-        success {
-        	sh 'mvn $MAVEN_CLI_OPTS dependency:analyze'
-			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates versions:display-plugin-updates'
-			sh 'mvn $MAVEN_CLI_OPTS versions:display-dependency-updates'          
-        }        
+        }       
 		cleanup {
 			cleanWs()
 			dir("${env.WORKSPACE}@tmp") {				
