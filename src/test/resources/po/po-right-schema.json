@@ -1,0 +1,283 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "required": [
+        "databases",
+        "tests"
+    ],
+    "properties": {
+        "databases": {
+            "$id": "#/properties/databases",
+            "type": "object",
+            "required": [
+                "local-path"
+            ],
+            "properties": {
+                "local-path": {
+                    "$id": "#/properties/databases/properties/local-path",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "tests": {
+            "$id": "#/properties/tests",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+                "$id": "#/properties/tests/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/tests/items/anyOf/0",
+                        "type": "object",
+                        "required": [
+                            "test"
+                        ],
+                        "properties": {
+                            "test": {
+                                "$id": "#/properties/tests/items/anyOf/0/properties/test",
+                                "type": "object",
+                                "required": [
+                                    "posizione",
+                                    "cedolino"
+                                ],
+                                "properties": {
+                                    "descrizione": {
+                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/descrizione",
+                                        "type": "string"
+                                    },
+                                    "pdf": {
+                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/pdf",
+                                        "type": "string"
+                                    },
+                                    "posizione": {
+                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/posizione",
+                                        "type": "object",
+                                        "required": [
+                                            "idposizione",
+                                            "idtipofoglio"
+                                        ],
+                                        "properties": {
+                                            "idposizione": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/posizione/properties/idposizione",
+                                                "type": "integer"
+                                            },
+                                            "idtipofoglio": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/posizione/properties/idtipofoglio",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "cedolino": {
+                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino",
+                                        "type": "object",
+                                        "required": [],
+                                        "properties": {
+                                            "redditoimponibile": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/redditoimponibile",
+                                                "type": "number"
+                                            },
+											"retribglobaledifatto": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/retribglobaledifatto",
+                                                "type": "number"
+                                            },
+                                            "totaleretriblorda": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/totaleretriblorda",
+                                                "type": "number"
+                                            },
+                                            "totalecompetenze": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/totalecompetenze",
+                                                "type": "number"
+                                            },
+                                            "totaleretribnetta": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/totaleretribnetta",
+                                                "type": "number"
+                                            },
+											"totaletrattenute": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/totaletrattenute",
+                                                "type": "number"
+                                            },
+											"totalecontributi": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/totalecontributi",
+                                                "type": "number"
+                                            },
+                                            "addizregionale": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/addizregionale",
+                                                "type": "number"
+                                            },
+                                            "irpeflorda": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/irpeflorda",
+                                                "type": "number"
+                                            },
+                                            "detrazredditolavoro": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/detrazredditolavoro",
+                                                "type": "number"
+                                            },
+                                            "redditoannuoriferim": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/redditoannuoriferim",
+                                                "type": "number"
+                                            },
+											"arrotondamento": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/arrotondamento",
+                                                "type": "number"
+                                            },
+											"imponibilemese": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/imponibilemese",
+                                                "type": "number"
+                                            },
+											"imponibileprev": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/imponibileprev",
+                                                "type": "number"
+                                            },
+											"irpefnetta": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/irpefnetta",
+                                                "type": "number"
+                                            },
+											"detrazgg": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/detrazgg",
+                                                "type": "number"
+                                            },
+											"detrazfigli": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/detrazfigli",
+                                                "type": "number"
+                                            },
+											"detrazconiuge": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/detrazconiuge",
+                                                "type": "number"
+                                            },
+											"imponibileente1": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/imponibileente1",
+                                                "type": "number"
+                                            },
+											"imponibileente2": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/imponibileente2",
+                                                "type": "number"
+                                            },
+											"contributoente1": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/contributoente1",
+                                                "type": "number"
+                                            },
+											"contributoente2": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/contributoente2",
+                                                "type": "number"
+                                            },
+											"contributoprev": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/contributoprev",
+                                                "type": "number"
+                                            },
+											"onerisociali": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/onerisociali",
+                                                "type": "number"
+                                            },
+											"addcomsaldo": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/addcomsaldo",
+                                                "type": "number"
+                                            },
+											"addcomacconto": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/addcomacconto",
+                                                "type": "number"
+                                            },
+											"fondoazienda": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/fondoazienda",
+                                                "type": "number"
+                                            },
+                                            "elementi": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/elementi",
+                                                "type": "array",
+                                                "additionalItems": false,
+                                                "items": {
+                                                    "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/elementi/items",
+                                                    "anyOf": [
+                                                        {
+                                                            "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/elementi/items/anyOf/0",
+                                                            "type": "object",
+                                                            "required": [
+                                                                "codice"
+                                                            ],
+                                                            "properties": {
+                                                                "codice": {
+                                                                    "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/elementi/items/anyOf/0/properties/codice",
+                                                                    "type": "integer"
+                                                                },
+                                                                "qnt": {
+                                                                    "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/elementi/items/anyOf/0/properties/qnt",
+                                                                    "type": "number"
+                                                                },
+                                                                "base": {
+                                                                    "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/elementi/items/anyOf/0/properties/base",
+                                                                    "type": "number"
+                                                                },
+																"fig": {
+                                                                    "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/elementi/items/anyOf/0/properties/fig",
+                                                                    "type": "number"
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "datistatistici": {
+                                                "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici",
+                                                "type": "object",
+                                                "required": [],
+                                                "properties": {
+                                                    "hh_lav": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/hh_lav",
+                                                        "type": "number"
+                                                    },
+                                                    "gg_lav": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/gg_lav",
+                                                        "type": "number"
+                                                    },
+                                                    "hh_retrib": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/hh_retrib",
+                                                        "type": "number"
+                                                    },
+                                                    "gg_retrib": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/gg_retrib",
+                                                        "type": "number"
+                                                    },
+                                                    "gg_uniemens": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/gg_uniemens",
+                                                        "type": "number"
+                                                    },
+													"gg_contrib": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/gg_contrib",
+                                                        "type": "number"
+                                                    },
+													"gg_utili": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/gg_utili",
+                                                        "type": "number"
+                                                    },
+                                                    "sett_utili": {
+                                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/cedolino/properties/datistatistici/properties/sett_utili",
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+									"meta": {
+                                        "$id": "#/properties/tests/items/anyOf/0/properties/test/properties/meta",
+                                        "type": "object",
+                                        "required": [],
+                                        "properties": {},
+                                        "additionalProperties": true
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": false
+}
