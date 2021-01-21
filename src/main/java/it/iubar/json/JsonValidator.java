@@ -12,10 +12,9 @@ import it.iubar.json.validators.EveritStrategy;
 import it.iubar.json.validators.IValidator;
 
 /**
- * Per la validazione del json vengono utilizzate 2 librerie in quanto: -
- * org.json.JSONObject nel parse risolve alcuni errori strutturali nel json -
- * javax.json.JsonObject (utilizzata nel progetto iubar-paghe-test) se la
- * struttura è errata fallisce il parsing con un'eccezione
+ * Per la validazione del json vengono utilizzate 2 librerie in quanto: 
+ * - org.json.JSONObject nel parse risolve alcuni errori strutturali nel json 
+ * - javax.json.JsonObject (utilizzata nel progetto iubar-paghe-test) se la struttura è errata fallisce il parsing con un'eccezione
  * 
  */
 public class JsonValidator {
