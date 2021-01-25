@@ -83,8 +83,7 @@ public class CliJsonValidator {
 	private static void printHelp() {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.setWidth(200);
-		String jarName = new java.io.File(
-				CliJsonValidator.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
+		String jarName = new java.io.File(CliJsonValidator.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
 		String cmdLineSyntax = "java -jar " + jarName + " <schema.json> <data.json>|<folder path>";
 		formatter.printHelp(cmdLineSyntax, CliJsonValidator.options, true);
 		if (false) {
