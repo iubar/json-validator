@@ -68,6 +68,10 @@ public class CliJsonValidator {
 
 	}
 
+	/**
+	 * Il metodo non restituisce le informazioni corrette quando il codice è eseguito all'intero dell'IDE
+	 * Diversamente quando l'applicazione è pacchettizata in un jar, il risultato è quello atteso
+	 */	
 	private static void printAppNameAndVersion() {
 		// String className = PoJsonValidator.class.getName();
 		Package mainPackage = CliJsonValidator.class.getPackage(); // returns "package it.iubar.json"
