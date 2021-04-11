@@ -14,6 +14,7 @@ deploy: # see https://docs.travis-ci.com/user/deployment/releases/
   provider: releases
   api_key: ${GITHUB_OAUTH_TOKEN}
   file: "target/json-validator-jar-with-dependencies.jar"
+  overwrite: true
   skip_cleanup: true
   on:
     tags: true # see https://docs.travis-ci.com/user/deployment#Conditional-Releases-with-on
