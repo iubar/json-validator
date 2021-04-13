@@ -16,6 +16,11 @@ import org.json.JSONTokener;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * 
+ * Everit (see https://github.com/everit-org/json-schema/blob/master/core/pom.xml) utilizza la libreria org.json
+ *
+ */
 public class EveritDependenciesTest {
 
 	private static final Logger LOGGER = Logger.getLogger(EveritDependenciesTest.class.getName());

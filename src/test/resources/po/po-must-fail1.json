@@ -1,0 +1,60 @@
+{
+  "databases": {
+    "local-path": "test"
+  },
+  "tests": [
+    {
+      "test": {
+        "descrizione": "testcase 6 tredicesima",
+        "pdf": "test06_foglio2.pdf",
+        "posizione": {
+          "idposizione": 121,
+          "idtipofoglio": 2
+        },
+        "cedolino": {
+          "imponibileprev": 1458,
+          "totaleretribnetta": 1013,
+          "fondoazienda": 100.68,
+          "elementi": [
+            {
+              "codice": 1117,
+              "qnt": 1,
+              "base": 1457.5694
+            },
+            {
+              "test": {
+                "descrizione": "testcase 6 - busta paga ordinaria",
+                "pdf": "test006.pdf",
+                "posizione": {
+                  "idposizione": 121,
+                  "idtipofoglio": 1
+                },
+                "cedolino": {
+                  "imponibileprev": 1514,
+                  "redditoimponibile": 1369.95,
+                  "totaleretriblorda": 1513.63,
+                  "totalecompetenze": 1670.84,
+                  "totaletrattenute": 143.68,
+                  "totaleretribnetta": 1527.16,
+                  "fondoazienda": 104.55,
+                  "elementi": [
+                    {
+                      "codice": 9601,
+                      "qnt": 1,
+                      "base": 151.9567
+                    },
+                    {
+                      "codice": 1009,
+                      "qnt": 1,
+                      "base": 973.3933
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
