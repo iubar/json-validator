@@ -71,7 +71,7 @@ pipeline {
         }	
         changed {
         	echo "CURRENT STATUS: ${currentBuild.currentResult}"
-            sh "curl -H 'JENKINS: Pipeline Hook Iubar' -i -X GET -G ${env.IUBAR_WEBHOOK_URL} -d status=${currentBuild.currentResult} -d project_name=${JOB_NAME}"
+            sh "curl -H 'JENKINS: Pipeline Hook Iubar' -i -X GET -G ${env.IUBAR_WEBHOOK_URL} -d status=${currentBuild.currentResult} -d project_name='${JOB_NAME}'"
         }       
 		cleanup {
 			cleanWs()
