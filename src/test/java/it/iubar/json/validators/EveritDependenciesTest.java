@@ -64,12 +64,11 @@ public class EveritDependenciesTest {
 	@Test
 	public void test2() {
 		JSONObject jo = new JSONObject("{\"float\": 0.333}");
-		Object obj = jo.get("float"); // returns a Double, in a future release, the dependency will return a
-										// BigDecimal (https://github.com/stleary/JSON-java/pull/453)
+		Object obj = jo.get("float");
 		double d = jo.getDouble("float"); // still returns the value/object as in the old version (Double)
 		EveritDependenciesTest.LOGGER.info("obj: " + obj);
 		EveritDependenciesTest.LOGGER.info("d: " + d);
-		Assertions.assertEquals("java.lang.Double", obj.getClass().getName()); // in a future release the dependency
+		Assertions.assertEquals("java.math.BigDecimal", obj.getClass().getName()); // in a future release the dependency
 																				// will returns a
 		// BigDecimal
 		int scale = 6; // it's a constant (a fixed value)
