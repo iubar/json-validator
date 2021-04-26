@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.lang.Integer
+import java.lang.Integer;
 import java.math.RoundingMode;
 import java.util.logging.Logger;
 
