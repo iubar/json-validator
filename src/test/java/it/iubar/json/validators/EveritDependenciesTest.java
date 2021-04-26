@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.lang.Integer
 import java.math.RoundingMode;
 import java.util.logging.Logger;
 
@@ -58,7 +59,7 @@ public class EveritDependenciesTest {
 		double d = jo.getDouble("int"); // still returns the value/object as in the old version (Double)
 		EveritDependenciesTest.LOGGER.info("obj: " + obj);
 		EveritDependenciesTest.LOGGER.info("d: " + d);
-		Assertions.assertEquals("java.lang.Integer", obj.getClass().getName());
+		Assertions.assertEquals(Integer.class.getCanonicalName(), obj.getClass().getName());
 	}
 
 	@Test
@@ -68,9 +69,7 @@ public class EveritDependenciesTest {
 		double d = jo.getDouble("float"); // still returns the value/object as in the old version (Double)
 		EveritDependenciesTest.LOGGER.info("obj: " + obj);
 		EveritDependenciesTest.LOGGER.info("d: " + d);
-		Assertions.assertEquals("java.math.BigDecimal", obj.getClass().getName()); // in a future release the dependency
-																				// will returns a
-		// BigDecimal
+		Assertions.assertEquals(BigDecimal.class.getCanonicalName(), obj.getClass().getName());
 		int scale = 6; // it's a constant (a fixed value)
 		BigDecimal bd1 = new BigDecimal(d).setScale(scale, RoundingMode.HALF_EVEN);
 		EveritDependenciesTest.LOGGER.info("bd1: " + bd1);
