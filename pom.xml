@@ -62,6 +62,7 @@
 			<artifactId>commons-cli</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<!-- begin everit		 -->
 		<!-- begin everit https://github.com/everit-org/json-schema -->
 		<dependency>
 			<groupId>com.github.everit-org.json-schema</groupId>
@@ -83,7 +84,8 @@
 			<version>2.0.0</version>
 		</dependency>
 		<!-- / -->
-		<!-- begin com.networknt.json-schema-validator https://github.com/networknt/json-schema-validator -->
+		<!-- begin com.networknt.json-schema-validator -->
+		<!-- https://github.com/networknt/json-schema-validator -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
