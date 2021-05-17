@@ -8,11 +8,6 @@ import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//import javax.json.Json;
-//import javax.json.JsonObject;
-//import javax.json.JsonReader;
-//import javax.json.stream.JsonParsingException;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 

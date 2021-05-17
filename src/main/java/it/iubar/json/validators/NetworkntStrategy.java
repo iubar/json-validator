@@ -3,6 +3,7 @@ package it.iubar.json.validators;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -64,8 +65,9 @@ public class NetworkntStrategy extends RootStrategy {
 			if (errors != null) {
 				for (ValidationMessage errorMsg : errors) {
 					String msg = errorMsg.getMessage();
-					errorMsg.getDetails();
 					NetworkntStrategy.LOGGER.severe(msg);
+					Map<String, Object> map = errorMsg.getDetails();
+					// ...
 				}
 			}
 			return errors.size();

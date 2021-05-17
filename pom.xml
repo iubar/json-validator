@@ -14,6 +14,9 @@
 	<properties>
 		<maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
 		<jersey.client.version>3.0.0</jersey.client.version>
+		<justify.version>3.1.0</justify.version>
+		<networknt.version>1.0.52</networknt.version>
+		<everit.version>1.12.2</everit.version>
 	</properties>
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -60,30 +63,18 @@
 			<version>1.4</version>
 		</dependency>
 		<!-- begin everit		 -->
-		<!-- https://github.com/everit-org/json-schema -->
+		<!-- begin everit https://github.com/everit-org/json-schema -->
 		<dependency>
 			<groupId>com.github.everit-org.json-schema</groupId>
 			<artifactId>org.everit.json.schema</artifactId>
-			<version>1.12.1</version>
+			<version>${everit.version}</version>	
 		</dependency>
-		<!-- https://javaee.github.io/jsonp/getting-started.html -->
-		<!-- <dependency> -->
-		<!-- 	<groupId>org.glassfish</groupId> -->
-		<!-- 	<artifactId>javax.json</artifactId> -->
-		<!-- 	<version>1.1.4</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!--     <groupId>javax.json</groupId> -->
-		<!--     <artifactId>javax.json-api</artifactId> -->
-		<!--     <version>1.1.4</version> -->
-		<!-- </dependency>		 -->
-		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
 		<!-- / -->
-		<!-- begin https://github.com/leadpony/justify -->
+		<!-- begin justify https://github.com/leadpony/justify -->
 		<dependency>
 			<groupId>org.leadpony.justify</groupId>
 			<artifactId>justify</artifactId>
-			<version>3.1.0</version>
+			<version>${justify.version}</version>
 		</dependency>
 		<!-- JSON-P Default Provider (JSR-353) -->
 		<!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.json -->
@@ -92,8 +83,9 @@
 			<artifactId>jakarta.json</artifactId>
 			<version>2.0.0</version>
 		</dependency>
-		<!-- 		/		 -->
+		<!-- / -->
 		<!-- begin com.networknt.json-schema-validator -->
+		<!-- https://github.com/networknt/json-schema-validator -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -117,9 +109,9 @@
 		<dependency>
 			<groupId>com.networknt</groupId>
 			<artifactId>json-schema-validator</artifactId>
-			<version>1.0.47</version>
+			<version>${networknt.version}</version>			
 		</dependency>
-		<!-- /  -->
+		<!-- / -->
 		<!-- begin jersey -->
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
