@@ -2,17 +2,16 @@ package it.iubar.json.validators;
  
 
 	import java.io.File;
-	import java.io.FileNotFoundException;
-	import java.io.IOException;
-	import java.net.MalformedURLException;
-import java.util.logging.Level;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.logging.Logger;
 
-	import org.junit.jupiter.api.Assertions;
-	import org.junit.jupiter.api.BeforeAll;
-	import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-	import it.iubar.json.JsonValidator;
+import it.iubar.json.JsonValidator;
 
 	public class PagheOpenJsonTest {
 
