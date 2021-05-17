@@ -10,25 +10,25 @@ import org.leadpony.justify.api.ProblemHandler;
 public class MyProblemHandler implements ProblemHandler {
 
 	private static final Logger LOGGER = Logger.getLogger(MyProblemHandler.class.getName());
-
-	private List<Problem> problems = null;
-	private List<String> problems2 = new ArrayList<>();
-
+	 
+	private List<Problem> problems = new ArrayList<>();
+ 
 	public List<Problem> getProblems() {
 		return this.problems;
 	}
 
-	public List<String> getProblems2() {
-		return this.problems2;
-	}
-
 	@Override
 	public void handleProblems(List<Problem> problems) {
-		this.problems = problems;
-		for (Problem problem : problems) {
-			this.problems2.add(problem.toString());
+		// non posso usare this.problems = problems perchè List è mutabile
+		// e mi ritroverei con la lista vuota
+ 		for (Problem problem : problems) {
+			this.problems.add(problem);
 			MyProblemHandler.LOGGER.warning(problem.toString());
 		}
+	}
+
+	public int countErrors() {
+		return this.problems.size();
 	}
 
 }
