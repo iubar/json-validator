@@ -1,4 +1,4 @@
-dist: bionic # https://docs.travis-ci.com/user/reference/bionic/
+dist: focal # https://docs.travis-ci.com/user/reference/focal/
 language: java
 jdk: openjdk10 # https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support
 sudo: false # see https://docs.travis-ci.com/user/reference/overview/
