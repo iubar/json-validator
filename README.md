@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/iubar/json-validator.svg?branch=master)](https://travis-ci.com/iubar/json-validator) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/629e2af7ae1e4f839dbb560fd3e32aa2)](https://www.codacy.com/app/Iubar/json-validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=iubar/json-validator&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://app.travis-ci.com/iubar/json-validator.svg?branch=master)](https://app.travis-ci.com/github/iubar/json-validator)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/30c97be1b9c34500b37f295fe8bc6d9f)](https://www.codacy.com/gh/iubar/json-validator/dashboard)
 
 # Json Cli Validator
 A tool to check one or more json files against its json schema
