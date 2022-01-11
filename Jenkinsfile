@@ -42,19 +42,9 @@ pipeline {
         }		
         stage('Quality gate') {	
             steps {
-				sh '''
-					SONAR_PROJECTKEY=$(grep sonar.projectKey sonar-project.properties | cut -d '=' -f2)
-					echo "SONAR_PROJECTKEY: ${SONAR_PROJECTKEY}"				
-				    QUALITYGATE=$(curl --data-urlencode "projectKey=${SONAR_PROJECTKEY}" ${SONAR_URL}/api/qualitygates/project_status | jq '.projectStatus.status')
-				    QUALITYGATE=$(echo "$QUALITYGATE" | sed -e 's/^"//' -e 's/"$//')
-				    echo "QUALITYGATE: ${QUALITYGATE}"
-                    if [ $QUALITYGATE = OK ]; then
-                       echo "High five !"
-                    else
-                       echo "Poor quality ! (but don't exit)"
-					   echo "( see ${SONAR_URL}/dashboard?id=${SONAR_PROJECTKEY})"
-                    fi				    
-				'''
+				sh 'wget --user=${ARTIFACTORY_USER} --password=${ARTIFACTORY_PASS} http://192.168.0.119:8082/artifactory/iubar-repo-local/jenkins/jenkins-sonar-quality-gate-check.sh --no-check-certificate'
+				sh 'chmod +x ./jenkins-sonar-quality-gate-check.sh'
+				sh './jenkins-sonar-quality-gate-check.sh false # true / false = Ignore or not the quality gate score'
             }
         }
 		stage ('Deploy') {
