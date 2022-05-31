@@ -1,19 +1,16 @@
 pipeline {
-	agent {
-		docker { 
-			//image 'iubar-maven-php-ubuntu'
-			image 'iubar-maven-alpine'
-			label 'docker'
-			//args "-v /home/jenkins/.m2:/home/jenkins/.m2:rw,z -v /home/jenkins/.ssh:/home/jenkins/.ssh:z -v /home/jenkins:/home/jenkins:z"
-			args "-v /home/jenkins/.m2:/home/jenkins/.m2:rw,z -v /home/jenkins/.ssh:/home/jenkins/.ssh:z"
-		}
-	}
+    agent {
+    	docker {   	
+    		image 'iubar-maven-alpine'
+    		label 'docker'
+    		args '-v ${HOME}/.m2:/home/jenkins/.m2:rw,z -v ${HOME}/.sonar:/home/jenkins/.sonar:rw,z'
+    	} 
+    }
 	options {
-		// Apply the ansi terminal for all stages and steps in pipeline
 		ansiColor('xterm')
 	}	
     environment {
-		MAVEN_CLI_OPTS = '--batch-mode --errors --show-version --quiet'
+		MAVEN_ARGS = '--show-version --batch-mode --quiet'
 		MAVEN_OPTS = '-Dmaven.test.failure.ignore=false -Dstyle.color=always -Djava.awt.headless=true -Dhttps.protocols=TLSv1.2' // -Djava.io.tmpdir=${WORKSPACE}@tmp
     }	
 	stages {
@@ -42,7 +39,7 @@ pipeline {
  	    }
 		stage('Package') {
             steps {
-                sh 'mvn $MAVEN_CLI_OPTS clean package -DexcludedGroups="Skip"'
+                sh 'mvn $MAVEN_ARGS clean package -DexcludedGroups="Skip"'
                 // ...or alternatively..
                 // sh 'wget https://github.com/iubar/po-test-json-validator/releases/download/00.01/po-test-json-validator-jar-with-dependencies.jar'
             }
@@ -56,25 +53,25 @@ pipeline {
 			steps {
 				sh 'ls -la $WORKSPACE'	
 				echo 'Validazione schema.json cedolini'
-                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/cedolini/schema.json'				
+                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/cedolini/schema.json'				
 				
 				echo 'Validazione file json cedolini'
 				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/cedolini/schema.json $WORKSPACE/data/cedolini/json'
 				
 				echo 'Validazione schema.json uniemens'
-                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/uniemens/schema.json'				
+                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/uniemens/schema.json'				
 				
 				echo 'Validazione file json uniemens'
 				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/uniemens/schema.json $WORKSPACE/data/uniemens/json'
 				
 				echo 'Validazione schema.json F24'
-                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/f24/schema.json'				
+                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/f24/schema.json'				
 				
 				echo 'Validazione file json F24'
 				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/f24/schema.json $WORKSPACE/data/f24/json'
 				
 				echo 'Validazione schema.json nota contabile'
-                		sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/notacontabile/schema.json'				
+                sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/draft-07.json $WORKSPACE/data/notacontabile/schema.json'				
 				
 				echo 'Validazione file json nota contabile'
 				sh 'cd target && java -jar json-validator-jar-with-dependencies.jar $WORKSPACE/data/f24/schema.json $WORKSPACE/data/notacontabile/json'
@@ -83,14 +80,10 @@ pipeline {
 	}
 	post {
 		changed {
-			echo "CURRENT STATUS: ${currentBuild.currentResult}"
 			sh "curl -H 'JENKINS: Pipeline Hook Iubar' -i -X GET -G ${env.IUBAR_WEBHOOK_URL} -d status=${currentBuild.currentResult} -d project_name='${JOB_NAME}'"
 		}
 		cleanup {
 			cleanWs()
-			dir("${env.WORKSPACE}@tmp") {
-				deleteDir()
-			}
 		}	
 	}
 }
