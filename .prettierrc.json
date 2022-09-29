@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json.schemastore.org/prettierrc",
+  "overrides": [
+    {
+      "files": "*.java",
+      "options": {
+        "printWidth": 140,
+        "useTabs": true,
+        "trailingComma": "all"
+      }
+    },
+    {
+      "files": "*.xml",
+      "options": {
+        "bracketSameLine": true,
+        "printWidth": 140,
+        "tabWidth": 2,
+        "xmlWhitespaceSensitivity": "ignore"
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "parser": "json5",
+        "printWidth": 140,
+        "tabWidth": 2,
+        "trailingComma": "none",
+        "singleQuote": false,
+        "quoteProps": "preserve"
+      }
+    }
+  ]
+}

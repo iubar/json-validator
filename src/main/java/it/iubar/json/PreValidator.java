@@ -1,5 +1,9 @@
 package it.iubar.json;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
+import jakarta.json.stream.JsonParsingException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,17 +11,11 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonReader;
-import jakarta.json.stream.JsonParsingException;
-
 /**
- * 
+ *
  * It uses the Javax lib
  *
  */
@@ -44,5 +42,4 @@ public class PreValidator {
 
 		return valid;
 	}
-
 }

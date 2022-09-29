@@ -1,5 +1,7 @@
 package it.iubar.json;
 
+import it.iubar.json.validators.IValidator;
+import it.iubar.json.validators.JustifyStrategy;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -7,16 +9,12 @@ import java.io.StringWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-
-import it.iubar.json.validators.IValidator;
-import it.iubar.json.validators.JustifyStrategy;
 
 public class CliJsonValidator {
 
@@ -41,7 +39,6 @@ public class CliJsonValidator {
 	}
 
 	public static void main(String[] args) {
-
 		// create the command line parser
 		CommandLineParser parser = new DefaultParser();
 
@@ -65,13 +62,12 @@ public class CliJsonValidator {
 			String errorMsg = "File not found: " + e.getMessage();
 			CliJsonValidator.die(errorMsg);
 		}
-
 	}
 
 	/**
 	 * Il metodo non restituisce le informazioni corrette quando il codice è eseguito all'intero dell'IDE
 	 * Diversamente quando l'applicazione è pacchettizata in un jar, il risultato è quello atteso
-	 */	
+	 */
 	private static void printAppNameAndVersion() {
 		// String className = PoJsonValidator.class.getName();
 		Package mainPackage = CliJsonValidator.class.getPackage(); // returns "package it.iubar.json"
@@ -114,7 +110,7 @@ public class CliJsonValidator {
 		if (!f2.exists()) {
 			CliJsonValidator.handleWrongUsage("[ERROR] The path " + f2 + " does not exist or is not readable", false);
 		}
-		 
+
 		IValidator strategy = factoryStrategy();
 
 		JsonValidator client = new JsonValidator(strategy);
@@ -131,5 +127,4 @@ public class CliJsonValidator {
 		IValidator strategy = new JustifyStrategy();
 		return strategy;
 	}
-
 }

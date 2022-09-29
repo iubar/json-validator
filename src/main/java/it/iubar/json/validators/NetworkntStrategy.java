@@ -1,24 +1,22 @@
 package it.iubar.json.validators;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Logger;
-
-import org.apache.commons.io.FileUtils;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Logger;
+import org.apache.commons.io.FileUtils;
 
 /**
  * @see https://github.com/networknt/json-schema-validator/blob/master/doc/quickstart.md
- * 
+ *
  * @author Borgo
  *
  */
@@ -80,5 +78,4 @@ public class NetworkntStrategy extends RootStrategy {
 			return 1;
 		}
 	}
-
 }

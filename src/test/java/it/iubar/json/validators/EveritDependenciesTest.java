@@ -4,11 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.lang.Integer;
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.logging.Logger;
-
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONException;
@@ -18,7 +17,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
+ *
  * Everit (see https://github.com/everit-org/json-schema/blob/master/core/pom.xml) utilizza la libreria org.json
  *
  */
@@ -105,9 +104,7 @@ public class EveritDependenciesTest {
 	@Test
 	public void testWrongSyntax() {
 		String strJson = "{\"hello\" : \"world\"\"}"; // wrong syntax
-		JSONException ex = Assertions.assertThrows(JSONException.class,
-				() -> parseWithJSONObject(EveritDependenciesTest.schema1, strJson));
+		JSONException ex = Assertions.assertThrows(JSONException.class, () -> parseWithJSONObject(EveritDependenciesTest.schema1, strJson));
 		EveritDependenciesTest.LOGGER.severe(ex.getMessage());
 	}
-
 }

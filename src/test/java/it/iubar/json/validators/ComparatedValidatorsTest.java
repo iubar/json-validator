@@ -1,16 +1,14 @@
 package it.iubar.json.validators;
 
+import it.iubar.json.JsonValidator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.logging.Logger;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import it.iubar.json.JsonValidator;
 
 public class ComparatedValidatorsTest {
 
@@ -20,8 +18,7 @@ public class ComparatedValidatorsTest {
 
 	@BeforeAll
 	private static void init() throws MalformedURLException, IOException {
-		ComparatedValidatorsTest.schemaFile = new File(
-				ComparatedValidatorsTest.class.getResource("/hello2-schema.json").getFile());
+		ComparatedValidatorsTest.schemaFile = new File(ComparatedValidatorsTest.class.getResource("/hello2-schema.json").getFile());
 	}
 
 	private int parseWithValidator(IValidator strategy, File file) throws FileNotFoundException {
@@ -50,7 +47,7 @@ public class ComparatedValidatorsTest {
 	/**
 	 * A a differenza dell'implementazione con Everit, il metodo si accorge che il
 	 * json adotta specifiche "rilassate"
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@Test
@@ -100,5 +97,4 @@ public class ComparatedValidatorsTest {
 		int errorCount = parseWithValidator(strategy, file);
 		Assertions.assertEquals(1, errorCount);
 	}
-
 }

@@ -1,5 +1,7 @@
 package it.iubar.json;
 
+import it.iubar.json.validators.EveritStrategy;
+import it.iubar.json.validators.IValidator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -8,14 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import it.iubar.json.validators.EveritStrategy;
-import it.iubar.json.validators.IValidator;
-
 /**
- * Per la validazione del json vengono utilizzate 2 librerie in quanto: 
- * - org.json.JSONObject nel parse risolve alcuni errori strutturali nel json 
+ * Per la validazione del json vengono utilizzate 2 librerie in quanto:
+ * - org.json.JSONObject nel parse risolve alcuni errori strutturali nel json
  * - javax.json.JsonObject (utilizzata nel progetto iubar-paghe-test) se la struttura è errata fallisce il parsing con un'eccezione
- * 
+ *
  */
 public class JsonValidator {
 
@@ -81,7 +80,6 @@ public class JsonValidator {
 					break;
 				}
 			}
-
 		} // end for
 
 		int passed = 0;

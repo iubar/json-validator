@@ -1,5 +1,7 @@
 package it.iubar.json.validators;
 
+import jakarta.json.JsonReader;
+import jakarta.json.stream.JsonParser;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -8,15 +10,11 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.apache.commons.io.IOUtils;
 import org.leadpony.justify.api.JsonSchema;
 import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.Problem;
 import org.leadpony.justify.api.ProblemHandler;
-
-import jakarta.json.JsonReader;
-import jakarta.json.stream.JsonParser;
 
 public class JustifyStrategy extends RootStrategy {
 
@@ -33,7 +31,7 @@ public class JustifyStrategy extends RootStrategy {
 
 	/**
 	 * Esamino gli errori con JsonReader.
-	 */	
+	 */
 	public int validate1(File file) {
 		int errorCount = 0;
 		JsonValidationService service = JsonValidationService.newInstance();
@@ -128,5 +126,4 @@ public class JustifyStrategy extends RootStrategy {
 		}
 		return b;
 	}
-
 }

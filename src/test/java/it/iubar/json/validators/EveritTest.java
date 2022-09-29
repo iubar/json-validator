@@ -3,7 +3,6 @@ package it.iubar.json.validators;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.logging.Logger;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,6 @@ public class EveritTest {
 		File schemaFile = new File(EveritTest.class.getResource(schemaPath).getFile());
 		strategy.setSchema(schemaFile);
 		return strategy.validate(strJson);
-
 	}
 
 	@Test

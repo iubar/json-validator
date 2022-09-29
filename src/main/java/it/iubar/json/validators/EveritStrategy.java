@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.logging.Logger;
-
 import org.apache.commons.io.FileUtils;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
@@ -29,7 +28,6 @@ public class EveritStrategy extends RootStrategy {
 
 	@Override
 	public int validate(File file) throws FileNotFoundException {
-
 		// InputStream is = new FileInputStream(file);
 		// JSONObject jsonObj = new JSONObject(new JSONTokener(is));
 
@@ -60,15 +58,15 @@ public class EveritStrategy extends RootStrategy {
 	}
 
 	private int validate2(JSONObject jsonObj) throws FileNotFoundException {
-
 		SchemaLoader loader = SchemaLoader.builder().schemaJson(getSchemaASJsonObjct()).draftV7Support().build(); // Draft
-																													// V7
+		// V7
 		Schema schemaJSON = loader.load().build();
 
 		try {
-			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator.builder()
-					// .failEarly()
-					.build();
+			org.everit.json.schema.Validator validator = org.everit.json.schema.Validator
+				.builder()
+				// .failEarly()
+				.build();
 			validator.performValidation(schemaJSON, jsonObj);
 		} catch (ValidationException e) {
 			EveritStrategy.LOGGER.severe(e.getMessage());
@@ -98,5 +96,4 @@ public class EveritStrategy extends RootStrategy {
 		}
 		return 0;
 	}
-
 }

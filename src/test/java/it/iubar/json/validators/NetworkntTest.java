@@ -3,7 +3,6 @@ package it.iubar.json.validators;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.logging.Logger;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -2,6 +2,12 @@ package it.iubar.json.utils;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,14 +27,12 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -36,15 +40,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.glassfish.jersey.client.ClientProperties;
 
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.Invocation;
-import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-
 public class GetContent {
-
 	static {
 		GetContent.disableSslVerification();
 	}
@@ -57,24 +53,26 @@ public class GetContent {
 	private static void disableSslVerification() {
 		try {
 			// Create a trust manager that does not validate certificate chains
-			TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-				@Override
-				public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-					// TODO Auto-generated method stub
+			TrustManager[] trustAllCerts = new TrustManager[] {
+				new X509TrustManager() {
+					@Override
+					public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+						// TODO Auto-generated method stub
 
-				}
+					}
 
-				@Override
-				public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-					// TODO Auto-generated method stub
+					@Override
+					public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+						// TODO Auto-generated method stub
 
-				}
+					}
 
-				@Override
-				public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-					return null;
-				}
-			} };
+					@Override
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+						return null;
+					}
+				},
+			};
 
 			// Install the all-trusting trust manager
 			SSLContext sc = SSLContext.getInstance("SSL");
@@ -83,7 +81,6 @@ public class GetContent {
 
 			// Create all-trusting host name verifier
 			HostnameVerifier allHostsValid = new HostnameVerifier() {
-
 				@Override
 				public boolean verify(String hostname, SSLSession session) {
 					// System.out.println("Verify " + hostname);
@@ -135,8 +132,7 @@ public class GetContent {
 	 * TrustAllHostNameVerifier per ovviare al problema del certificato self-signed
 	 * presente sul server Svn
 	 */
-	public static long getContent2(URL sourceUrl, File outFile)
-			throws IOException, NoSuchAlgorithmException, KeyManagementException {
+	public static long getContent2(URL sourceUrl, File outFile) throws IOException, NoSuchAlgorithmException, KeyManagementException {
 		long bytesCopied = 0;
 		Path out = Paths.get(outFile.toString());
 		InputStream in = null;
@@ -145,7 +141,6 @@ public class GetContent {
 			if (false) {
 				client = ClientBuilder.newClient();
 			} else {
-
 				// for java 7
 				SSLContext ctx = SSLContext.getInstance("SSL");
 				// for java 8
@@ -154,9 +149,13 @@ public class GetContent {
 
 				ctx.init(null, TrustAllHostNameVerifier.certs, new SecureRandom());
 
-				client = ClientBuilder.newBuilder()
+				client =
+					ClientBuilder
+						.newBuilder()
 						// .withConfig(config)
-						.hostnameVerifier(new TrustAllHostNameVerifier()).sslContext(ctx).build();
+						.hostnameVerifier(new TrustAllHostNameVerifier())
+						.sslContext(ctx)
+						.build();
 			}
 
 			client.property(ClientProperties.CONNECT_TIMEOUT, 1000);
@@ -174,7 +173,6 @@ public class GetContent {
 			in = response.readEntity(InputStream.class);
 
 			bytesCopied = Files.copy(in, out, REPLACE_EXISTING);
-
 		} finally {
 			if (in != null) {
 				in.close();
@@ -186,19 +184,18 @@ public class GetContent {
 
 	/**
 	 * An Apache HttpClient implementation
-	 * 
+	 *
 	 * With the fluent API I could write:
 	 * Request.Get("http://host/stuff").execute().saveContent(myFile); *
-	 * 
+	 *
 	 * @fixme non so come ovviare al problema del self-signed cert:
 	 *        org.opentest4j.AssertionFailedError:
 	 *        sun.security.validator.ValidatorException: PKIX path building failed:
 	 *        sun.security.provider.certpath.SunCertPathBuilderException: unable to
 	 *        find valid certification path to requested target
-	 * 
+	 *
 	 */
 	public static void getContent3(URL sourceUrl, File outFile) throws IOException {
-
 		CloseableHttpClient client = HttpClients.createDefault();
 		try (CloseableHttpResponse response = client.execute(new HttpGet(sourceUrl.toString()))) {
 			HttpEntity entity = response.getEntity();
@@ -212,7 +209,5 @@ public class GetContent {
 				client.close();
 			}
 		}
-
 	}
-
 }

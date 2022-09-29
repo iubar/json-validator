@@ -1,5 +1,6 @@
 package it.iubar.json.utils;
 
+import it.iubar.json.validators.RealDataValidatorTest;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,14 +9,11 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
-import it.iubar.json.validators.RealDataValidatorTest;
 
 @Tag("LocalTestOnly")
 class GetContentTest {
@@ -64,5 +62,4 @@ class GetContentTest {
 			Assertions.fail(e.getMessage());
 		}
 	}
-
 }

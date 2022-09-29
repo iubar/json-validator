@@ -2,7 +2,7 @@ package it.iubar.json.validators;
 
 import java.io.File;
 
-abstract public class RootStrategy implements IValidator {
+public abstract class RootStrategy implements IValidator {
 
 	protected File schema = null;
 
@@ -15,5 +15,4 @@ abstract public class RootStrategy implements IValidator {
 	public void setSchema(File schema) {
 		this.schema = schema;
 	}
-
 }

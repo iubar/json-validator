@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public interface IValidator {
-
 	File getSchema();
 
 	void setSchema(File schema);

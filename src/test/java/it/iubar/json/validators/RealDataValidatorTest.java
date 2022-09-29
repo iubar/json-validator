@@ -1,5 +1,8 @@
 package it.iubar.json.validators;
 
+import it.iubar.json.JsonValidator;
+import it.iubar.json.utils.GetContent;
+import it.iubar.json.utils.TrustAllHostNameVerifier;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,7 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,16 +19,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import it.iubar.json.JsonValidator;
-import it.iubar.json.utils.GetContent;
-import it.iubar.json.utils.TrustAllHostNameVerifier;
-
 public class RealDataValidatorTest {
 
 	private static final Logger LOGGER = Logger.getLogger(RealDataValidatorTest.class.getName());
 
-	public static final String BASE_ADDRESS = "https://" + TrustAllHostNameVerifier.HOST_NAME
-			+ "/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json";
+	public static final String BASE_ADDRESS =
+		"https://" + TrustAllHostNameVerifier.HOST_NAME + "/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json";
 
 	private static File schemaFile = null;
 
@@ -130,5 +128,4 @@ public class RealDataValidatorTest {
 			}
 		});
 	}
-
 }
