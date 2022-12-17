@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/iubar/json-validator.svg?branch=master)](https://app.travis-ci.com/github/iubar/json-validator)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iubar/json-validator/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iubar/json-validator/tree/master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/30c97be1b9c34500b37f295fe8bc6d9f)](https://www.codacy.com/gh/iubar/json-validator/dashboard)
 
 # Json Cli Validator
