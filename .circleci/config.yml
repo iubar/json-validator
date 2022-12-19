@@ -54,7 +54,8 @@ jobs:
             # see https://github.com/tcnksm/ghr/releases
             go get github.com/tcnksm/ghr 
             # VERSION=$(my-binary --version)
-            VERSION=${CIRCLE_BRANCH}
+            # VERSION=$(xmlstarlet sel -N mvn='http://maven.apache.org/POM/4.0.0' -t -m '/mvn:project/mvn:version' -v . -n <pom.xml)
+            VERSION=${CIRCLE_BRANCH}-release
             # see https://circleci.com/docs/variables/
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
 workflows:
