@@ -31,17 +31,17 @@ jobs:
           command: |
             java --version
             mvn -v
-            mvn test
+            mvn -f pom_circleci.xml test
       - run:
           name: Packaging
           command: |
-            mvn -Dmaven.test.skip=true clean package
+            mvn -Dmaven.test.skip=true -f pom_circleci.xml clean package
             mkdir artifacts
             ls -la target || ls -la
             cp target/*.jar artifacts/          
       - run:
           name: Outdated
-          command: mvn versions:display-dependency-updates
+          command: mvn -f pom_circleci.xml versions:display-dependency-updates
   publish-github-release:
     docker:
       - image: circleci/golang:1.17
