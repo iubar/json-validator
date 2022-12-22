@@ -53,7 +53,7 @@ public class RealDataValidatorTest {
 	}
 
 	@BeforeAll
-	private static void init() throws MalformedURLException, IOException {
+	public static void init() throws MalformedURLException, IOException {
 		RealDataValidatorTest.schemaFile = RealDataValidatorTest.fetchSchemaFile();
 	}
 

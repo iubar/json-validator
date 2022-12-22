@@ -17,7 +17,7 @@ public class ComparatedValidatorsTest {
 	private static File schemaFile = null;
 
 	@BeforeAll
-	private static void init() throws MalformedURLException, IOException {
+	public static void init() throws MalformedURLException, IOException {
 		ComparatedValidatorsTest.schemaFile = new File(ComparatedValidatorsTest.class.getResource("/hello2-schema.json").getFile());
 	}
 

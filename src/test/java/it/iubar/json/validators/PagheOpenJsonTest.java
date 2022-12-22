@@ -21,7 +21,7 @@ public class PagheOpenJsonTest {
 	private static File schemaFile = null;
 
 	@BeforeAll
-	private static void init() throws MalformedURLException, IOException {
+	public static void init() throws MalformedURLException, IOException {
 		PagheOpenJsonTest.schemaFile = new File(PagheOpenJsonTest.class.getResource(schemaFilename).getFile());
 	}
 
