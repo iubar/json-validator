@@ -52,7 +52,7 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             # see https://github.com/tcnksm/ghr/releases
-            go get github.com/tcnksm/ghr 
+            go install github.com/tcnksm/ghr@latest
             # VERSION=$(my-binary --version)
             # VERSION=$(xmlstarlet sel -N mvn='http://maven.apache.org/POM/4.0.0' -t -m '/mvn:project/mvn:version' -v . -n <pom.xml)
             VERSION=${CIRCLE_BRANCH}-release
