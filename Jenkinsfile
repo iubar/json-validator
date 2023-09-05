@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 sh '''
-                       sonar-scanner
+                    sonar-scanner
                     wget --user=${ARTIFACTORY_USER} --password=${ARTIFACTORY_PASS} http://192.168.0.119:8082/artifactory/iubar-repo-local/jenkins/jenkins-sonar-quality-gate-check.sh --no-check-certificate
                     chmod +x ./jenkins-sonar-quality-gate-check.sh
                     ./jenkins-sonar-quality-gate-check.sh false # true / false = Ignore or not the quality gate score
