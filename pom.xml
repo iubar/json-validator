@@ -11,15 +11,28 @@
   </parent>
   <groupId>it.iubar</groupId>
   <artifactId>json-validator</artifactId>
-  <version>1.4.2</version>
+  <version>1.4.3</version>
   <name>Iubar Json Validator</name>
   <description>A json validator</description>
   <properties>
     <maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
     <jersey.client.version>3.0.11</jersey.client.version> <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client--> 
+<!--
+Se passo da 3.0.11 a 3.1.3 ottengo : 
+[ERROR] /home/jenkins/workspace/json-validator/src/main/java/it/iubar/json/utils/GetContent.java:[5,28] cannot access jakarta.ws.rs.client.Client
+  bad class file: /home/jenkins/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar(jakarta/ws/rs/client/Client.class)
+    class file has wrong version 55.0, should be 52.0
+    
+    ISSUE :  https://stackoverflow.com/questions/77045310/is-jersey-client-3-1-3-jdk8-compatible
+    
+    In realtà la documentazione recita: 
+    Since version 3.0.0* all Jersey components are compiled with Java SE 1.8 target. It means, that you will need at least Java SE 1.8 to be able to compile and run your application which uses the latest Jersey 3.x. All modules however are fully compatible with JDK 11 and above. So, it's possible to use JDK 11+ to build your app.
+    
+-->        
     <justify.version>3.1.0</justify.version>
     <networknt.version>1.0.86</networknt.version>
-    <everit.version>1.14.2</everit.version>
+    <everit.version>1.14.2</everit.version>    
+    <jsonsKema.version>0.8.0</jsonsKema.version>
     <slf4j.version>2.0.7</slf4j.version>
   </properties>
   <build>
@@ -64,6 +77,14 @@
       <version>${everit.version}</version>
     </dependency>
     <!-- / -->
+    
+    <!-- begin json-sKema https://github.com/erosb/json-sKema -->
+    <dependency>
+    <groupId>com.github.erosb</groupId>
+    <artifactId>json-sKema</artifactId>
+    <version>${jsonsKema.version}</version>
+	</dependency>
+     <!-- / -->
     <!-- begin justify https://github.com/leadpony/justify -->
     <dependency>
       <groupId>org.leadpony.justify</groupId>
@@ -121,10 +142,11 @@
     </dependency>
   </dependencies>
   <repositories>
-    <!-- https://jitpack.io/#maven -->
+     <!-- Easy to use package repository for Git https://jitpack.io/#maven -->
     <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
   </repositories>
+   
 </project>

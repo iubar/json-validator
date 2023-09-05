@@ -128,4 +128,21 @@ public class RealDataValidatorTest {
 			}
 		});
 	}
+	
+	@Test
+	@DisplayName("SkemaStrategy")
+	@Tag("LocalTestOnly")
+	void runTest4() {
+		Assertions.assertDoesNotThrow(() -> {
+			IValidator strategy = new SkemaStrategy();
+			try {
+				run(strategy);
+			} catch (Exception e) {
+				e.printStackTrace();
+				RealDataValidatorTest.LOGGER.log(Level.SEVERE, e.getMessage());
+				throw e;
+			}
+		});
+	}
+	
 }

@@ -14,7 +14,10 @@ import org.everit.json.schema.ValidationException;
 import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
+/**
+ * @deprecated Everit was superseded by erosb/json-sKema (https://github.com/everit-org/json-schema). 
+ */
+@Deprecated
 public class EveritStrategy extends RootStrategy {
 
 	private static final Logger LOGGER = Logger.getLogger(EveritStrategy.class.getName());

@@ -45,6 +45,18 @@ public class PagheOpenJsonTest {
 	}
 
 	@Test
+	public void testPoSchem2a() throws IOException {
+		File file = new File(PagheOpenJsonTest.class.getResource(schemaFilename).getFile());
+		IValidator strategy = new SkemaStrategy();
+		JsonValidator client = new JsonValidator(strategy);
+		File schemaFile = new File(PagheOpenJsonTest.class.getResource("/po/draft7-schema.json").getFile());
+		client.setSchema(schemaFile);
+		client.setTargetFolderOrFile(file);
+		int errorCount = client.run();
+		Assertions.assertEquals(0, errorCount);
+	}
+	
+	@Test
 	public void testPagheOpen1() throws IOException {
 		File file = new File(PagheOpenJsonTest.class.getResource("/po/po-must-fail1.json").getFile());
 		IValidator strategy = new EveritStrategy();
@@ -67,4 +79,13 @@ public class PagheOpenJsonTest {
 		int errorCount = parseWithValidator(strategy, file);
 		Assertions.assertNotEquals(0, errorCount, EXPLAINATION);
 	}
+	
+	@Test
+	public void testPagheOpen4() throws IOException {
+		File file = new File(PagheOpenJsonTest.class.getResource("/po/po-must-fail1.json").getFile());
+		IValidator strategy = new SkemaStrategy();
+		int errorCount = parseWithValidator(strategy, file);
+		Assertions.assertNotEquals(0, errorCount, EXPLAINATION);
+	}
+	
 }

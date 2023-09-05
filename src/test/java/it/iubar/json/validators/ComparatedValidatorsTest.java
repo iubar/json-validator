@@ -97,4 +97,21 @@ public class ComparatedValidatorsTest {
 		int errorCount = parseWithValidator(strategy, file);
 		Assertions.assertEquals(1, errorCount);
 	}
+	
+	
+	@Test
+	public void testValidator9() throws IOException {
+		File file = new File(ComparatedValidatorsTest.class.getResource("/must-fail.json").getFile());
+		IValidator strategy = new SkemaStrategy();
+		int errorCount = parseWithValidator(strategy, file);
+		Assertions.assertEquals(1, errorCount);
+	}
+
+	@Test
+	public void testValidator10() throws IOException {
+		File file = new File(ComparatedValidatorsTest.class.getResource("/must-pass.json").getFile());
+		IValidator strategy = new SkemaStrategy();
+		int errorCount = parseWithValidator(strategy, file);
+		Assertions.assertEquals(0, errorCount);
+	}	
 }
