@@ -20,6 +20,7 @@
     <justify.version>3.1.0</justify.version>
     <networknt.version>1.0.86</networknt.version>
     <everit.version>1.14.2</everit.version>
+    <jsonsKema.version>0.8.0</jsonsKema.version>
     <slf4j.version>2.0.7</slf4j.version>
   </properties>
   <build>
@@ -153,6 +154,13 @@
     <!-- </dependency>		 -->
     <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
     <!-- / -->
+    <!-- begin json-sKema https://github.com/erosb/json-sKema -->
+    <dependency>
+    <groupId>com.github.erosb</groupId>
+    <artifactId>json-sKema</artifactId>
+    <version>${jsonsKema.version}</version>
+	</dependency>
+     <!-- / -->    
     <!-- begin https://github.com/leadpony/justify -->
     <dependency>
       <groupId>org.leadpony.justify</groupId>
@@ -210,7 +218,7 @@
     </dependency>
   </dependencies>
   <repositories>
-    <!-- https://jitpack.io/#maven -->
+     <!-- Easy to use package repository for Git https://jitpack.io/#maven -->
     <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
