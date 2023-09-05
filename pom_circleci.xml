@@ -16,7 +16,7 @@
     <jdk.target.version>${jdk.source.version}</jdk.target.version>
     <junit.jupiter.version>5.10.0</junit.jupiter.version> <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
     <surefire.plugin.version>3.1.2</surefire.plugin.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-    <jersey.client.version>3.0.11</jersey.client.version> <!-- 3.0.x is the latest version that supports java8 --> 
+    <jersey.client.version>3.1.3</jersey.client.version> <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client-->  
     <justify.version>3.1.0</justify.version>
     <networknt.version>1.0.86</networknt.version>
     <everit.version>1.14.2</everit.version>
