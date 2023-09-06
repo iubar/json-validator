@@ -13,11 +13,13 @@ A tool to check one or more json files against its json schema
 - [Specifications](http://json-schema.org/specification-links.html) 
 - [Docs](https://json-schema.org/understanding-json-schema/)
 - [Implementations](http://json-schema.org/implementations.html)
+- [Specifiche](https://json-schema.org/specification-links.html) (importante)
 
 ### Json validator - Implementations
-- [Everit](https://github.com/everit-org/json-schema)
+- [Everit](https://github.com/everit-org/json-schema)  (currently in maintenance mode and superseded by erosb/json-sKema)
 - [Justify](https://github.com/leadpony/justify) (the default strategy for that project)
 - [Networknt](https://github.com/networknt/json-schema-validator)
+- [json-sKema](https://github.com/erosb/json-sKema) (It implements the draft 2020-12 specification)
 - [json-schema-validator](https://github.com/java-json-tools/json-schema-validator) (not used)
 - [snowy-json](https://github.com/ssilverman/snowy-json#using-snow-in-your-own-projects) (not used)
 
