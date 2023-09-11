@@ -13,7 +13,7 @@ A tool to check one or more json files against its json schema
 - [Specifications](http://json-schema.org/specification-links.html) 
 - [Docs](https://json-schema.org/understanding-json-schema/)
 - [Implementations](http://json-schema.org/implementations.html)
-- [Specifiche](https://json-schema.org/specification-links.html) (importante)
+- [Specifiche](https://json-schema.org/specification-links.html) (!)
 
 ### Json validator - Implementations
 - [Everit](https://github.com/everit-org/json-schema)  (currently in maintenance mode and superseded by erosb/json-sKema)
@@ -44,8 +44,8 @@ You can mix and match any JSON-B implementation with any JSON-P implementation.
 
 ### Pay attention
 
-* Nuove possibilità offerte da Json schema versione 2019-09: https://stackoverflow.com/questions/62957704/can-additionalproperties-apply-to-nested-objects-in-json-schema
-(la versione attualmente utilizzata è draft-07)
+* See the new possibility offers by the Json schema version 2019-09: https://stackoverflow.com/questions/62957704/can-additionalproperties-apply-to-nested-objects-in-json-schema
+(currently the default version adopted by this project is the "draft-07")
 
 ## How to generate a schema from a class
 
