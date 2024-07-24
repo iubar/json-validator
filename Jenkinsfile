@@ -52,9 +52,9 @@ pipeline {
     }
     post {
         success {
-            sh 'mvn $MAVEN_ARGS dependency:analyze'
-            sh 'mvn $MAVEN_ARGS versions:display-plugin-updates'
-            sh 'mvn $MAVEN_ARGS versions:display-dependency-updates'
+            sh 'mvn $MAVEN_ARGS $MAVEN_OPTS dependency:analyze'
+            sh 'mvn $MAVEN_ARGS $MAVEN_OPTS versions:display-plugin-updates'
+            sh 'mvn $MAVEN_ARGS $MAVEN_OPTS versions:display-dependency-updates'
         }
 		always { // oppure utilizzare changed
 			sh "curl -H 'JENKINS: Pipeline Hook Iubar' -i -X GET -G ${env.IUBAR_WEBHOOK_URL} -d status=${currentBuild.currentResult} -d job_name='${JOB_NAME}' -d build_number='${BUILD_NUMBER}'"

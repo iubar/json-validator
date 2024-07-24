@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Package') {
             steps {
-                sh 'mvn $MAVEN_ARGS clean package -DexcludedGroups="Skip"'
+                sh 'mvn $MAVEN_ARGS $MAVEN_OPTS clean package -DexcludedGroups="Skip"'
             // ...or alternatively..
             // sh 'wget https://github.com/iubar/po-test-json-validator/releases/download/00.01/po-test-json-validator-jar-with-dependencies.jar'
             }
