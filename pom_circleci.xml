@@ -10,6 +10,8 @@
   <name>Iubar Json Validator</name>
   <description>A json validator</description>
   <properties>
+    <jdk.source.version>11</jdk.source.version>
+    <jdk.target.version>${jdk.source.version}</jdk.target.version>
     <maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jdk.source.version>1.8</jdk.source.version>
