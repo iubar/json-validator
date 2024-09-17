@@ -72,7 +72,7 @@ Se passo da 3.0.11 a 3.1.3 ottengo :
       <version>1.9.0</version>
     </dependency>
     <!-- begin everit		 -->
-    <!-- begin everit https://github.com/everit-org/json-schema -->
+    <!-- https://github.com/everit-org/json-schema -->
     <dependency>
       <groupId>com.github.everit-org.json-schema</groupId>
       <artifactId>org.everit.json.schema</artifactId>
@@ -105,7 +105,7 @@ Se passo da 3.0.11 a 3.1.3 ottengo :
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.15.2</version>
+      <version>2.17.2</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
