@@ -14,23 +14,11 @@
   <version>1.4.3</version>
   <name>Iubar Json Validator</name>
   <description>A json validator</description>
-  <properties>
+    <properties>
+    <jdk.source.version>11</jdk.source.version>
+    <jdk.target.version>${jdk.source.version}</jdk.target.version>
     <maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
-    <jersey.client.version>3.0.12</jersey.client.version> <!-- Attention, 3.0.12 is the last version supporting java 1.8 --> <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client --> 
-<!--
-Se passo da 3.0.11 a 3.1.3 ottengo : 
-[ERROR] /home/jenkins/workspace/json-validator/src/main/java/it/iubar/json/utils/GetContent.java:[5,28] cannot access jakarta.ws.rs.client.Client
-  bad class file: /home/jenkins/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar(jakarta/ws/rs/client/Client.class)
-    class file has wrong version 55.0, should be 52.0
-    
-    ISSUE :  https://stackoverflow.com/questions/77045310/is-jersey-client-3-1-3-jdk8-compatible
-    
-    In realtà la documentazione recita: 
-    Since version 3.0.0* all Jersey components are compiled with Java SE 1.8 target. It means, that you will need at least Java SE 1.8 to be able to compile and run your application which uses the latest Jersey 3.x. All modules however are fully compatible with JDK 11 and above. So, it's possible to use JDK 11+ to build your app.
-    
-    Ma poi la "migration guide" si contraddice: https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest31x/migration.html#mig-3.1.0
-    Per la versione 3.1.x è richiesto jdk11'    
--->        
+    <jersey.client.version>3.0.12</jersey.client.version> <!-- Attention, 3.0.12 is the last version supporting java 1.8 --> <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->      
     <justify.version>3.1.0</justify.version> <!-- 2020-11-03 :( -->
     <networknt.version>1.5.1</networknt.version> <!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
     <everit.version>1.14.4</everit.version>    <!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
