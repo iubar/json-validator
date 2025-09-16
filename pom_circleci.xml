@@ -206,6 +206,12 @@
       <groupId>com.networknt</groupId>
       <artifactId>json-schema-validator</artifactId>
       <version>${networknt.version}</version>
+		<exclusions>
+			<exclusion>
+				<groupId>org.slf4j</groupId>
+				<artifactId>*</artifactId>
+			</exclusion>
+		</exclusions>      
     </dependency>
     <!-- / -->
     <!-- begin jersey -->
@@ -225,6 +231,12 @@
 	    <groupId>org.apache.httpcomponents.client5</groupId>
 	    <artifactId>httpclient5</artifactId>
 	    <version>5.4.1</version>
+		<exclusions>
+			<exclusion>
+				<groupId>org.slf4j</groupId>
+				<artifactId>*</artifactId>
+			</exclusion>
+		</exclusions>	    
 	</dependency>
   </dependencies>
   <repositories>
