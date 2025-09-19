@@ -10,8 +10,7 @@
   <name>Iubar Json Validator</name>
   <description>A json validator</description>
   <properties>
-	<maven.compiler.source>11</maven.compiler.source> 
-	<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+	<maven.compiler.release>11</maven.compiler.release>
     <maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.jupiter.version>5.10.1</junit.jupiter.version> <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
@@ -37,8 +36,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.14.0</version>
         <configuration>
-			<source>${maven.compiler.source}</source> <!-- non è più necessria la configurazione esplicita del plugin da maven 3.6-->
-        	<target>${maven.compiler.target}</target> <!-- non è più necessria la configurazione esplicita del plugin da maven 3.6-->
+			<release>${maven.compiler.release}</release> <!-- non è più obbligatoria questa configurazione esplicita del plugin da maven 3.6 ma ne migliora la leggibilità -->        	
         </configuration>
       </plugin>
       <plugin>

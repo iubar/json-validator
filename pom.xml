@@ -15,20 +15,19 @@
   <name>Iubar Json Validator</name>
   <description>A json validator</description>
     <properties>
-	<maven.compiler.source>11</maven.compiler.source> 
-	<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-    <maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
-	<!-- PAY ATTENTION for the jersey.client :	-->
-	<!-- 3.0.x is the latest version that supports Java 8 -->
-	<!-- 4.x requires Java 17 -->
-	<!-- See https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest30x/modules-and-dependencies.html#d0e560 -->
-	<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client-->    
-    <jersey.client.version>3.1.10</jersey.client.version>      
-    <justify.version>3.1.0</justify.version> <!-- It's a dead project :( https://github.com/leadpony/justify -->
-    <networknt.version>1.5.9</networknt.version> <!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
-    <everit.version>1.14.4</everit.version>    <!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
-    <jsonskema.version>0.25.0</jsonskema.version> <!-- https://github.com/erosb/json-sKema -->
-    <slf4j.version>2.0.16</slf4j.version> 
+		<maven.compiler.release>11</maven.compiler.release>
+	    <maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
+		<!-- PAY ATTENTION for the jersey.client :	-->
+		<!-- 3.0.x is the latest version that supports Java 8 -->
+		<!-- 4.x requires Java 17 -->
+		<!-- See https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest30x/modules-and-dependencies.html#d0e560 -->
+		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client-->    
+	    <jersey.client.version>3.1.10</jersey.client.version>      
+	    <justify.version>3.1.0</justify.version> <!-- It's a dead project :( https://github.com/leadpony/justify -->
+	    <networknt.version>1.5.9</networknt.version> <!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
+	    <everit.version>1.14.4</everit.version>    <!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
+	    <jsonskema.version>0.25.0</jsonskema.version> <!-- https://github.com/erosb/json-sKema -->
+	    <slf4j.version>2.0.16</slf4j.version> 
   </properties>
   <build>
     <finalName>${project.artifactId}</finalName>
