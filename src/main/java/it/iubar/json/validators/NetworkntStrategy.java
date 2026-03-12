@@ -2,15 +2,21 @@ package it.iubar.json.validators;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.schema.JsonSchema;
-import com.networknt.schema.JsonSchemaFactory;
-import com.networknt.schema.SpecVersion;
-import com.networknt.schema.ValidationMessage;
+import com.networknt.schema.Error;
+import com.networknt.schema.ExecutionConfig;
+import com.networknt.schema.ExecutionContext;
+import com.networknt.schema.InputFormat;
+import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaRegistry;
+import com.networknt.schema.SpecificationVersion;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 
@@ -30,16 +36,21 @@ public class NetworkntStrategy extends RootStrategy {
 		return node;
 	}
 
-	/**
-	 * @see https://github.com/networknt/json-schema-validator/issues/273
-	 * @param schemaContent
-	 * @return
-	 * @throws Exception
-	 */
-	public static JsonSchema getJsonSchemaFromStringContent(String schemaContent) throws Exception {
-		JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7);
-		JsonSchema schema = factory.getSchema(schemaContent);
-		return schema;
+ 
+	public static Schema getJsonSchemaFromStringContent(String schemaContent) throws Exception {
+        SchemaRegistry schemaRegistry = SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_2020_12);
+        /*
+         * This should be cached for performance.
+         * 
+         * Loading from a String is not recommended as there is no base IRI to use for
+         * resolving relative $ref.
+         */
+        Schema schema = schemaRegistry.getSchema(schemaContent);
+//        String example = "{\"id\": \"2\"}";
+//        List<Error> errors = schema.validate(example, InputFormat.JSON,
+//                executionContext -> executionContext
+//                .executionConfig(executionConfig -> executionConfig.formatAssertionsEnabled(true)));     
+         return schema;
 	}
 
 	@Override
@@ -54,17 +65,18 @@ public class NetworkntStrategy extends RootStrategy {
 	}
 
 	public int validate(String dataContent) {
-		Set<ValidationMessage> errors = null;
+		List<Error> errors = null;
 		try {
 			String schemaContent = FileUtils.readFileToString(this.schema, StandardCharsets.UTF_8);
-			JsonSchema schema = NetworkntStrategy.getJsonSchemaFromStringContent(schemaContent);
+			Schema schema = NetworkntStrategy.getJsonSchemaFromStringContent(schemaContent);
 			JsonNode node = NetworkntStrategy.getJsonNodeFromStringContent(dataContent);
 			errors = schema.validate(node);
+ 
 			if (errors != null) {
-				for (ValidationMessage errorMsg : errors) {
-					String msg = errorMsg.getMessage();
+				for (Error error : errors) {
+					String msg = error.getMessage();
 					NetworkntStrategy.LOGGER.severe(msg);
-					Map<String, Object> map = errorMsg.getDetails();
+					// Map<String, Object> map = error.getDetails();
 					// ...
 				}
 			}

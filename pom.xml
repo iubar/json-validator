@@ -21,7 +21,7 @@
 		<!-- 3.0.x is the latest version that supports Java 8 -->
 		<!-- 4.x requires Java 17 -->
 		<!-- See https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest30x/modules-and-dependencies.html#d0e560 -->
-		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client-->    
+		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->    
 	    <jersey.client.version>3.1.11</jersey.client.version>      
 	   
 	    <justify.version>3.1.0</justify.version> <!-- Dead project ! :( https://github.com/leadpony/justify -->
@@ -31,9 +31,9 @@
 		<!-- 3.x Compatible with Java 17+ and Jackson 3.x-->
 		<!-- 2.x Compatible with Java 8+ and Jackson 2.x-->
 	    <networknt.version>2.0.1</networknt.version> <!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
-	    <everit.version>1.14.4</everit.version>    <!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
+	    <everit.version>1.14.6</everit.version>    <!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
 	   
-	    <jsonskema.version>0.28.0</jsonskema.version> <!-- https://github.com/erosb/json-sKema -->
+	    <jsonskema.version>0.29.0</jsonskema.version> <!-- https://github.com/erosb/json-sKema -->
 	    <slf4j.version>2.0.16</slf4j.version> 
   </properties>
   <build>
@@ -72,11 +72,12 @@
     </dependency>
     <!-- begin everit		 -->
     <!-- https://github.com/everit-org/json-schema -->
-    <dependency>
-      <groupId>com.github.everit-org.json-schema</groupId>
-      <artifactId>org.everit.json.schema</artifactId>
-      <version>${everit.version}</version>
-    </dependency>
+	<!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
+	<dependency>
+	    <groupId>com.github.erosb</groupId>
+	    <artifactId>everit-json-schema</artifactId>
+	    <version>${everit.version}</version>
+	</dependency>   
     <!-- / -->   
     <!-- begin json-sKema https://github.com/erosb/json-sKema -->
     <dependency>
@@ -116,11 +117,17 @@
       <version>2.20.1</version>
     </dependency>
 <!--	<dependency>-->
-<!--	     Used to process YAML -->
+<!--	Used to process YAML -->
 <!--	    <groupId>com.fasterxml.jackson.dataformat</groupId>-->
 <!--	    <artifactId>jackson-dataformat-yaml</artifactId>-->
 <!--	    <version>${version.jackson}</version>-->
 <!--	</dependency>    -->
+<!--	<dependency>-->
+<!-- 	  Used to validate RFC 3339 date and date-time -->
+<!--      <groupId>com.ethlo.time</groupId>-->
+<!--      <artifactId>itu</artifactId>-->
+<!--      <version>${version.itu}</version>-->
+<!--     </dependency>-->
     <dependency>
 	  <!-- Used for logging -->
       <groupId>org.slf4j</groupId>

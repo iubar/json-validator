@@ -2,6 +2,8 @@ package it.iubar.json;
 
 import it.iubar.json.validators.IValidator;
 import it.iubar.json.validators.JustifyStrategy;
+import it.iubar.json.validators.NetworkntStrategy;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -123,9 +125,8 @@ public class CliJsonValidator {
 		// STRATEGIES:
 		// IValidator strategy = new SkemaStrategy(); 		// https://github.com/erosb/json-sKema
 		// IValidator strategy = new EveritStrategy(); 		// https://github.com/everit-org/json-schema (NOTE : The latest draft 2020-12 is supported only by erosb/json-sKema. )
-		// IValidator strategy = new NetworkntStrategy(); 	// https://github.com/networknt/json-schema-validator
-		// IValidator strategy = new JustifyStrategy();		// https://github.com/leadpony/justify
-		IValidator strategy = new JustifyStrategy();
+		IValidator strategy = new NetworkntStrategy(); 	// https://github.com/networknt/json-schema-validator
+		// DEAD PROJECT: IValidator strategy = new JustifyStrategy();		// https://github.com/leadpony/justify		
 		return strategy;
 	}
 }
