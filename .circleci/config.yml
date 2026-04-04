@@ -42,11 +42,11 @@ jobs:
       - run:
           name: Outdated
           command: mvn -f pom_circleci.xml versions:display-dependency-updates
-	  - persist_to_workspace:
-	      root: .
-	      paths:
-	        - artifacts
-						  
+      - persist_to_workspace:
+          root: .
+          paths:
+            - artifacts
+
   publish-github-release:
     docker:
       - image: cimg/go:1.17
@@ -62,7 +62,7 @@ jobs:
             # VERSION=$(xmlstarlet sel -N mvn='http://maven.apache.org/POM/4.0.0' -t -m '/mvn:project/mvn:version' -v . -n <pom.xml)
             VERSION=${CIRCLE_BRANCH}-release
             # see https://circleci.com/docs/variables/          
-			ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
 workflows:
   build-test-and-deploy:
     # https://circleci.com/docs/workflows/
@@ -70,10 +70,10 @@ workflows:
       - hello-job
       - print-a-message:
           message: Hello!
-	  - build:
-	      filters:
-	        tags:
-	          only: /.*/
+      - build:
+          filters:
+            tags:
+              only: /.*/
       - publish-github-release:
           requires:
             - build
