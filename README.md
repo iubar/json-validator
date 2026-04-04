@@ -257,3 +257,38 @@ catch (Exception e) {
 
 L'importante è usare sempre fail(msg, e) invece di fail(msg) per non perdere informazioni.
 
+
+
+## Come disabilitare uno o più test
+
+Usare annotazione
+
+@Disabled("motivazione del salto")
+
+alternativa condizionale — @DisabledIf / assumeTrue
+Se vuoi saltare in base a una condizione a runtime:
+
+````java
+// Salta se una proprietà di sistema è impostata
+@Test
+@DisabledIfSystemProperty(named = "env", matches = "ci")
+void testSoloInLocale() { ... }
+
+// Oppure con Assumptions (più flessibile)
+@Test
+void testCondizionale() {
+    Assumptions.assumeTrue(
+        System.getenv("HOST") != null,
+        "HOST non configurato — test saltato"
+    );
+    // continua solo se la condizione è vera
+}
+````
+
+Riepilogo:
+
+@Disabled					Skip fisso, indipendente da condizioni
+@DisabledIfSystemProperty	Skip basato su proprietà JVM
+@DisabledOnOs				Skip basato sul sistema operativo
+Assumptions.assumeTrue()	Skip basato su condizione a runtime
+
