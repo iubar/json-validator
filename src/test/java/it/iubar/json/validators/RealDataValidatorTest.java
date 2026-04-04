@@ -121,7 +121,7 @@ public class RealDataValidatorTest {
 	@Test
 	@DisplayName("JustifyStrategy")
 	@Tag("LocalTestOnly")
-	@Disabled("Obsoleto")
+	@Disabled("Libreria obsoleta: org.opentest4j.AssertionFailedError: Unexpected exception thrown: org.leadpony.justify.api.JsonValidatingException: [2,56][/$schema] Unsuppoted metaschema: https://json-schema.org/draft-07/schema")
 	void runTest2() {
 		Assertions.assertDoesNotThrow(() -> {
 			IValidator strategy = new JustifyStrategy();
