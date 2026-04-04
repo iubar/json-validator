@@ -1,187 +1,210 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>it.iubar.pom</groupId>
-    <artifactId>iubar-pom-next</artifactId>
-    <version>0.0.1</version>
-  </parent>
-  <groupId>it.iubar</groupId>
-  <artifactId>json-validator</artifactId>
-  <version>1.5.0</version>
-  <name>Iubar Json Validator</name>
-  <description>A json validator</description>
-    <properties>
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>it.iubar.pom</groupId>
+		<artifactId>iubar-pom-next</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<groupId>it.iubar</groupId>
+	<artifactId>json-validator</artifactId>
+	<version>1.5.1</version>
+	<name>Iubar Json Validator</name>
+	<description>A json validator</description>
+	<properties>
 		<maven.compiler.release>11</maven.compiler.release>
-	    <maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
+		<maven-assembly-mainclass>it.iubar.json.CliJsonValidator</maven-assembly-mainclass>
 		<!-- PAY ATTENTION for the jersey.client :	-->
 		<!-- 3.0.x is the latest version that supports Java 8 -->
 		<!-- 4.x requires Java 17 -->
-		<!-- See https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest30x/modules-and-dependencies.html#d0e560 -->
-		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->    
-	    <jersey.client.version>3.1.11</jersey.client.version>      
-	   
-	    <justify.version>3.1.0</justify.version> <!-- Dead project ! :( https://github.com/leadpony/justify -->
-	    
-	    <!-- json-schema-validator --> 
+		<!-- See
+		https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest30x/modules-and-dependencies.html#d0e560 -->
+		<!--
+		https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
+		<jersey.client.version>3.1.11</jersey.client.version>
+
+		<justify.version>3.1.0</justify.version> <!-- Dead project ! :(
+		https://github.com/leadpony/justify -->
+
+		<!-- json-schema-validator -->
 		<!-- https://github.com/networknt/json-schema-validator -->
 		<!-- 3.x Compatible with Java 17+ and Jackson 3.x-->
 		<!-- 2.x Compatible with Java 8+ and Jackson 2.x-->
-	    <networknt.version>2.0.1</networknt.version> <!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
-	    <everit.version>1.14.6</everit.version>    <!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
-	   
-	    <jsonskema.version>0.29.0</jsonskema.version> <!-- https://github.com/erosb/json-sKema -->
-	    <slf4j.version>2.0.16</slf4j.version> 
-  </properties>
-  <build>
-    <finalName>${project.artifactId}</finalName>
-    <plugins>
-      <!-- Plugins managed by the parent -->
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
-  <dependencies>
-    <!-- Dependencies managed by the parent -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- / -->
-    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.21.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
-    <dependency>
-      <groupId>commons-cli</groupId>
-      <artifactId>commons-cli</artifactId>
-      <version>1.11.0</version>
-    </dependency>
-    <!-- begin everit		 -->
-    <!-- https://github.com/everit-org/json-schema -->
-	<!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
-	<dependency>
-	    <groupId>com.github.erosb</groupId>
-	    <artifactId>everit-json-schema</artifactId>
-	    <version>${everit.version}</version>
-	</dependency>   
-    <!-- / -->   
-    <!-- begin json-sKema https://github.com/erosb/json-sKema -->
-    <dependency>
-    <groupId>com.github.erosb</groupId>
-    <artifactId>json-sKema</artifactId>
-    <version>${jsonskema.version}</version>
-	</dependency>
-     <!-- / -->
-    <!-- begin justify https://github.com/leadpony/justify -->
-    <dependency>
-      <groupId>org.leadpony.justify</groupId>
-      <artifactId>justify</artifactId>
-      <version>${justify.version}</version>
-    </dependency>
-    <!-- JSON-P Default Provider (JSR-353) -->
-	<!-- La dipendenza jakarta.json:jakarta.json-api contiene solo le interfacce e le classi astratte di JSON-P, ma non il codice che effettivamente funziona.		-->    
-	<!-- https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api -->
-	<dependency>
-	    <groupId>jakarta.json</groupId>
-	    <artifactId>jakarta.json-api</artifactId> <!-- Nota : già incluso in Parsson --> 
-	    <version>2.1.3</version>
-	</dependency>
-	<!-- Eclipse Parsson is an implementation of Jakarta JSON Processing specification -->
-	<!-- See https://github.com/eclipse-ee4j/parsson/blob/master/bundles/dist/src/main/resources/README.txt -->
-	<!-- https://mvnrepository.com/artifact/org.eclipse.parsson/parsson -->	
-	<dependency>
-	    <groupId>org.eclipse.parsson</groupId>
-	    <artifactId>parsson</artifactId>
-	    <version>1.1.7</version>
-	</dependency> 
-    <!-- / -->
-    <!-- begin com.networknt.json-schema-validator -->
-    <!-- https://github.com/networknt/json-schema-validator -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.20.1</version>
-    </dependency>
-<!--	<dependency>-->
-<!--	Used to process YAML -->
-<!--	    <groupId>com.fasterxml.jackson.dataformat</groupId>-->
-<!--	    <artifactId>jackson-dataformat-yaml</artifactId>-->
-<!--	    <version>${version.jackson}</version>-->
-<!--	</dependency>    -->
-<!--	<dependency>-->
-<!-- 	  Used to validate RFC 3339 date and date-time -->
-<!--      <groupId>com.ethlo.time</groupId>-->
-<!--      <artifactId>itu</artifactId>-->
-<!--      <version>${version.itu}</version>-->
-<!--     </dependency>-->
-    <dependency>
-	  <!-- Used for logging -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
-	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->    
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.20.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.networknt</groupId>
-      <artifactId>json-schema-validator</artifactId>
-      <version>${networknt.version}</version>
-		<exclusions>
-			<exclusion>
-				<groupId>org.slf4j</groupId>
-				<artifactId>*</artifactId>
-			</exclusion>
-		</exclusions>      
-    </dependency>
-    <!-- / -->
-    <!-- begin jersey -->
-    <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-client</artifactId>
-      <version>${jersey.client.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.inject</groupId>
-      <artifactId>jersey-hk2</artifactId>
-      <version>${jersey.client.version}</version>
-    </dependency>
-    <!-- /  -->
-	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
-	<dependency>
-	    <groupId>org.apache.httpcomponents.client5</groupId>
-	    <artifactId>httpclient5</artifactId>
-	    <version>5.6</version>
-		<exclusions>
-			<exclusion>
-				<groupId>org.slf4j</groupId>
-				<artifactId>*</artifactId>
-			</exclusion>
-		</exclusions>	    
-	</dependency>
-  </dependencies>
-  <repositories>
-     <!-- Easy to use package repository for Git https://jitpack.io/#maven -->
-    <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-    </repository>
-  </repositories> 
+		<networknt.version>2.0.1</networknt.version> <!--
+		https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
+		<everit.version>1.14.6</everit.version>    <!--
+		https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
+
+		<jsonskema.version>0.29.0</jsonskema.version> <!--
+		https://github.com/erosb/json-sKema -->
+		<slf4j.version>2.0.16</slf4j.version>
+	</properties>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<!-- Plugins managed by the parent -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>
+						-Djava.util.logging.config.file=src/test/resources/logging.properties
+					</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<!-- Dependencies managed by the parent -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- / -->
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.21.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<version>1.11.0</version>
+		</dependency>
+		<!-- begin everit		 -->
+		<!-- https://github.com/everit-org/json-schema -->
+		<!--
+		https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
+		<dependency>
+			<groupId>com.github.erosb</groupId>
+			<artifactId>everit-json-schema</artifactId>
+			<version>${everit.version}</version>
+		</dependency>
+		<!-- / -->
+		<!-- begin json-sKema https://github.com/erosb/json-sKema -->
+		<dependency>
+			<groupId>com.github.erosb</groupId>
+			<artifactId>json-sKema</artifactId>
+			<version>${jsonskema.version}</version>
+		</dependency>
+		<!-- / -->
+		<!-- begin justify https://github.com/leadpony/justify -->
+		<dependency>
+			<groupId>org.leadpony.justify</groupId>
+			<artifactId>justify</artifactId>
+			<version>${justify.version}</version>
+		</dependency>
+		<!-- JSON-P Default Provider (JSR-353) -->
+		<!-- La dipendenza jakarta.json:jakarta.json-api contiene solo le
+		interfacce e le classi astratte di JSON-P, ma non il codice che
+		effettivamente funziona.		-->
+		<!-- https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api -->
+		<dependency>
+			<groupId>jakarta.json</groupId>
+			<artifactId>jakarta.json-api</artifactId> <!-- Nota : già incluso in
+			Parsson -->
+			<version>2.1.3</version>
+		</dependency>
+		<!-- Eclipse Parsson is an implementation of Jakarta JSON Processing
+		specification -->
+		<!-- See
+		https://github.com/eclipse-ee4j/parsson/blob/master/bundles/dist/src/main/resources/README.txt -->
+		<!-- https://mvnrepository.com/artifact/org.eclipse.parsson/parsson -->
+		<dependency>
+			<groupId>org.eclipse.parsson</groupId>
+			<artifactId>parsson</artifactId>
+			<version>1.1.7</version>
+		</dependency>
+		<!-- / -->
+		<!-- begin com.networknt.json-schema-validator -->
+		<!-- https://github.com/networknt/json-schema-validator -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.20.1</version>
+		</dependency>
+		<!--	<dependency>-->
+		<!--	Used to process YAML -->
+		<!--	    <groupId>com.fasterxml.jackson.dataformat</groupId>-->
+		<!--	    <artifactId>jackson-dataformat-yaml</artifactId>-->
+		<!--	    <version>${version.jackson}</version>-->
+		<!--	</dependency>    -->
+		<!--	<dependency>-->
+		<!-- 	  Used to validate RFC 3339 date and date-time -->
+		<!--      <groupId>com.ethlo.time</groupId>-->
+		<!--      <artifactId>itu</artifactId>-->
+		<!--      <version>${version.itu}</version>-->
+		<!--     </dependency>-->
+		<dependency>
+			<!-- Used for logging -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.20.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.networknt</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${networknt.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- / -->
+		<!-- begin jersey -->
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey.client.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>${jersey.client.version}</version>
+		</dependency>
+		<!-- /  -->
+		<!--
+		https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents.client5</groupId>
+			<artifactId>httpclient5</artifactId>
+			<version>5.6</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	<repositories>
+		<!-- Easy to use package repository for Git https://jitpack.io/#maven -->
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 </project>

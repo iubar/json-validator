@@ -44,6 +44,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 public class GetContent {
+	
+	
+	public static final String HOST_NAME = "192.168.0.121";
+	
 	static {
 		GetContent.disableSslVerification();
 	}
@@ -87,7 +91,7 @@ public class GetContent {
 				@Override
 				public boolean verify(String hostname, SSLSession session) {
 					// System.out.println("Verify " + hostname);
-					if (hostname.equals(TrustAllHostNameVerifier.HOST_NAME)) {
+					if (hostname.equals(GetContent.HOST_NAME)) {
 						return true;
 					}
 					return false;
@@ -114,6 +118,7 @@ public class GetContent {
 		final int readTimeout = 5000; // milliseconds
 		con.setConnectTimeout(connectTimeout);
 		con.setReadTimeout(readTimeout);
+	
 		InputStream in = con.getInputStream();
 
 		ReadableByteChannel readableByteChannel = Channels.newChannel(in);
@@ -168,7 +173,7 @@ public class GetContent {
 
 			Response response = invocationBuilder.get();
 
-			if (response.getStatus() != 200) {
+			if (response.getStatus() != Response.Status.OK.getStatusCode()) {
 				System.out.println("HTTP status " + response.getStatus());
 				return bytesCopied;
 			}

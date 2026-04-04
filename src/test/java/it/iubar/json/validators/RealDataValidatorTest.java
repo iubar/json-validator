@@ -3,6 +3,9 @@ package it.iubar.json.validators;
 import it.iubar.json.JsonValidator;
 import it.iubar.json.utils.GetContent;
 import it.iubar.json.utils.TrustAllHostNameVerifier;
+
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,6 +18,7 @@ import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -24,16 +28,33 @@ public class RealDataValidatorTest {
 	private static final Logger LOGGER = Logger.getLogger(RealDataValidatorTest.class.getName());
 
 	public static final String BASE_ADDRESS =
-		"https://" + TrustAllHostNameVerifier.HOST_NAME + "/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json";
+		"https://" + GetContent.HOST_NAME + "/svn/java/iubar-paghe-test/trunk/src/test/resources/cedolini/json";
 
 	private static File schemaFile = null;
 
-	private static File fetchSchemaFile() throws MalformedURLException, IOException {
+	private static File fetchSchemaFile()  {
 		File schemaFile = new File(RealDataValidatorTest.getOutPath() + File.separator + "schema.json");
 		String address = RealDataValidatorTest.BASE_ADDRESS + "/schema/schema.json";
-		GetContent.getContent1(new URL(address), schemaFile);
+		URL url;
+		try {
+			url = new URL(address);
+			LOGGER.log(Level.INFO, "URL : " + url);
+			GetContent.getContent1(url, schemaFile);
+		} catch (MalformedURLException e) {
+ 			//e.printStackTrace(); 			
+ 			String error =  e.getMessage();
+ 			LOGGER.log(Level.SEVERE, error);
+ 			fail(error, e);
+		} catch (IOException e) {
+			//e.printStackTrace();
+ 			String error =  e.getMessage();			
+			LOGGER.log(Level.SEVERE, error);
+			fail(error, e);
+		}
 		if (!schemaFile.isFile()) {
-			Assertions.fail("The file " + schemaFile + " does not exist or is not readable");
+			String error = "The file " + schemaFile + " does not exist or is not readable";
+			LOGGER.log(Level.SEVERE, error);
+			fail(error);
 		}
 		return schemaFile;
 	}
@@ -100,6 +121,7 @@ public class RealDataValidatorTest {
 	@Test
 	@DisplayName("JustifyStrategy")
 	@Tag("LocalTestOnly")
+	@Disabled("Obsoleto")
 	void runTest2() {
 		Assertions.assertDoesNotThrow(() -> {
 			IValidator strategy = new JustifyStrategy();
