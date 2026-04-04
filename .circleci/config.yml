@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   hello-job:
     docker:
-      - image: cimg/go:1.17 # the primary container, where your job's commands are run
+      - image: cimg/go:1.21 # the primary container, where your job's commands are run
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -11,7 +11,7 @@ jobs:
       - run: echo "hello world" # run the `echo` command
   print-a-message:
     docker:
-      - image: cimg/base:2022.03
+      - image: cimg/base:2026.04
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
@@ -49,7 +49,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: cimg/go:1.17
+      - image: cimg/go:1.21
     steps:
       - attach_workspace:
           at: .
